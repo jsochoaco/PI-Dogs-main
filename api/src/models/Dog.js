@@ -1,9 +1,9 @@
 const { DataTypes } = require('sequelize');
 // Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+// Luego le injectamos la conexion a sequelize ejecutandolo
 module.exports = (sequelize) => {
   // Definimos 
-  const Dog = sequelize.define('dog', {
+  sequelize.define('dog', {
     id: { // Id
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -31,9 +31,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     }
+  }, {
+    timestamps: false
   });
-
-  return Dog
 };
 
 // Para no confundir los ID's, los perros que se creen serán con un ID posterior a el maximo que trae la API (264). Por ende, todo perro nuevo que se cree, iniciará con el ID 265 en adelante. 
