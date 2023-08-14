@@ -22,7 +22,7 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use('/', routes);
+server.use('/dogs', routes); // Agrego el /dogs en el path para evitar problemas en el servidor
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
