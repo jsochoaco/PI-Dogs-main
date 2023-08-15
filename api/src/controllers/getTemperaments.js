@@ -18,11 +18,15 @@ const getTemperaments = async(req,res) => {
         });
         const dogs = response.data
         let temperamentos = []
-        dogs.forEach((dog) => {
+        dogs.forEach(async (dog) => {
             if (dog.temperament) {
                 const temp = dog.temperament
                 const separado = temp.split(',').map((word) => ({ temperamento: word.trim() }));
-                temperamentos = [...temperamentos, ...separado]  
+                temperamentos = [...temperamentos, ...separado]
+                // const temperamento = separado.temperamento
+                // const [temperament, _] = await Temperaments.findOrCreate(
+                //     {where: { temperamento }});
+                // await dog.addTemperament(temperament);
             }
         });
         if (temperamentos.length> 0) {
@@ -34,6 +38,7 @@ const getTemperaments = async(req,res) => {
             return res.status(200).json("Enviado")
             // Stautos 200: Correcto; OK
         }
+
     } 
     catch (error) { 
         return res.status(500).json({error: error.message})
