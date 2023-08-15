@@ -16,7 +16,10 @@ const postDogs = async (req,res) => {
             where: {name},
             defaults: { height, weight, life_span}
         })
-        const arrayTemperamentos = temperaments.split(",")
+        const arrayTemperamentos = temperaments.split(",").map(word => {
+            const lowerCaseWord = word.toLowerCase();
+            const capitalizedWord = lowerCaseWord.charAt(0).toUpperCase() + lowerCaseWord.slice(1);
+            return capitalizedWord;})
         arrayTemperamentos.forEach(async (temperamento) => {
             await Temperaments.findOrCreate({
                 where: {temperamento},}
@@ -28,7 +31,7 @@ const postDogs = async (req,res) => {
             await dog.addTemperament(temperament);
         })
         if (!creado) {
-            return res.status(200).send("El perro ya existe");
+            return res.status(409).send("El perro ya existe");
             // Status 409: Conflicto
         }
         else {
@@ -41,6 +44,6 @@ const postDogs = async (req,res) => {
         return res.status(500).json({error: error.message})
         // Status 500: Indica un error interno en el servidor 
     }
-}; 
+};
 
 module.exports = postDogs
