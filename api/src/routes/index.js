@@ -6,6 +6,7 @@ const getDogById = require('../controllers/getDogById');
 const getDogByName = require('../controllers/getDogByName');
 const postDogs = require('../controllers/postDogs');
 const getTemperaments = require('../controllers/getTemperaments');
+const getDogsDB = require('../controllers/getDogDB');
 
 
 
@@ -18,6 +19,7 @@ router.get("/dogs/:id", getDogById )
 router.get("/dog", getDogByName)
 router.post("/dogs", postDogs)
 router.get("/temperaments", getTemperaments)
+router.get("/dogDB", getDogsDB)
 
 
 module.exports = router;
