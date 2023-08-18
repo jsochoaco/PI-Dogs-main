@@ -1,4 +1,4 @@
-import {FILTRO_ORIGEN, SET_API_DOGS, SET_DB_DOGS} from "./action-types"
+import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, SET_TEMPERAMENTOS} from "./action-types"
 import axios from "axios"
 
 export const setApiDogs = () => {
@@ -21,7 +21,6 @@ export const setApiDogs = () => {
         // Status 500: Indica un error interno en el servidor
     }
 }
-
 export const setDBDogs = () => {
     try {
         const endpoint = 'http://localhost:3001/dogDB'
@@ -42,10 +41,54 @@ export const setDBDogs = () => {
         // Status 500: Indica un error interno en el servidor
     }
 }
-
 export const filterOrigen= (origen) => {
     return {
         type: FILTRO_ORIGEN,
         payload: origen
+    }
+}
+export const setTemperamentos = () => {
+    try {
+        const endpoint = 'http://localhost:3001/tempDB'
+        return async (dispatch)=> {
+            const response = await axios.get(endpoint)
+            const temp = response.data
+                  return dispatch({
+                      type: SET_TEMPERAMENTOS,
+                      payload: temp,
+                   });
+        }        
+
+    } 
+    catch (error) {
+        return res.status(500).json({error: error.message})
+        // Status 500: Indica un error interno en el servidor 
+    }
+}
+
+export const setIntermedia = ()=> {
+    try {
+        const endpoint = 'http://localhost:3001/inter'
+        return async (dispatch)=> {
+            const response = await axios.get(endpoint)
+            const inter = response.data
+                  return dispatch({
+                      type: SET_INTERMEDIA,
+                      payload: inter,
+                   });
+        }        
+
+    } 
+    catch (error) {
+        return res.status(500).json({error: error.message})
+        // Status 500: Indica un error interno en el servidor 
+    }
+}
+
+
+export const filterTemp = (temperamentos) => {
+    return {
+        type: FILTRO_TEMP,
+        payload: temperamentos
     }
 }

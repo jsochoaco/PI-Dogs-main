@@ -23,20 +23,19 @@ const getTemperaments = async(req,res) => {
                 const temp = dog.temperament
                 const separado = temp.split(',').map((word) => ({ temperamento: word.trim() }));
                 temperamentos = [...temperamentos, ...separado]
-                // const temperamento = separado.temperamento
-                // const [temperament, _] = await Temperaments.findOrCreate(
-                //     {where: { temperamento }});
-                // await dog.addTemperament(temperament);
             }
         });
         if (temperamentos.length> 0) {
             temperamentos.forEach(async (temp) => {
                 const temperamento = temp.temperamento
                 await Temperaments.findOrCreate({
-                    where: {temperamento}})
+                    where: {temperamento: temperamento}})
             })
             return res.status(200).json("Enviado")
             // Stautos 200: Correcto; OK
+            }
+        else {
+            return res.status(400).json("No hay data") 
         }
 
     } 

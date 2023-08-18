@@ -1,15 +1,15 @@
 // ¿Qué debe cumplir esta ruta? 
-// Obtiene un arreglo de objetos, donde cada objeto es la raza de un perro.
+// Obtiene un arreglo de objetos, donde cada objeto es un temperamento.
 
 // Importación de la API_KEY para el endpoint por medio de las variables de entorno Y axios
 require('dotenv').config();
-const {Dog} = require("../db")
+const {Temperaments} = require("../db")
 
-const getDogsDB = async (req,res) => {
+const getTemDB = async (req,res) => {
     try {
-        const dogs = await Dog.findAll()
-        if (dogs) { // Si la API envía información
-            return res.status(200).json(dogs)
+        const temp = await Temperaments.findAll()
+        if (temp) { // Si la API envía información
+            return res.status(200).json(temp)
             // Stautos 200: Correcto; OK
         }
         else { // Si la API no envía información
@@ -23,4 +23,4 @@ const getDogsDB = async (req,res) => {
     }
 }; 
 
-module.exports = getDogsDB
+module.exports = getTemDB

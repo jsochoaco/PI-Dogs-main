@@ -7,7 +7,7 @@ import { useState } from "react";
 
 
 const CardDogs = (props) => {
-    const { allDogs } = props;
+    const { allDogs, temperamentos } = props;
 
     const dispatch = useDispatch()
 
@@ -17,15 +17,25 @@ const CardDogs = (props) => {
         dispatch(actions.filterOrigen(evento.target.value))
         setSelectedFilter(evento.target.value);
     }
+
+    const handleFilterTemp = (evento) => {
+        const temp = Array.from(evento.target.selectedOptions).map(option => option.value);
+        dispatch(actions.filterTemp(temp))
+    }
     return (
         <div>
             <div>
             <div>
                 <h2> Filter by Origin</h2>
+                <p>{temperamentos}</p>
                 <select onChange={handleFilterOrigin} defaultValue={selectedFilter} >
                     <option value="All">All</option>                
                     <option value="DB">Created</option>
                     <option value="API">Imported</option>
+                </select>
+                <select onChange={handleFilterTemp} multiple>
+                {temperamentos.map((temp) => (
+                <option value={temp.temperamento}> {temp.temperamento} </option>))}
                 </select>
             </div>
             </div>
@@ -49,6 +59,7 @@ const CardDogs = (props) => {
 const mapStateToProps = (state) => {
     return {
         allDogs: state.allDogs,
+        temperamentos: state.temperamentos
     };
 };
 
