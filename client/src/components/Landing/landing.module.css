@@ -1,0 +1,51 @@
+.div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    margin:0%;
+    position: absolute;
+    inset: 0;
+    border: 8px solid #4512ef;
+    box-sizing: border-box;
+    background-image: url("FondoInicio.jpg");
+    background-size: cover;
+    background-repeat: none;
+}
+
+.titulo {
+    font-family: "Rockwell";
+    font-size: 60px;
+    font-weight: bolder;
+    color: #2b01b3;
+    text-shadow: 1px 1px 30px white;
+}
+.boton {
+    font-family: "Rockwell";
+    color: white;
+    background-color: #4512ef;
+    font-size: 40px;
+
+    border: solid 5px;
+    width: 110%;
+    height: 110%;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: .5s, color .10s;
+        -webkit-transition: .5s, color .10s;
+        -moz-transition: .5s, color .10s;
+}
+          
+.boton:hover{
+    color: #4512ef;
+    background-color: #cdc8f7;
+    transform: scale3d(1.2, 1.2, 0.3);
+        -webkit-transform: scale3d(1.2, 1.2, 0.3);
+        -moz-transform: scale3d(1.2, 1.2, 0.3);
+}
+        

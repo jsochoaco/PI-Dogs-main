@@ -7,5 +7,6 @@ export const SET_API_TEMPERAMENTOS = "SET_API_TEMPERAMENTOS"
 export const SET_DB_DOGS = "SET_DB_DOGS"
 export const SET_DB_TEMP = "SET_DB_TEMP"
 export const SET_INTERMEDIA = "SET_INTERMEDIA"
+export const CLEAR = "CLEAR"
 
 

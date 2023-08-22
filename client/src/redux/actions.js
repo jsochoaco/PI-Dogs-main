@@ -1,4 +1,4 @@
-import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, SET_DB_TEMP, SET_API_TEMPERAMENTOS, ORDEN_NAME, ORDEN_PESO} from "./action-types"
+import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, SET_DB_TEMP, SET_API_TEMPERAMENTOS, CLEAR, ORDEN_NAME, ORDEN_PESO} from "./action-types"
 import axios from "axios"
 
 export const setApiDogs = () => {
@@ -122,5 +122,11 @@ export const ordenPeso = (orden) => {
     return {
         type: ORDEN_PESO,
         payload: orden
+    }
+}
+
+export const clearFilter = () => {
+    return {
+        type: CLEAR
     }
 }

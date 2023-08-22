@@ -12,10 +12,10 @@ const Landing = (props) => {
         props.setIntermedia()
     }
     return (
-        <div>
-            <h1>Welcome to the Dogs App</h1>
+        <div className={style.div}>
+            <h1 className={style.titulo}> ¡Welcome to The Dogs App! &#128021;</h1>
             <NavLink to="/home">
-                <button onClick={data}>Home</button>
+                <button className= {style.boton} onClick={data}>Home &#9193;</button>
             </NavLink>
         </div>
     )

@@ -37,6 +37,14 @@ const Home = (props) => {
         dispatch(actions.ordenPeso(evento.target.value))
         setOrdenPeso(evento.target.value)
     }
+    // Limpiador de filtros
+    const clearFilters = () => {
+        setSelectedFilter("All");
+        setTempFilter([]);
+        setOrdenName("UN");
+        setOrdenPeso("UN");
+        dispatch(actions.clearFilter())
+      };
     // Rendereizado
     return (
         <div>
@@ -64,6 +72,7 @@ const Home = (props) => {
                     <option value="MenorAMayor"> Min to max order</option>
                     <option value="MayorAMenor">Max to min order</option>
                 </select>
+                <button onClick={clearFilters}> Clear filters </button>
             </div>
             <CardDogs dogs = {allDogs} />
         </div>

@@ -1,4 +1,4 @@
-import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, SET_DB_TEMP, SET_API_TEMPERAMENTOS, ORDEN_NAME, ORDEN_PESO } from "./action-types"
+import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, CLEAR, SET_DB_TEMP, SET_API_TEMPERAMENTOS, ORDEN_NAME, ORDEN_PESO } from "./action-types"
 
 const initialState = {
     apiDogs: [],
@@ -30,6 +30,10 @@ export const reducer = (state=initialState, action) => {
         case SET_INTERMEDIA : {
             return {...state, intermedia: action.payload}}
 
+        case CLEAR: {
+            return {...state, allDogs: [...state.apiDogs, ...state.dbDogs]}
+        }
+        
         case FILTRO_ORIGEN: {
             if (action.payload === "All"){
                 return {...state,allDogs: [...state.apiDogs,...state.dbDogs]}}

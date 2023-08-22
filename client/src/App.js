@@ -4,6 +4,7 @@ import Landing from "./components/Landing/Landing"
 import Home from "./components/Home/Home"
 import { useState } from 'react';
 import { connect } from 'react-redux';
+import Detail from "./components/Detail/Detail"
 
 function App(props) {
   const {allDogs, allTemperamentos} = props
@@ -16,6 +17,9 @@ function App(props) {
       <Route
       path='/home'
       element={<Home allDogs= {allDogs} temperamentos = {allTemperamentos}/>} />
+      <Route
+      path='/details/:id'
+      element={<Detail/>} />
       </Routes>
     </div>
   );
