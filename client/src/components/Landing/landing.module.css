@@ -11,7 +11,7 @@
     margin:0%;
     position: absolute;
     inset: 0;
-    border: 8px solid #4512ef;
+    border: 8px solid #7411ee;
     box-sizing: border-box;
     background-image: url("FondoInicio.jpg");
     background-size: cover;
@@ -22,13 +22,13 @@
     font-family: "Rockwell";
     font-size: 60px;
     font-weight: bolder;
-    color: #2b01b3;
+    color: #550dad;
     text-shadow: 1px 1px 30px white;
 }
 .boton {
     font-family: "Rockwell";
     color: white;
-    background-color: #4512ef;
+    background-color: #7411ee;
     font-size: 40px;
 
     border: solid 5px;
@@ -40,10 +40,10 @@
         -webkit-transition: .5s, color .10s;
         -moz-transition: .5s, color .10s;
 }
-          
+
 .boton:hover{
-    color: #4512ef;
-    background-color: #cdc8f7;
+    color: #7411ee;
+    background-color: #f6b7fb;
     transform: scale3d(1.2, 1.2, 0.3);
         -webkit-transform: scale3d(1.2, 1.2, 0.3);
         -moz-transform: scale3d(1.2, 1.2, 0.3);

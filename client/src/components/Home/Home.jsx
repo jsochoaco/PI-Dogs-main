@@ -2,6 +2,7 @@ import CardDogs from "../CardDogs/CardDogs"
 import * as actions from "../../redux/actions"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
+import style from "./Home.module.css"
 
 const Home = (props) => {
     const dispatch = useDispatch()
@@ -47,31 +48,56 @@ const Home = (props) => {
       };
     // Rendereizado
     return (
-        <div>
+        <div className={style.general}>
+            <div className={style.contenedor}>
+                <div className={style.filtros}>
+                    <h5>Filters</h5>
+                    <div className={style.filOrigen}>
+                        <p className={style.textosecun} >Filter by data origin</p>
+                        <select onChange={handleFilterOrigin} defaultValue={selectedFilter}>
+                            <option value="All">All</option>                
+                            <option value="DB">Created</option>
+                            <option value="API">Imported</option>
+                        </select>
+                    </div>
+                    <div className={style.filTemp}>
+                        <p className={style.textosecun} >Filter by Temperament</p>
+                        <select onChange={handleFilterTemp} multiple>
+                            {temperamentos.map((temp) => (
+                            <option value={temp.temperamento}> {temp.temperamento} </option>))}
+                        </select>
+                        <button onClick={clearTempFilter}>Clear</button>
+                        <div className={style.filTemp2}>
+                            <p>{tempFilter}</p>
+                            <button onClick={filtradoTemp}> Filtrar </button>
+                    </div>
+                    </div>
+
+                </div>
+                <div className={style.divor}>
+                    <div className= {style.tituloorder}>
+                        <h5 className={style.texto}>Orders</h5>
+                    </div>
+                    <div className={style.ordenadores}>
+                        <div className={style.orName}>
+                            <p className={style.textosecun}>Order by name</p>
+                            <select className={style.select} onChange={handleOrderName} defaultValue={ordenName}>
+                                <option value="A-Z">A-Z order</option>
+                                <option value="Z-A">Z-A order</option>
+                            </select>
+                        </div>
+                        <div className={style.orPeso}>
+                            <p className={style.textosecun}>Order by weight</p>
+                            <select className={style.select} onChange={handleOrdenPeso} defaultValue={ordenPeso}>
+                                <option value="UN">Unsorted</option>
+                                <option value="MenorAMayor"> Min to max order</option>
+                                <option value="MayorAMenor">Max to min order</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div>
-                <h2> Filters </h2>
-                <select onChange={handleFilterOrigin} defaultValue={selectedFilter}>
-                    <option value="All">All</option>                
-                    <option value="DB">Created</option>
-                    <option value="API">Imported</option>
-                </select>
-                <select onChange={handleFilterTemp} multiple>
-                {temperamentos.map((temp) => (
-                <option value={temp.temperamento}> {temp.temperamento} </option>))}
-                </select>
-                <button onClick={clearTempFilter}>Clear</button>
-                <p>{tempFilter}</p>
-                <button onClick={filtradoTemp}> Filtrar </button>
-                <select onChange={handleOrderName} defaultValue={ordenName}>
-                    <option value="UN">Unsorted</option>
-                    <option value="A-Z">A-Z order</option>
-                    <option value="Z-A">Z-A order</option>
-                </select>
-                <select onChange={handleOrdenPeso} defaultValue={ordenPeso}>
-                    <option value="UN">Unsorted</option>
-                    <option value="MenorAMayor"> Min to max order</option>
-                    <option value="MayorAMenor">Max to min order</option>
-                </select>
                 <button onClick={clearFilters}> Clear filters </button>
             </div>
             <CardDogs dogs = {allDogs} />

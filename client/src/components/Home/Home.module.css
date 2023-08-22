@@ -1,0 +1,87 @@
+.general {
+    background-color: #ffe8bf;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 5%;
+
+}
+
+
+
+
+.filtros {
+    display: flex;
+    flex-direction: row;
+
+    .filTemp {
+        display: flex;
+        flex-direction: row; 
+        align-items: center;
+        justify-content: center;
+        gap: 1%;
+    }
+    .filTemp2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1%;
+    }
+}
+
+.divor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .ordenadores {
+        display: flex;
+        flex-direction: row;
+        gap: 3%;
+    
+        .orName {
+            display: flex;
+            flex-direction: row; 
+            align-items: center;
+            justify-content: center;
+            gap: 1%;
+        }
+        .orPeso {
+            display: flex;
+            flex-direction: row; 
+            align-items: center;
+            justify-content: center;
+            gap: 1%;
+        }
+    
+    }
+}
+
+.texto {
+    font-family: "Rockwell";
+    font-size: 18px;
+    color: #550dad;
+}
+
+.textosecun {
+    font-family: "Rockwell";
+    font-size: 13px;
+    color: black;
+}
+
+.select {
+    font-family: "Rockwell";
+    background-color: #9f7bfc;
+    color: white;
+    text-align: center;
+    font-size: 13px;
+    border: solid black 1.5px;
+    border-radius: 10px; 
+}
