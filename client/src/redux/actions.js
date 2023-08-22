@@ -1,4 +1,4 @@
-import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, SET_TEMPERAMENTOS} from "./action-types"
+import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, SET_DB_TEMP, SET_API_TEMPERAMENTOS, ORDEN_NAME, ORDEN_PESO} from "./action-types"
 import axios from "axios"
 
 export const setApiDogs = () => {
@@ -52,10 +52,10 @@ export const setTemperamentos = () => {
         const endpoint = 'http://localhost:3001/tempDB'
         return async (dispatch)=> {
             const response = await axios.get(endpoint)
-            const temp = response.data
+            const data = response.data
                   return dispatch({
-                      type: SET_TEMPERAMENTOS,
-                      payload: temp,
+                      type: SET_DB_TEMP,
+                      payload: data,
                    });
         }        
 
@@ -90,5 +90,37 @@ export const filterTemp = (temperamentos) => {
     return {
         type: FILTRO_TEMP,
         payload: temperamentos
+    }
+}
+
+export const setTempAPI = () => {
+    try {
+        const endpoint = 'http://localhost:3001/temperaments'
+        return async (dispatch)=> {
+            const response = await axios.get(endpoint)
+            const data = response.data
+                  return dispatch({
+                      type: SET_API_TEMPERAMENTOS,
+                      payload: data,
+                   });
+        }        
+    } 
+    catch (error) {
+        return res.status(500).json({error: error.message})
+        // Status 500: Indica un error interno en el servidor 
+    }
+}
+
+export const ordenName = (orden) => {
+    return {
+        type: ORDEN_NAME,
+        payload: orden
+    }
+}
+
+export const ordenPeso = (orden) => {
+    return {
+        type: ORDEN_PESO,
+        payload: orden
     }
 }

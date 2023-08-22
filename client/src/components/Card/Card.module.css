@@ -1,0 +1,28 @@
+.card {
+    width: 20%;
+    height: auto;
+    border: 2px solid #46712d;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+    background-color: #4512ef;
+    font-family: "Hoppin";
+    margin: 2%;
+
+    .imagen {
+        border-radius: 5%;
+        margin-block: 5px;
+        margin-left: 5px;
+        margin-right: 5px;
+        width: 90%;
+        max-width: 100%;
+        max-height: auto;
+        box-shadow: 0 0 8px 2px #46712d;
+    }
+    .nombre {
+        font-family: "Rockwell";
+        font-size: 25px;
+        font-weight: bolder;
+        color: #eef7fc;
+    }
+}
