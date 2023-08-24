@@ -6,7 +6,9 @@ export default function Card (props) {
     const {id, name, image, temperament, weightmax, weightmin} = props
     return (
         <div className= {style.card}>
-            <img className= {style.imagen} src={image} alt={name} />
+            <Link to={`/details/${id}`}>
+                <img className= {style.imagen} src={image} alt={name} />
+            </Link>
             <Link to={`/details/${id}`}>
                 <h2 className= {style.nombre}> {name}</h2>
             </Link>

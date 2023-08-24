@@ -36,27 +36,30 @@ const Details = () => {
             dog.temperament ? (
                 <div className={style.contenedor}>
                     <div>
-                        <img src={dog.url} alt={dog.name} />
+                        <img className= {style.img} src={dog.url} alt={dog.name} />
                     </div>
                     <div className={style.datos}>
                         <h2 className={style.titulo} > {dog.name} </h2>
                         <p className={style.info}> <strong>HEIGHT | </strong> {dog.height?.metric} centimeters </p>
                         <p className={style.info}> <strong>WEIGHT | </strong> {dog.weight?.metric} kg  </p>
-                        <div>
-                        <p className={style.info}><strong>TEMPERAMENTS | </strong> </p>
-                        {dog.temperament.map((temp, index) => { return (
-                        <p key={index}> {temp} </p>)})}
-                        </div>
                         <p className={style.info}> <strong>LIFE YEARS | </strong> {dog.life_span} </p>
+                        <p className={style.info}><strong>TEMPERAMENTS</strong> </p>
+                        <div className={style.temperaments} >
+                        {dog.temperament.map((temp, index) => { return (
+                        <h6 className={style.p} key={index}> {temp} </h6>)})}
+                        </div>
                         <NavLink to="/home">
-                            <button>Back</button>
+                            <button className={style.back}> &#8678; Back </button>
                         </NavLink>
                     </div>
                 </div>
             )
             :
             (
-                <p>Loading...</p>
+                <div className={style.loaddiv}>
+                    <div className={style.loader}>
+                    </div>
+                </div>
             )
         }
         </>

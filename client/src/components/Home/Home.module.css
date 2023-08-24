@@ -18,17 +18,18 @@
 .filtros {
     display: flex;
     flex-direction: row;
+    gap: 3%;
 
     .filTemp {
         display: flex;
-        flex-direction: row; 
+        flex-direction: column; 
         align-items: center;
-        justify-content: center;
-        gap: 1%;
+        justify-content: space-between
+
     }
-    .filTemp2 {
+    .filOrigen {
         display: flex;
-        flex-direction: column;
+        flex-direction: row; 
         align-items: center;
         justify-content: center;
         gap: 1%;
@@ -60,7 +61,6 @@
             justify-content: center;
             gap: 1%;
         }
-    
     }
 }
 
@@ -82,6 +82,73 @@
     color: white;
     text-align: center;
     font-size: 13px;
-    border: solid black 1.5px;
-    border-radius: 10px; 
+    border: solid black 1.8px;
+    border-radius: 10px;
+    height: 40%;
+    width: 60%;
+}
+
+.select:focus {
+    background-color: #4512ef;
+    color: white;
+    outline: none; 
+    border-color: black;
+}
+
+.tempfil {
+    display: flex;
+    flex-direction: row;
+    align-self: auto;
+
+
+    .botones {
+        height: 40%;
+        font-size: 13px;
+        border-radius: 10px;
+        background-color: #550dad;
+        color: white;
+        border: solid 1.8px black;
+        cursor: pointer
+    }
+
+    .tempfiltemp {
+        font-family: "Rockwell";
+        font-size: 12px;
+        color: black;
+        font-style: italic;
+        padding: 0%;
+        background-color: #ffe8bf;
+        border: solid 1.6px black;
+        width: 101%;
+        border-radius: 10px;
+        text-align: center;
+    }
+}
+
+
+.filTemp2 {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+
+
+.botones {
+    height: 40%;
+    font-size: 13px;
+    border-radius: 10px;
+    background-color: #550dad;
+    color: white;
+    border: solid 1.8px black;
+    cursor: pointer
+}
+
+.botones:hover {
+    background-color: #2e323b; 
+    color: white;
+    border: solid 1.8px white;
 }

@@ -1,11 +1,12 @@
 .card {
     width: 20%;
+    height: 800px;
     height: auto;
-    border: 2px solid #46712d;
+    border: 2px solid #1c1f1d;
     border-radius: 5px;
     text-align: center;
     justify-content: center;
-    background-color: #4512ef;
+    background-color: #550dad;
     font-family: "Hoppin";
     margin: 2%;
 
@@ -14,15 +15,42 @@
         margin-block: 5px;
         margin-left: 5px;
         margin-right: 5px;
-        width: 90%;
-        max-width: 100%;
-        max-height: auto;
-        box-shadow: 0 0 8px 2px #46712d;
+        margin-top: 5px;
+        width: 200px;
+        height: auto;
+        box-shadow: 0 0 5px 1px white;
     }
     .nombre {
         font-family: "Rockwell";
-        font-size: 25px;
+        font-size: 20px;
         font-weight: bolder;
         color: #eef7fc;
+        text-decoration:underline #8a66e6;
+        cursor: pointer;
+        background-color: #8a66e6;
+        border-top: 2px solid #1c1f1d;
+        border-bottom: 2px solid #1c1f1d;
     }
+    .info {
+        font-family: "Rockwell";
+        font-size: medium;
+        color: white ;
+        font-size: 15px;
+    }
+}
+
+.nombre{
+    transition: .5s, color .10s;
+        -webkit-transition: .5s, color .10s;
+        -moz-transition: .5s, color .10s;
+}
+
+.nombre:hover{
+    border: 2px solid #1c1f1d;
+    color: white;
+    background-color: #518805;
+    text-decoration:underline #518805;
+    transform: scale3d(1.2, 1.2, 0.3);
+        -webkit-transform: scale3d(1.2, 1.2, 0.3);
+        -moz-transform: scale3d(1.2, 1.2, 0.3);
 }
