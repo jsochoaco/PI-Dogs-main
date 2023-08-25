@@ -1,4 +1,4 @@
-import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, SET_DB_TEMP, SET_API_TEMPERAMENTOS, CLEAR, ORDEN_NAME, ORDEN_PESO, CREATE_DOG} from "./action-types"
+import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, SET_DB_TEMP, SET_API_TEMPERAMENTOS, CLEAR, ORDEN_NAME, ORDEN_PESO, CREATE_DOG, SEARCH_DOG} from "./action-types"
 import axios from "axios"
 
 export const setApiDogs = () => {
@@ -17,7 +17,7 @@ export const setApiDogs = () => {
             };
     }
     catch (error) { 
-        return res.status(500).json({error: error.message})
+        return {error: error.message}
         // Status 500: Indica un error interno en el servidor
     }
 }
@@ -37,7 +37,7 @@ export const setDBDogs = () => {
         }        
     } 
     catch (error) {
-        return res.status(500).json({error: error.message})
+        return {error: error.message}
         // Status 500: Indica un error interno en el servidor
     }
 }
@@ -61,7 +61,7 @@ export const setTemperamentos = () => {
 
     } 
     catch (error) {
-        return res.status(500).json({error: error.message})
+        return {error: error.message}
         // Status 500: Indica un error interno en el servidor 
     }
 }
@@ -80,7 +80,7 @@ export const setIntermedia = ()=> {
 
     } 
     catch (error) {
-        return res.status(500).json({error: error.message})
+        return {error: error.message}
         // Status 500: Indica un error interno en el servidor 
     }
 }
@@ -106,7 +106,7 @@ export const setTempAPI = () => {
         }        
     } 
     catch (error) {
-        return res.status(500).json({error: error.message})
+        return {error: error.message}
         // Status 500: Indica un error interno en el servidor 
     }
 }
@@ -146,7 +146,28 @@ export const createDog = (dog) => {
         }
     } 
     catch (error) {
-        return res.status(500).json({error: error.message})
+        return {error: error.message}
         // Status 500: Indica un error interno en el servidor 
     }
+}
+
+export const searchDog = (name) => {
+    try {
+        if (name != undefined && name != null ) {
+            const endpoint = `http://localhost:3001/dog/?name=${name}`
+            return async (dispatch)=> {
+                const response = await axios.get(endpoint)
+                if (response) {
+                    const data = response.data
+                    return dispatch({
+                        type: SEARCH_DOG,
+                        payload: data});
+                }        
+            }
+        }
+    } 
+    catch (error) {
+        return {error: error.message}
+        // Status 500: Indica un error interno en el servidor 
+    }  
 }

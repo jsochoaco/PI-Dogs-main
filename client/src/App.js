@@ -6,11 +6,16 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import Detail from "./components/Detail/Detail"
 import Form from './components/Form/Form';
+import { NavBar } from './components/NavBar/NavBar';
 
 function App(props) {
+  const { pathname } = useLocation()
   const {allDogs, allTemperamentos} = props
   return (
     <div className="App">
+      { pathname != "/" && 
+      <NavBar/>
+      }
       <Routes>
       <Route
       path='/'

@@ -9,6 +9,6 @@ export const SET_DB_TEMP = "SET_DB_TEMP"
 export const SET_INTERMEDIA = "SET_INTERMEDIA"
 export const CLEAR = "CLEAR"
 export const CREATE_DOG = "CREATE_DOG"
-
+export const SEARCH_DOG = "SEARCH_DOG"
 
 

@@ -1,5 +1,7 @@
 .general {
     background-color: #ffe8bf;
+    display: flex;
+    flex-direction: column;
 }
 
 .contenedor {
@@ -9,7 +11,6 @@
     flex-wrap: nowrap;
     justify-content: center;
     gap: 5%;
-
 }
 
 
@@ -23,7 +24,8 @@
     .filTemp {
         display: flex;
         flex-direction: column; 
-        align-items: center;
+        align-items: top;
+        align-content: top;
         justify-content: space-between
 
     }
@@ -52,14 +54,14 @@
             flex-direction: row; 
             align-items: center;
             justify-content: center;
-            gap: 1%;
+            gap: 2%;
         }
         .orPeso {
             display: flex;
             flex-direction: row; 
             align-items: center;
             justify-content: center;
-            gap: 1%;
+            gap: 2%;
         }
     }
 }
@@ -72,7 +74,7 @@
 
 .textosecun {
     font-family: "Rockwell";
-    font-size: 13px;
+    font-size: 15px;
     color: black;
 }
 
@@ -81,7 +83,7 @@
     background-color: #9f7bfc;
     color: white;
     text-align: center;
-    font-size: 13px;
+    font-size: 16px;
     border: solid black 1.8px;
     border-radius: 10px;
     height: 40%;
@@ -98,32 +100,23 @@
 .tempfil {
     display: flex;
     flex-direction: row;
-    align-self: auto;
-
-
-    .botones {
-        height: 40%;
-        font-size: 13px;
-        border-radius: 10px;
-        background-color: #550dad;
-        color: white;
-        border: solid 1.8px black;
-        cursor: pointer
-    }
-
+    flex-wrap: wrap;
+    margin-top: 0px;
+    margin-bottom: 5px;
     .tempfiltemp {
+        flex: 0 0 calc(25% - 2px); 
+        margin: 5px;
         font-family: "Rockwell";
-        font-size: 12px;
-        color: black;
-        font-style: italic;
-        padding: 0%;
-        background-color: #ffe8bf;
-        border: solid 1.6px black;
-        width: 101%;
-        border-radius: 10px;
+        font-size: 15px;
+        background-color: #9f7bfc;
+        border-radius: 100px;
         text-align: center;
+        color: white;
+        font-weight: bold;
     }
 }
+
+
 
 
 .filTemp2 {
@@ -139,16 +132,42 @@
 
 .botones {
     height: 40%;
-    font-size: 13px;
+    font-size: 16px;
     border-radius: 10px;
     background-color: #550dad;
     color: white;
     border: solid 1.8px black;
-    cursor: pointer
+    cursor: pointer;
+    font-family: "Rockwell";
 }
 
 .botones:hover {
     background-color: #2e323b; 
     color: white;
     border: solid 1.8px white;
+}
+
+.botonclean {
+    height: 40%;
+    width: 20%;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #550dad;
+    color: white;
+    border: solid 1.8px black;
+    cursor: pointer;
+    font-family: "Rockwell";
+}
+
+.botonclean:hover {
+    background-color: #2e323b; 
+    color: white;
+    border: solid 1.8px white;
+}
+
+.divboton {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    justify-content: center;
 }

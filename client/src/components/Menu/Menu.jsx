@@ -13,14 +13,24 @@ const Menu = () => {
         {!menuVisible ? (<button className={styles.toggleButton} onClick={toggleMenu}> &#9776; </button>) : ("")}
         {menuVisible && (
               <nav className={`${styles.hiddenMenu} ${menuVisible && styles.menuVisible}`}>
-                <h1>The Dogs App &#128054;</h1>
+                <p className={styles.opciones} onClick={toggleMenu}><a> X </a></p>
+                <h1 className={styles.opciones}>The Dogs App &#128054;</h1>
               <ul>
-                <li className={styles.opciones}><a href="/home">Home</a></li>
-                <li className={styles.opciones} ><a href="/create">Create Dog</a></li>
-                <li className={styles.opciones}><a href="/temperaments">Temperaments </a></li>
-                <li className={styles.opciones}><a href="/aboutme">About developer</a></li>
-                <li className={styles.opciones}><a href="/">Landing page</a></li>
-                <li className={styles.opciones} onClick={toggleMenu}><a> Close</a></li>
+                <NavLink to="/home">
+                  <li className={styles.opciones}>Home</li>
+                </NavLink>
+                <NavLink to="/create">
+                  <li className={styles.opciones} >Create Dog</li>
+                </NavLink>
+                <NavLink to="/temperaments">
+                  <li className={styles.opciones}> Temperaments </li>
+                </NavLink>
+                <NavLink to="/aboutme">
+                  <li className={styles.opciones}>About developer</li>
+                </NavLink>
+                <NavLink to = "/">
+                  <li className={styles.opciones}>Landing page</li>
+                </NavLink>
               </ul>
             </nav>
       )}

@@ -6,7 +6,7 @@ import style from "./Home.module.css"
 const Filtros = (props) => {
     const dispatch = useDispatch()
     //Estados importados
-    const {allDogs, temperamentos} = props
+    const {temperamentos} = props
     //Ciclo de vida de filtro origen
     const [selectedFilter, setSelectedFilter] = useState("All");
     const handleFilterOrigin = (evento) => {
@@ -22,12 +22,6 @@ const Filtros = (props) => {
     const clearTempFilter = () => {
         setTempFilter([]);
         dispatch(actions.filterTemp([]))};
-    // Limpiador de filtros
-    const clearFilters = () => {
-        setSelectedFilter("All");
-        setTempFilter([]);
-        dispatch(actions.clearFilter())
-    };
     // Rendereizado
     return (
         <div className={style.divor}>

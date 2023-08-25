@@ -7,8 +7,7 @@
     height: 100%;
     width: 100%;
     margin:0%;
-    position: absolute;
-    inset: 0;
+    position: relative;
     border: 2px solid #550dad;
     box-sizing: border-box;
     background-image: url("FondoPaso.jpg");
@@ -90,7 +89,7 @@
     font-size: 20px;
     border-radius: 10px;
     color: white;
-    background-color: #550dad;
+    background-color: #9f7bfc;
     border: 2px solid white;
     cursor: pointer;
     transition: .5s, color .10s;

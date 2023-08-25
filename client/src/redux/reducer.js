@@ -1,12 +1,12 @@
-import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, CLEAR, SET_DB_TEMP, SET_API_TEMPERAMENTOS, ORDEN_NAME, ORDEN_PESO, CREATE_DOG } from "./action-types"
+import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, CLEAR, SET_DB_TEMP, SET_API_TEMPERAMENTOS, ORDEN_NAME, ORDEN_PESO, CREATE_DOG, SEARCH_DOG} from "./action-types"
 
 const initialState = {
     apiDogs: [],
     dbDogs: [],
-    filterTemp: null,
-    filterOrigen: null,
+    // filterTemp: null,
+    // filterOrigen: null,
     allDogs: [],
-    orderDogs: [],
+    // orderDogs: [],
     dbTemperamentos: [],
     apiTemperamentos: [],
     allTemperamentos: [],
@@ -36,7 +36,14 @@ export const reducer = (state=initialState, action) => {
         case CLEAR: {
             return {...state, allDogs: [...state.apiDogs, ...state.dbDogs]}
         }
-        
+        case SEARCH_DOG: {
+            if (action.payload) {
+                return {...state, allDogs: action.payload}}
+            else {
+                return {...state, allDogs: [...state.apiDogs, ...state.dbDogs]}
+            }
+            }
+
         case FILTRO_ORIGEN: {
             if (action.payload === "All"){
                 return {...state,allDogs: [...state.apiDogs,...state.dbDogs]}}

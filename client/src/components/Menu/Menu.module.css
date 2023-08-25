@@ -1,12 +1,12 @@
 /* Menu.module.css */
 .toggleButton {
     margin-top: 20px;
-    color: #550dad;
+    color: white;
     background-color: transparent;
     border: none;
     cursor: pointer;
     font-family: "Rockwell";
-    font-size: 20px;
+    font-size: 40px;
   }
   
   .hiddenMenu {
@@ -46,4 +46,5 @@
     font-family: "Rockwell";
     cursor: pointer;
     text-decoration: none;
+    font-size: 20px;
 }
