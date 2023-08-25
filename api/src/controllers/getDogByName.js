@@ -7,6 +7,8 @@ const {API_KEY} = process.env;
 const  axios = require("axios")
 // URL definida de la API para buscar por raza
 const URL = "https://api.thedogapi.com/v1/breeds/search?q="
+const {Dog} = require("../db");
+const { Op } = require('sequelize');
 
 const getDogByName = async (req, res) => {
     try {
@@ -17,16 +19,19 @@ const getDogByName = async (req, res) => {
                 "x-api-key": API_KEY
             }
         });
-        const filtradoDogs = response.data
-        if (filtradoDogs) {
+        const dbDogs = await Dog.findAll({
+            where: {
+                name: {
+                    [Op.iLike] : `${namePartial}`
+                }
+            }
+        })
+        const apigods = response.data
+        const filtradoDogs = [...apigods,...dbDogs]
+        if (filtradoDogs.length > 0) {
             return res.status(200).json(filtradoDogs)
             // Stautos 200: Correcto; OK
-
-        }
-        else { // Si la API no recibe info o no hay coincidencias
-            return res.status(404).send("Not found");
-            //Status 404: No encontrado
-        }        
+        }    
     } 
     catch (error) { 
         return res.status(500).json({error: error.message})
