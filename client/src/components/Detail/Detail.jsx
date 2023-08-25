@@ -49,7 +49,7 @@ const Details = () => {
                         <h6 className={style.p} key={index}> {temp} </h6>)})}
                         </div>
                         <NavLink to="/home">
-                            <button className={style.back}> &#8678; Back </button>
+                            <button className={style.back}> &#8678; </button>
                         </NavLink>
                     </div>
                 </div>

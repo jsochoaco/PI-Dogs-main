@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import Detail from "./components/Detail/Detail"
 import Form from './components/Form/Form';
 import { NavBar } from './components/NavBar/NavBar';
+import Temperaments from './components/Temperaments/Temperaments';
 
 function App(props) {
   const { pathname } = useLocation()
@@ -29,6 +30,9 @@ function App(props) {
       <Route 
       path='/create'
       element= {<Form temperamentos = {allTemperamentos}/>}/>
+      <Route 
+      path='/temperaments'
+      element= {<Temperaments temperamentos = {allTemperamentos}/>}/>
       </Routes>
     </div>
   );

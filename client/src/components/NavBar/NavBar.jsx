@@ -23,6 +23,13 @@ export const NavBar = () => {
     }
     return (
         <div className={style.contenedor}>
+            {pathname != "/home" && (
+            <div>
+                <NavLink to= "/home">
+                    <button className={style.botonback}> &#8678; </button>
+                </NavLink>
+            </div>
+            )}
             <div className={style.titulo}>
                 <NavLink to= "/home">
                     <h1>The Dogs App &#128021;</h1>

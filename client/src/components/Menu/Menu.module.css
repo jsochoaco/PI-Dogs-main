@@ -1,13 +1,24 @@
-/* Menu.module.css */
+
 .toggleButton {
-    margin-top: 20px;
-    color: white;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-family: "Rockwell";
-    font-size: 40px;
-  }
+  margin-top: 15px;
+  margin-bottom: 6px;
+  font-size: 35px;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  background-color: #550dad;
+  cursor: pointer;
+  transition: .5s, color .10s;
+    -webkit-transition: .5s, color .10s;
+    -moz-transition: .5s, color .10s;
+}
+.toggleButton:hover{
+  color: #8e3af5;
+  background-color: #f6b7fb;
+  transform: scale3d(1.2, 1.2, 0.3);
+    -webkit-transform: scale3d(1.2, 1.2, 0.3);
+    -moz-transform: scale3d(1.2, 1.2, 0.3);
+}
   
   .hiddenMenu {
     width: 260px;
@@ -15,11 +26,13 @@
     position: fixed;
     top: 0;
     right: -260px;
-    background-color: #550dad;
+    background-color: white;
     font-family: "Rockwell";
+    border-left: 1px solid #550dad;
     color: #fff;
-    padding: 20px;
+
     transition: right 0.8s ease-in-out; 
+    gap: 5px;
   }
   
   .hiddenMenu ul {
@@ -42,9 +55,21 @@
 
 
 .opciones {
-    color: white;
+    color: #550dad;
     font-family: "Rockwell";
     cursor: pointer;
     text-decoration: none;
     font-size: 20px;
+    padding-left: 20px;
+}
+
+.opcionestit {
+  color: white;
+  background-color: #550dad;
+  text-align: center;
+  font-family: "Rockwell";
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 20px;
+  border-left: 1px solid white;
 }

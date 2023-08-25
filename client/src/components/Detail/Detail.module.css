@@ -1,18 +1,19 @@
+
 .contenedor {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    align-content: center;
     gap: 5%;
     height: 100%;
     width: 100%;
     margin:0%;
-    position: relative;
     border: 2px solid #550dad;
     box-sizing: border-box;
     background-image: url("FondoPaso.jpg");
-    background-size: cover;
     background-repeat: none;
+    background-size: cover;
 }
 
 .img {
@@ -24,6 +25,7 @@
     box-shadow: 0 0 20px 10px #550dad;
     margin-top: 60px;
     margin-left: 150px;
+
 }
 
 .datos {
@@ -86,11 +88,11 @@
 .back {
     margin-top: 15px;
     margin-bottom: 6px;
-    font-size: 20px;
+    font-size: 25px;
     border-radius: 10px;
     color: white;
-    background-color: #9f7bfc;
-    border: 2px solid white;
+    border: none;
+    background-color: #550dad;
     cursor: pointer;
     transition: .5s, color .10s;
         -webkit-transition: .5s, color .10s;
@@ -99,7 +101,6 @@
 .back:hover{
     color: #8e3af5;
     background-color: #f6b7fb;
-    border-color: #8e3af5;
     transform: scale3d(1.2, 1.2, 0.3);
         -webkit-transform: scale3d(1.2, 1.2, 0.3);
         -moz-transform: scale3d(1.2, 1.2, 0.3);

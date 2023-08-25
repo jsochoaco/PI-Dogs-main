@@ -1,0 +1,38 @@
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    background-color: #ffe8bf;
+
+}
+
+h2 {
+    color: #550dad; 
+    font-family: "Rockwell";
+    font-size:  35px;
+}
+
+.temperamentos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 0px;
+    align-items: center;
+    justify-content: center;
+
+    .temp {
+        flex: 0 0 calc(25% - 10px); 
+        margin: 10px;
+        font-family: "Rockwell";
+        font-size: 22.5px;
+        background-color: #9f7bfc;
+        border-radius: 100px;
+        color: white;
+        font-weight: lighter;
+        text-align: center;
+        border: 1px solid black;
+    }
+}

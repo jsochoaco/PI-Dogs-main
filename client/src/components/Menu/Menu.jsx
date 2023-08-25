@@ -7,14 +7,13 @@ const Menu = () => {
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
   };
-
   return (
     <div>
         {!menuVisible ? (<button className={styles.toggleButton} onClick={toggleMenu}> &#9776; </button>) : ("")}
         {menuVisible && (
               <nav className={`${styles.hiddenMenu} ${menuVisible && styles.menuVisible}`}>
                 <p className={styles.opciones} onClick={toggleMenu}><a> X </a></p>
-                <h1 className={styles.opciones}>The Dogs App &#128054;</h1>
+                <h1 className={styles.opcionestit}>The Dogs App &#128054;</h1>
               <ul>
                 <NavLink to="/home">
                   <li className={styles.opciones}>Home</li>
