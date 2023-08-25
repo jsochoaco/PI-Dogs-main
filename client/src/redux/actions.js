@@ -1,4 +1,4 @@
-import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, SET_DB_TEMP, SET_API_TEMPERAMENTOS, CLEAR, ORDEN_NAME, ORDEN_PESO} from "./action-types"
+import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, SET_DB_TEMP, SET_API_TEMPERAMENTOS, CLEAR, ORDEN_NAME, ORDEN_PESO, CREATE_DOG} from "./action-types"
 import axios from "axios"
 
 export const setApiDogs = () => {
@@ -128,5 +128,25 @@ export const ordenPeso = (orden) => {
 export const clearFilter = () => {
     return {
         type: CLEAR
+    }
+}
+
+export const createDog = (dog) => {
+    try {
+        const endpoint = 'http://localhost:3001/dogs'
+        return async (dispatch)=> {
+            const response = await axios.post(endpoint, dog)
+            if (response =! "El perro ya existe") {
+                const data = response.data
+                const [dog, creado] = data
+                return dispatch({
+                    type: CREATE_DOG,
+                    payload: dog});
+            }        
+        }
+    } 
+    catch (error) {
+        return res.status(500).json({error: error.message})
+        // Status 500: Indica un error interno en el servidor 
     }
 }

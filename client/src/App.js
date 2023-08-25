@@ -5,6 +5,7 @@ import Home from "./components/Home/Home"
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import Detail from "./components/Detail/Detail"
+import Form from './components/Form/Form';
 
 function App(props) {
   const {allDogs, allTemperamentos} = props
@@ -20,6 +21,9 @@ function App(props) {
       <Route
       path='/details/:id'
       element={<Detail/>} />
+      <Route 
+      path='/create'
+      element= {<Form temperamentos = {allTemperamentos}/>}/>
       </Routes>
     </div>
   );

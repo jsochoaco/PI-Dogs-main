@@ -2,8 +2,10 @@ import CardDogs from "../CardDogs/CardDogs"
 import * as actions from "../../redux/actions"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
+import { NavLink } from "react-router-dom"
 import style from "./Home.module.css"
 import Filtros from "./Filtros"
+import { NavBar } from "../NavBar/NavBar"
 
 const Home = (props) => {
     const dispatch = useDispatch()
@@ -32,6 +34,7 @@ const Home = (props) => {
     // Rendereizado
     return (
         <div className={style.general}>
+            <NavBar/>
             <div className={style.contenedor}>
                 <Filtros allDogs={allDogs} temperamentos= {temperamentos} />
                 <div className={style.divor}>

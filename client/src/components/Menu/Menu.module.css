@@ -1,0 +1,49 @@
+/* Menu.module.css */
+.toggleButton {
+    margin-top: 20px;
+    color: #550dad;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: "Rockwell";
+    font-size: 20px;
+  }
+  
+  .hiddenMenu {
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: -260px;
+    background-color: #550dad;
+    font-family: "Rockwell";
+    color: #fff;
+    padding: 20px;
+    transition: right 0.8s ease-in-out; 
+  }
+  
+  .hiddenMenu ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .hiddenMenu a {
+    color: inherit; /* Hereda el color del padre (blanco) */
+    text-decoration: none; /* Quita la subrayado predeterminado */
+  }
+  
+  .hiddenMenu li {
+    margin: 10px 0;
+  }
+  
+  .menuVisible {
+    right: 0;
+  }
+
+
+.opciones {
+    color: white;
+    font-family: "Rockwell";
+    cursor: pointer;
+    text-decoration: none;
+}
