@@ -1,8 +1,6 @@
 import CardDogs from "../CardDogs/CardDogs"
 import * as actions from "../../redux/actions"
-import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { NavLink } from "react-router-dom"
 import style from "./Home.module.css"
 import Filtros from "./Filtros"
 import Ordenador from "./Ordenador"

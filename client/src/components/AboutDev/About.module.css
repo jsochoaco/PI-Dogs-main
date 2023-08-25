@@ -1,0 +1,67 @@
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    gap: 3%;
+    height: 100%;
+    width: 100%;
+    margin:0%;
+    background-color: #ffe8bf;
+}
+
+.data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 5%;
+}
+
+.img {
+    max-width: 250px;
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+    border: 6px solid white;
+    box-shadow: 0 0 15px 20px #2b2d80;
+}
+
+.imagen {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 5%;
+}
+
+
+.nombre {
+    text-decoration:underline #ffe8bf;
+    color: #4512ef;
+    font-family: "Rockwell";
+    font-size: 30px;
+}
+
+.nombre2 {
+    text-decoration:none;
+    color: #550dad;
+    text-align: center;
+    font-family: "Rockwell";
+    font-size: 38px;
+}
+
+.p {
+    color: white;
+    text-align: justify;
+    font-family: "Rockwell";
+    border: 2px solid white;
+    background-color: #4512ef;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 15px;
+    width: 50%;
+}

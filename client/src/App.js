@@ -8,6 +8,7 @@ import Detail from "./components/Detail/Detail"
 import Form from './components/Form/Form';
 import { NavBar } from './components/NavBar/NavBar';
 import Temperaments from './components/Temperaments/Temperaments';
+import AboutDev from './components/AboutDev/AboutDev';
 
 function App(props) {
   const { pathname } = useLocation()
@@ -33,6 +34,9 @@ function App(props) {
       <Route 
       path='/temperaments'
       element= {<Temperaments temperamentos = {allTemperamentos}/>}/>
+      <Route
+      path='/aboutDev'
+      element= {<AboutDev/>}/>
       </Routes>
     </div>
   );

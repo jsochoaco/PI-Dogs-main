@@ -24,8 +24,8 @@ const Menu = () => {
                 <NavLink to="/temperaments">
                   <li className={styles.opciones}> Temperaments </li>
                 </NavLink>
-                <NavLink to="/aboutme">
-                  <li className={styles.opciones}>About developer</li>
+                <NavLink to="/aboutDev">
+                  <li className={styles.opciones}>About the developer</li>
                 </NavLink>
                 <NavLink to = "/">
                   <li className={styles.opciones}>Landing page</li>
