@@ -7,7 +7,7 @@ const Temperaments = (props) => {
     return (
         <div className={style.contenedor}>
             <div className={style.titulo}>
-                <h2>Temperaments</h2>
+                <h2>&#128545; &#129322; Temperaments &#128519; &#128564;</h2>
             </div>
             <div className= {style.temperamentos}>
             {temperamentos.map((temp) => (

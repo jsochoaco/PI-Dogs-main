@@ -11,7 +11,7 @@
     margin:0%;
     position: absolute;
     inset: 0;
-    border: 8px solid #7411ee;
+    border: 8px solid #550dad;
     box-sizing: border-box;
     background-image: url("FondoInicio.jpg");
     background-size: cover;
@@ -24,11 +24,12 @@
     font-weight: bolder;
     color: #550dad;
     text-shadow: 1px 1px 30px white;
+    text-decoration: none;
 }
 .boton {
     font-family: "Rockwell";
     color: white;
-    background-color: #7411ee;
+    background-color: #550dad;
     font-size: 40px;
     border: solid 5px;
     width: 110%;
@@ -41,7 +42,7 @@
 }
 
 .boton:hover{
-    color: #7411ee;
+    color: #550dad;
     background-color: #f6b7fb;
     transform: scale3d(1.2, 1.2, 0.3);
         -webkit-transform: scale3d(1.2, 1.2, 0.3);

@@ -35,8 +35,14 @@ const Details = () => {
         {
             dog.temperament ? (
                 <div className={style.contenedor}>
-                    <div>
+                    <div className={style.imagencontiner}>
                         <img className= {style.img} src={dog.url} alt={dog.name} />
+                        <div className={style.caption}>
+                            <h5 className={style.name}> {dog.name}</h5>
+                            {dog.bred_for?(<h6 className={style.adicional}> BRED FOR | {dog.bred_for}</h6>):(<h6 className={style.adicional}> BRED FOR | No data</h6>)}
+                            {dog.origin?(<h6 className={style.adicional}> ORIGIN | {dog.origin}</h6>):(<h6 className={style.adicional}> ORIGIN | No data</h6>)}
+                            {dog.breed_group?(<h6 className={style.adicional}> BREED GROUP | {dog.breed_group}</h6>):(<h6 className={style.adicional}> BREED GROUP | No data</h6>)}
+                        </div>
                     </div>
                     <div className={style.datos}>
                         <h2 className={style.titulo} > {dog.name} </h2>
@@ -57,8 +63,7 @@ const Details = () => {
             :
             (
                 <div className={style.loaddiv}>
-                    <div className={style.loader}>
-                    </div>
+                    <div className={style.loader}></div>
                 </div>
             )
         }

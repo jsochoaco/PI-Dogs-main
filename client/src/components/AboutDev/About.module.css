@@ -1,16 +1,29 @@
 .contenedor {
+    min-height: 83vh; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    align-content: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    justify-items: center;
     gap: 3%;
     height: 100%;
     width: 100%;
-    margin:0%;
+    margin:0px;
     background-color: #ffe8bf;
+    background-size: cover;
 }
 
+.imagen {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+}
 .data {
     display: flex;
     flex-direction: row;
@@ -18,25 +31,39 @@
     flex-wrap: nowrap;
     justify-content: center;
     gap: 5%;
+    height: 100%;
+    width: 100%;
+}
+
+.data2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    gap: 5%;
+}
+
+.imagendiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 150px;
+    height: 100%;
+    width: 100%;
 }
 
 .img {
-    max-width: 250px;
+    max-width: 200px;
     width: auto;
     height: auto;
     border-radius: 50%;
-    border: 6px solid white;
-    box-shadow: 0 0 15px 20px #2b2d80;
+    border: 6px outset white;
+    box-shadow: 0 0 15px 10px #2b2d80;
 }
 
-.imagen {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: nowrap;
-    justify-content: center;
-    gap: 5%;
-}
 
 
 .nombre {
@@ -44,9 +71,23 @@
     color: #4512ef;
     font-family: "Rockwell";
     font-size: 30px;
-}
+    cursor: pointer;
+    font-weight: bolder;
+    transition: .5s, color .10s;
+      -webkit-transition: .5s, color .10s;
+      -moz-transition: .5s, color .10s;
+  }
+.nombre:hover{
+    font-weight: bolder;
+    text-decoration:underline #ffe8bf;
+    transform: scale3d(1.2, 1.2, 0.3);
+      -webkit-transform: scale3d(1.2, 1.2, 0.3);
+      -moz-transform: scale3d(1.2, 1.2, 0.3);
+  }
+
 
 .nombre2 {
+    margin-top: 0px;
     text-decoration:none;
     color: #550dad;
     text-align: center;
@@ -58,10 +99,98 @@
     color: white;
     text-align: justify;
     font-family: "Rockwell";
-    border: 2px solid white;
+    border: 3px solid #550dad;
     background-color: #4512ef;
     border-radius: 10px;
     padding: 10px;
-    font-size: 15px;
-    width: 50%;
+    font-size: 16px;
+    width: 60%;
+}
+
+.listadiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 5%;
+
+    .lista {
+        flex: 0 0 calc(4% - 2px); 
+        margin: 5px;
+        font-family: "Rockwell";
+        font-size: 15px;
+        background-color: #6c53ac;
+        border-radius: 100px;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        width: 110%;
+        height: 150%;
+    }
+}
+
+
+.logos {
+    width: 60px;
+    height: 60px;
+
+}
+
+.skills {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}              
+.skills{
+    transition: .5s, color .10s;
+        -webkit-transition: .5s, color .10s;
+        -moz-transition: .5s, color .10s;
+}
+.skills:hover{
+    transform: scale3d(1.5, 1.5, 0.3);
+        -webkit-transform: scale3d(1.5, 1.5, 0.3);
+        -moz-transform: scale3d(1.5, 1.5, 0.3);
+}
+              
+
+
+
+.parrafo {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 500px;
+    height: 20%;
+    background-color: black;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: flex-end;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+    border: 3px solid #550dad;
+    padding-bottom: 2px;
+    font-family: "Rockwell";
+    margin: 0px;
+    padding: 10px;
+  }
+
+.caption:hover {
+    opacity: 0.8; /* Hacer visible el caption cuando se coloca el cursor sobre la imagen */
 }

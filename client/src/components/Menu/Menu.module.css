@@ -63,6 +63,26 @@
     padding-left: 20px;
 }
 
+.opcionesx {
+  color: #550dad;
+  font-weight: bolder;
+  font-family: "Rockwell";
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 22px;
+  padding-left: 200px;
+  transition: .5s, color .10s;
+      -webkit-transition: .5s, color .10s;
+      -moz-transition: .5s, color .10s;
+}
+.opcionesx:hover{
+  color: red;
+  transform: scale3d(1.1, 1.1, 0.2);
+      -webkit-transform: scale3d(1.1, 1.1, 0.2);
+      -moz-transform: scale3d(1.1, 1.1, 0.2);
+}
+            
+
 .opcionestit {
   color: white;
   background-color: #550dad;
