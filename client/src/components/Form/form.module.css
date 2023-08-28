@@ -1,12 +1,233 @@
 .contenedor {
+    min-height: 83vh; 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    align-content: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    flex-wrap: nowrap;
+    background-color:  #ffe8bf;
     height: 100%;
     width: 100%;
     margin:0%;
+    gap: 12px;
+    .ppal {
+        font-size: 35px;
+        font-family: "Rockwell";
+        text-decoration: none;
+        color: #550dad; 
+    }
+}
+
+
+.divdato {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    flex-wrap: nowrap;
+    font-family: "Rockwell";
+    gap: 18px;
+    padding: 0%;
+    height: 30px;
+
+    .dato {
+        font-size: 19px;
+        color: #550dad;
+        font-weight: bold;
+        padding-right: 8px;
+    }
+    .datosec {
+        font-size: 15px;
+        color: #4512ef;
+        font-weight: lighter;
+        padding-right: 2px;
+    }
+    .inputnum {
+        font-family: "Rockwell";
+        background-color: white;
+        font-size: 15px;
+        color: #550dad;
+        font-weight: bolder;
+        text-align: center;
+        width: 20%;
+        border: 2px solid black;
+        border-radius: 10px;
+     }
+     .inputnum::placeholder {
+    font-family: "Rockwell";
+       color:#550dad;
+       font-style: italic;
+       font-size: 14px;
+       opacity: 0.8;
+       font-weight: lighter;
+    }
+    .inputtext {
+        font-family: "Rockwell";
+        background-color: white;
+        font-size: 15px;
+        color: #550dad;
+        font-weight: bolder;
+        text-align: center;
+        width: auto;
+        border: 2px solid black;
+        border-radius: 10px;
+     }
+     .inputtext::placeholder {
+        font-family: "Rockwell";
+       color:#550dad;
+       font-style: italic;
+       font-size: 14px;
+       opacity: 0.8;
+       font-weight: lighter;
+    }
+    .select {
+        font-family: "Rockwell";
+        background-color: #9f7bfc;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+        border: solid black 1.8px;
+        border-radius: 10px;
+    }
+    
+    .select:focus {
+        background-color: #4512ef;
+        color: white;
+        outline: none; 
+        border-color: black;
+    }
+
+ 
+}
+
+.tempfil {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    font-family: "Rockwell";
+    gap: 18px;
+    padding: 0%;
+    height: 30px;
+    .tempfiltemp {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        flex: 0 0 calc(25% - 2px); 
+        margin: 5px;
+        font-family: "Rockwell";
+        font-size: 15px;
+        background-color: #4512ef;
+        border-radius: 10px;
+        text-align: center;
+        color: white;
+        border: 1px solid white;
+    }
+}
+
+.botonclean {
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #3a0977;
+    color: white;
+    border: solid 1.8px black;
+    cursor: pointer;
+    font-family: "Rockwell";
+}
+
+.botonclean:hover {
+    background-color: white; 
+    font-weight: bolder;
+    color: #4512ef;
+    border: solid 1.8px #4512ef;
+}
+
+
+.boton {
+    font-size: 22px;
+    border-radius: 10px;
+    background-color: #550dad;
+    color: white;
+    border: solid 1.8px black;
+    cursor: pointer;
+    font-family: "Rockwell";
+    margin-top: 10px;
+}
+
+.boton:hover {
+    background-color: green; 
+    color: white;
+    font-weight: bolder;
+    border: solid 1.8px white;
+}
+
+
+
+.inputtext2 {
+    font-family: "Rockwell";
+    background-color: white;
+    font-size: 15px;
+    color: #550dad;
+    font-weight: bolder;
+    text-align: center;
+    width: 300%;
+    border: 2px solid black;
+    border-radius: 10px;
+ }
+ .inputtext2::placeholder {
+    font-family: "Rockwell";
+   color:#550dad;
+   font-style: italic;
+   font-size: 14px;
+   opacity: 0.8;
+   font-weight: lighter;
+}
+
+
+
+.divdato2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    flex-wrap: nowrap;
+    font-family: "Rockwell";
+    gap: 18px;
+    padding: 0%;
+    position: relative;
+}
+
+.textohover {
+    color: red;
+    font-size: 12px;
+    opacity: 0; /* Comienza oculto */
+    transition: opacity 0.3s ease;
+    font-family: "Rockwell";
+}
+.simbolo {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    font-size: 14px;
+    padding: 5px;
+    cursor: pointer;
+}
+.simbolo:hover + .textohover {
+    opacity: 1;
+    color: red;
+}
+
+
+input:required {
+    border: 2px solid red;
+  }
+  
+input:required:focus {
+    border-color: blue;
 }
