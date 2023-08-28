@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
             autoIncrement: true,
             primaryKey: true,
         },
-        temperamento: {
+        temperament: {
             type: DataTypes.STRING,
             allowNull: false,
         }

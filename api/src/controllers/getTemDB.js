@@ -7,7 +7,9 @@ const {Temperaments} = require("../db")
 
 const getTemDB = async (req,res) => {
     try {
-        const temp = await Temperaments.findAll()
+        const temp = await Temperaments.findAll({
+            attributes: ['temperament']
+        })
         if (temp) { // Si la API envía información
             return res.status(200).json(temp)
             // Stautos 200: Correcto; OK

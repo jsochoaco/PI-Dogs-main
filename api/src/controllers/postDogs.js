@@ -6,28 +6,29 @@ const {Dog, Temperaments} = require("../db")
 
 const postDogs = async (req,res) => {
     try {
-        const {name, height, weight, life_span, temperaments} = req.body
+        const {name, height, weight, life_span, temperament, image} = req.body
 
-        if (!name || !height || !weight || !life_span || !temperaments) {
-            return res.status(400).send("Faltan datos")
+        if (!name || !height || !weight || !life_span || !temperament) {
+            return res.status(400).json({error: "Faltan datos"})
             // Status 404: No encontrado
         }
         const [dog, creado] = await Dog.findOrCreate({
             where: {name},
-            defaults: { height, weight, life_span}
+            defaults: { height, weight, life_span, image}
         })
-        const arrayTemperamentos = temperaments.split(",").map(word => {
+        const arrayTemperamentos = temperament.split(",").map(word => {
             const lowerCaseWord = word.toLowerCase();
             const capitalizedWord = lowerCaseWord.charAt(0).toUpperCase() + lowerCaseWord.slice(1);
-            return capitalizedWord;})
+            return capitalizedWord;
+        });
         arrayTemperamentos.forEach(async (temperamento) => {
             await Temperaments.findOrCreate({
-                where: {temperamento},}
+                where: {temperament: temperamento},}
                 )
         });
         arrayTemperamentos.forEach(async (temperamento) => {
             const [temperament, _] = await Temperaments.findOrCreate(
-                {where: { temperamento }});
+                {where: { temperament: temperamento }});
             await dog.addTemperament(temperament);
         })
         if (!creado) {

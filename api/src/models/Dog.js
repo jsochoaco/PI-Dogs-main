@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
   }, {
     timestamps: false
   });
-  
+
   Dog.beforeCreate(async (dog) => {
     const max = await Dog.max("id")
     if (max < 265 && !dog.id) {
@@ -42,8 +42,8 @@ module.exports = (sequelize) => {
     if (max >= 265 && !dog.id) {
       dog.id = max + 1
     }
+  })
   return Dog
-})
 };
 // Para no confundir los ID's, los perros que se creen serán con un ID posterior a el maximo que trae la API (264). Por ende, todo perro nuevo que se cree, iniciará con el ID 265 en adelante. 
 // Es posible usar BeforeCreate o el autoincremente con un inicio en 265

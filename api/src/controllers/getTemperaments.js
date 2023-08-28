@@ -9,41 +9,73 @@ const {Temperaments} = require("../db")
 // URL definida de la API 
 const URL = "https://api.thedogapi.com/v1/breeds"
 
-const getTemperaments = async(req,res) => {
+// const getTemperaments = async(req,res) => {
+//     try {
+//         const response = await axios.get(URL, { 
+//             headers: { 
+//                 "x-api-key": API_KEY
+//             }
+//         });
+//         const dogs = response.data
+//         let temperamentos = []
+//         dogs.forEach(async (dog) => {
+//             if (dog.temperament) {
+//                 const temp = dog.temperament
+//                 const separado = temp.split(',').map((word) => ({ temperament: word.trim() }));
+//                 temperamentos = [...temperamentos, ...separado]
+//             }
+//         });
+//         if (temperamentos.length> 0) {
+//             temperamentos.forEach(async (temp) => {
+//                 const temperamento = temp.temperament
+//                 await Temperaments.findOrCreate({
+//                     where: {temperament: temperamento}})
+//             })
+//             return res.status(200).json("Enviado")
+//             // Stautos 200: Correcto; OK
+//             }
+//         else {
+//             return res.status(400).json("No hay data") 
+//         }
+
+//     } 
+//     catch (error) { 
+//         return res.status(500).json({error: error.message})
+//         // Status 500: Indica un error interno en el servidor
+//     }
+// }
+const getTemperaments = async (req, res) => {
     try {
-        const response = await axios.get(URL, { 
-            headers: { 
+        const response = await axios.get(URL, {
+            headers: {
                 "x-api-key": API_KEY
             }
         });
-        const dogs = response.data
-        let temperamentos = []
-        dogs.forEach(async (dog) => {
+        const dogs = response.data;
+        let temperamentos = [];
+
+        for (const dog of dogs) {
             if (dog.temperament) {
-                const temp = dog.temperament
-                const separado = temp.split(',').map((word) => ({ temperamento: word.trim() }));
-                temperamentos = [...temperamentos, ...separado]
+                const temp = dog.temperament;
+                const separado = temp.split(',').map((word) => ({ temperament: word.trim() }));
+                temperamentos = [...temperamentos, ...separado];
             }
-        });
-        if (temperamentos.length> 0) {
-            temperamentos.forEach(async (temp) => {
-                const temperamento = temp.temperamento
-                await Temperaments.findOrCreate({
-                    where: {temperamento: temperamento}})
-            })
-            return res.status(200).json("Enviado")
-            // Stautos 200: Correcto; OK
-            }
-        else {
-            return res.status(400).json("No hay data") 
         }
 
-    } 
-    catch (error) { 
-        return res.status(500).json({error: error.message})
-        // Status 500: Indica un error interno en el servidor
+        if (temperamentos.length > 0) {
+            for (const temp of temperamentos) {
+                const temperamento = temp.temperament;
+                await Temperaments.findOrCreate({
+                    where: { temperament: temperamento }
+                });
+            }
+            return res.status(200).json("Enviado");
+        } else {
+            return res.status(400).json("No hay data");
+        }
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
     }
-}
-
+};
 
 module.exports = getTemperaments
