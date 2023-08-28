@@ -1,10 +1,11 @@
 import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, CLEAR, SET_DB_TEMP, SET_API_TEMPERAMENTOS, ORDEN_NAME, ORDEN_PESO, CREATE_DOG, SEARCH_DOG} from "./action-types"
 
 const initialState = {
+    completDogs: [],
     apiDogs: [],
     dbDogs: [],
     // filterTemp: null,
-    // filterOrigen: null,
+    filterOrigen: null,
     allDogs: [],
     // orderDogs: [],
     dbTemperamentos: [],
@@ -16,20 +17,21 @@ const initialState = {
 export const reducer = (state=initialState, action) => {
     switch (action.type) {
         case SET_API_DOGS:
-            return {...state, apiDogs: action.payload, allDogs: [...state.allDogs, ...action.payload]}
+            return {...state, apiDogs: action.payload, allDogs: [...state.allDogs, ...action.payload], completDogs: [...state.allDogs, ...action.payload] }
 
         case SET_DB_DOGS: {
-            return {...state, dbDogs: action.payload, allDogs: [...state.allDogs, ...action.payload]}}
-        
-        case CREATE_DOG: {
-            return {...state, dbDogs: [...state.dbDogs, action.payload], allDogs: [...state.allDogs, ...action.payload]}}
+            return {...state, dbDogs: action.payload, allDogs: [...state.allDogs, ...action.payload], completDogs: [...state.completDogs, ...action.payload]}}
+
+        // case CREATE_DOG: {
+        //     return {...state, dbDogs: [...state.dbDogs, action.payload], allDogs: [...state.allDogs, ...action.payload]}}
         
         case SET_DB_TEMP: {
-            return {...state, dbTemperamentos: action.payload, allTemperamentos: [...state.allTemperamentos, ...action.payload]}}
-
-        case SET_API_TEMPERAMENTOS: {
-            return {...state, apiTemperamentos: action.payload, allTemperamentos: [...state.allTemperamentos, ...action.payload]}}
-
+            const temperamentos = action.payload;
+            return {
+                ...state,
+                dbTemperamentos: action.payload,
+                allTemperamentos: [...state.allTemperamentos, ...action.payload]};
+        }
         case SET_INTERMEDIA : {
             return {...state, intermedia: action.payload}}
 
@@ -45,10 +47,9 @@ export const reducer = (state=initialState, action) => {
             }
 
         case FILTRO_ORIGEN: {
-            if (action.payload === "All"){
-                return {...state,allDogs: [...state.apiDogs,...state.dbDogs]}}
-            else {const filtrado= state.apiDogs.concat(state.dbDogs)
-                return {...state, allDogs: filtrado.filter((dog) => dog.origen === action.payload)}}}
+            const filterOrigen = action.payload === "All" ? 
+            state.completDogs : state.completDogs.filter((dog) => dog.origen === action.payload)
+            return {...state, allDogs: filterOrigen, filterOrigen: action.payload}}
 
         case FILTRO_TEMP: {
             const payloadact = action.payload
@@ -65,7 +66,7 @@ export const reducer = (state=initialState, action) => {
                         const filtro = state.intermedia.filter((obj) => obj.dogId === dog.id)
                         const indexTemp = filtro.map((obj) => obj.temperamentId)
                         const buscar = (id) => {
-                            const tempFind = state.temperamentos.find((temp)=> temp.id === id);
+                            const tempFind = state.allTemperamentos.find((temp)=> temp.id === id);
                             if (tempFind) return tempFind}
                         const dbtemp = indexTemp.map((id) => buscar(id))
                         if (dbtemp != undefined){
@@ -90,7 +91,8 @@ export const reducer = (state=initialState, action) => {
             }
         }
         case ORDEN_NAME: {
-            const ordenar = state.allDogs
+            const ordenar = state.filterOrigen === "All" ? 
+            [...state.completDogs] : [...state.allDogs]
             if (action.payload === "UN") {
                 return {...state, allDogs: [...state.allDogs]}
             }
@@ -109,34 +111,33 @@ export const reducer = (state=initialState, action) => {
                 });
                 return {...state, allDogs: sortDogs}
             }
-        }
+        }    
         case ORDEN_PESO: {
-            const ordenar = state.allDogs
-            ordenar.map((dog)=> {
-                const minimo = dog.weight?.metric
-                if (minimo[1] === " ") dog["min"] = parseInt(minimo[0])
-                if (minimo[1] != " ") dog["min"] = parseInt(minimo[0]+minimo[1])
-                const maximo = dog.weight?.metric
-                if (maximo[maximo.length - 2] === " ") dog["max"] = parseInt(maximo[maximo.length-1])
-                if (maximo[maximo.length - 2] != " ") dog["max"] = parseInt(maximo[maximo.length-2]+maximo[maximo.length-1])
-            })
+            const ordenar = state.allDogs.map((dog) => {
+                const weightMetric = dog.weight?.metric;
+                const minimo = parseInt(weightMetric.split(" ")[0]);
+                const maximo = parseInt(weightMetric.split(" ")[2]);
+                
+                return {
+                    ...dog,
+                    min: minimo,
+                    max: maximo,
+                };
+            });
+        
             if (action.payload === "UN") {
-                return {...state, allDogs: [...state.allDogs]}   
-            }
-            else {
+                return {...state, allDogs: [...state.allDogs]};   
+            } else {
                 const sortDogs = ordenar.sort((a, b) => {
                     if (action.payload === "MenorAMayor") {
                         return a.min - b.min;
-                    } 
-                    else if (action.payload === "MayorAMenor") {
+                    } else if (action.payload === "MayorAMenor") {
                         return b.max - a.max;
-                    } 
-                    else {
+                    } else {
                         return 0;
                     }
-                
-                })
-                return {...state, allDogs: sortDogs}
+                });
+                return {...state, allDogs: sortDogs};
             }
         }
         default:

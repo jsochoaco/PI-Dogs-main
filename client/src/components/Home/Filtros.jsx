@@ -42,7 +42,7 @@ const Filtros = (props) => {
                             <p className={style.textosecun} >Filter by Temperament</p>
                             <select className={style.select} onChange={handleFilterTemp}>
                                 {temperamentos.map((temp) => (
-                                <option value={temp.temperamento}> {temp.temperamento} </option>))}
+                                <option value={temp.temperament}> {temp.temperament} </option>))}
                             </select>
                             <button onClick={clearTempFilter} className={style.botones}>Clear</button>
                             <button onClick={filtradoTemp} className={style.botones}> Filtrar </button>

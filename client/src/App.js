@@ -12,7 +12,7 @@ import AboutDev from './components/AboutDev/AboutDev';
 
 function App(props) {
   const { pathname } = useLocation()
-  const {allDogs, allTemperamentos} = props
+  const {allDogs, allTemperamentos, intermedia} = props
   return (
     <div className="App">
       { pathname != "/" && 
@@ -24,7 +24,7 @@ function App(props) {
       element={<Landing/>} />
       <Route
       path='/home'
-      element={<Home allDogs= {allDogs} temperamentos = {allTemperamentos}/>} />
+      element={<Home allDogs= {allDogs} temperamentos = {allTemperamentos} intermedia = {intermedia}/>} />
       <Route
       path='/details/:id'
       element={<Detail/>} />
@@ -45,7 +45,8 @@ function App(props) {
 const mapStateToProps = (state) => {
     return {
         allDogs: state.allDogs,
-        allTemperamentos: state.allTemperamentos
+        allTemperamentos: state.allTemperamentos,
+        intermedia: state.intermedia
     };
 };
 const mapDispatchToProps = (dispatch) => {

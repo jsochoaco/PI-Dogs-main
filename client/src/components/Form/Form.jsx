@@ -16,9 +16,9 @@ const Form = (props) => {
     const clearTempFilter = () => {
         setTempFilter([]);}
     // Datos
-    const [datos, setDatos] = useState({name: "", height: "", weight: "", life_span: "", temperaments: [] ,image: "",})
+    const [datos, setDatos] = useState({name: "", height: "", weight: "", life_span: "", temperament: [] ,image: "",})
     // Info a enviar
-    const [envio, setEnvio] = useState({name: "", height: "", weight: "", life_span: "", temperaments: "" ,image: "",})
+    const [envio, setEnvio] = useState({name: "", height: "", weight: "", life_span: "", temperament: "" ,image: "",})
     //Función validadora
     const validate = (datos) => {
         const nameValidation = new RegExp(/^[a-zA-Z]+$/) //Solo letras
@@ -28,9 +28,10 @@ const Form = (props) => {
             if (!nameValidation.test(datos.name)) error.name = "Must have only letters"}
         if (datos.image) {
             if(!imageValidation.test(datos.image)) error.image = "Must be a valid URL"}
-        if (datos.temperaments.length === 0) error.temperaments = "You must choose at least one temperament"
+        if (datos.temperament.length === 0) error.temperaments = "You must choose at least one temperament"
         if (datos.new) {
-            if (!nameValidation.test(datos.new)) error.new = "Must have only letters";tempFilter.push(datos.new)}
+            if (!nameValidation.test(datos.new)) error.new = "Must have only letters";
+            tempFilter.push(datos.new)}
         if (datos.hmin && datos.hmax) {
             if (datos.hmin === datos.hmax || datos.hmin > datos.hmax) error.height = "The minimum must be lower and different than the maximum"}
         if (datos.wmin && datos.wmax) {
@@ -42,7 +43,7 @@ const Form = (props) => {
     const handleChange = (evento) => {
         const temp = tempFilter
         setDatos({...datos,
-            temperaments: temp,
+            temperament: [...temp],
             [evento.target.name]: evento.target.value
 
         })
@@ -51,10 +52,10 @@ const Form = (props) => {
         }))
         setEnvio({...envio,
             name: datos.name,
-            height: toString(datos.hmin) + "-" + toString(datos.hmax),
-            weight: toString(datos.wmin) + "-" + toString(datos.wmax),
-            life_span: toString(datos.lmin) + "-" + toString(datos.lmax),
-            temperamento: tempFilter.join(""),
+            height: String(datos.hmin) + "-" + String(datos.hmax),
+            weight: String(datos.wmin) + "-" + String(datos.wmax),
+            life_span: String(datos.lmin) + "-" + String(datos.lmax),
+            temperament: datos.temperament.join(","),
             image: datos.image,
         })
     }
@@ -66,6 +67,8 @@ const Form = (props) => {
     return (
         <>
         <form onSubmit={handleSubmit} >
+            <p>{envio.temperament}</p>
+            <p>{envio.height}</p>
             <div className={style.contenedor}>
                 <h1 className={style.ppal}>&#127381; Create a new dog &#128054;</h1>
                 <div className={style.divdato}>
@@ -118,7 +121,7 @@ const Form = (props) => {
                     <label className={style.dato}>Tempermanets list</label>
                     <select className={style.select} onChange={handleFilterTemp}>
                     {temperamentos.map((temp) => (
-                    <option value={temp.temperamento}> {temp.temperamento} </option>))}
+                    <option value={temp.temperament}> {temp.temperament} </option>))}
                     </select>
                     <button className= {style.botonclean}onClick={clearTempFilter}>Clear temperaments</button>
                     {error.temperaments ? ( <div className={style.divdato}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.temperaments}</span>

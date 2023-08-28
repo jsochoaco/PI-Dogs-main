@@ -11,7 +11,7 @@ const Temperaments = (props) => {
             </div>
             <div className= {style.temperamentos}>
             {temperamentos.map((temp) => (
-            <h4 className= {style.temp}> {temp.temperamento} </h4>))}
+            <h4 className= {style.temp}> {temp.temperament} </h4>))}
             </div>
         </div>
     )
