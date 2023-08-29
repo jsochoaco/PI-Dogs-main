@@ -7,27 +7,51 @@ const Details = () => {
     const {id} = useParams();
     const [dog,setDog] = useState([]);
     useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await axios.get(`http://localhost:3001/dogs/${id}`);
-            const data = response.data;
-            if (data.name) {
-                if (data.temperament) {
-                    const temperamentArray = data.temperament.split(", ");
-                    setDog({ ...data, temperament: temperamentArray });
+        if (id < 265) {
+            const fetchData = async () => {
+                try {
+                  const response = await axios.get(`http://localhost:3001/dogs/${id}`);
+                  const data = response.data;
+                  if (data.name) {
+                      if (data.temperament) {
+                          const temperamentArray = data.temperament.split(", ");
+                          setDog({ ...data, temperament: temperamentArray });
+                      }
+                      const reference = data.reference_image_id;
+                      const imageResponse = await axios.get(
+                      `https://api.thedogapi.com/v1/images/${reference}`);
+                      const image = imageResponse.data;
+                      setDog((prevDog) => ({ ...prevDog, url: image.url }));
+                  }
+                } catch (error) {
+                  (error.message);
                 }
-                const reference = data.reference_image_id;
-                const imageResponse = await axios.get(
-                `https://api.thedogapi.com/v1/images/${reference}`);
-                const image = imageResponse.data;
-                setDog((prevDog) => ({ ...prevDog, url: image.url }));
-            }
-          } catch (error) {
-            (error.message);
-          }
-        };
-    
-        fetchData();
+              };
+              fetchData();
+        }
+        if (id > 264) { // Buscar en los estados, no buscar en la DB
+            const fetchData = async () => {
+                try {
+                  const response = await axios.get(`http://localhost:3001/dogs/${id}`);
+                  const data = response.data;
+                  if (data.name) {
+                      if (data.temperament) {
+                          const temperamentArray = data.temperament.split(", ");
+                          setDog({ ...data, temperament: temperamentArray });
+                      }
+                      const reference = data.reference_image_id;
+                      const imageResponse = await axios.get(
+                      `https://api.thedogapi.com/v1/images/${reference}`);
+                      const image = imageResponse.data;
+                      setDog((prevDog) => ({ ...prevDog, url: image.url }));
+                  }
+                } catch (error) {
+                  (error.message);
+                }
+              };
+              fetchData(); 
+        }
+
       }, [id]);
 
     return (

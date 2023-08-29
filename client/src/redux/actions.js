@@ -129,7 +129,7 @@ export const createDog = (dog) => {
             const response = await axios.post(endpoint, dog)
             if (response.data !== "El perro ya existe") {
                 const data = response.data
-                const [dog, creado] = data
+                const dog = data[0]
                 dispatch({
                     type: CREATE_DOG,
                     payload: dog});

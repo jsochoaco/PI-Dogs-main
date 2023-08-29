@@ -4,17 +4,12 @@ import { NavLink } from "react-router-dom";
 import { setApiDogs, setDBDogs, setIntermedia, setTemperamentos } from "../../redux/actions";
 
 const Landing = (props) => {
-    const data = ()=> {
-        props.setTemperamentos()
-        props.setApiDogs()
-        props.setDBDogs()
-        props.setIntermedia()
-    }
+    const {data} = props
     return (
         <div className={style.div}>
             <h1 className={style.titulo}> ¡Welcome to The Dogs App! &#128021;</h1>
             <NavLink to="/home">
-                <button className= {style.boton} onClick={data}>Home &#9193;</button>
+                <button className= {style.boton} onClick={()=>data()}>Home &#9193;</button>
             </NavLink>
         </div>
     )

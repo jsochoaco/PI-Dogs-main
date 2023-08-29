@@ -37,8 +37,8 @@ const Form = (props) => {
         if (datos.image) {
             if(!imageValidation.test(datos.image)) error.image = "Must be a valid URL"}
         if (datos.temperament.length === 0) error.temperaments = "You must choose at least one temperament"
-        if (datos.new) {
-            if (!nameValidation.test(datos.new)) error.new = "Must have only letters";}
+        // if (datos.new) {
+        //     if (!nameValidation.test(datos.new)) error.new = "Must have only letters";}
         if (datos.hmin && datos.hmax) {
             if (datos.hmin === datos.hmax || datos.hmin > datos.hmax) error.height = "The minimum must be lower and different than the maximum"}
         if (datos.wmin && datos.wmax) {
@@ -148,6 +148,11 @@ const Form = (props) => {
                     type="submit"
                     value="Create Dog"
                     disabled={
+                    !envio.name ||
+                    !envio.temperament ||
+                    !envio.life_span ||
+                    !envio.weight|| 
+                    !envio.height||
                     error.name ||
                     error.weight ||
                     error.height ||

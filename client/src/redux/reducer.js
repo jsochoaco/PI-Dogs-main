@@ -22,8 +22,8 @@ export const reducer = (state=initialState, action) => {
         case SET_DB_DOGS: {
             return {...state, dbDogs: action.payload, allDogs: [...state.allDogs, ...action.payload], completDogs: [...state.completDogs, ...action.payload]}}
 
-        // case CREATE_DOG: {
-        //     return {...state, dbDogs: [...state.dbDogs, ...action.payload], allDogs: [...state.allDogs, ...action.payload]}}
+        case CREATE_DOG: {
+            return {...state, dbDogs: [...state.dbDogs, ...action.payload], allDogs: [...state.allDogs, ...action.payload]}}
         
         case SET_DB_TEMP: {
             return {

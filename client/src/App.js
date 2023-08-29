@@ -9,9 +9,14 @@ import Form from './components/Form/Form';
 import { NavBar } from './components/NavBar/NavBar';
 import Temperaments from './components/Temperaments/Temperaments';
 import AboutDev from './components/AboutDev/AboutDev';
-import { searchDog } from './redux/actions';
+import * as actions from "./redux/actions"
 
 function App(props) {
+  const data = ()=> {
+    props.setTemperamentos()
+    props.setApiDogs()
+    props.setDBDogs()
+    props.setIntermedia()}
   const { pathname } = useLocation()
   const {allDogs, allTemperamentos, intermedia} = props
   return (
@@ -20,10 +25,10 @@ function App(props) {
       <Routes>
       <Route
       path='/'
-      element={<Landing/>} />
+      element={<Landing data = {data} />} />
       <Route
       path='/home'
-      element={<Home allDogs= {allDogs} temperamentos = {allTemperamentos} intermedia = {intermedia}/>} />
+      element={<Home allDogs= {allDogs} temperamentos = {allTemperamentos} intermedia = {intermedia} data= {data}/>} />
       <Route
       path='/details/:id'
       element={<Detail/>} />

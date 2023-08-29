@@ -9,7 +9,7 @@ import Ordenador from "./Ordenador"
 const Home = (props) => {
     const dispatch = useDispatch()
     //Estados importados
-    const {allDogs, temperamentos, intermedia} = props
+    const {allDogs, temperamentos, intermedia, data} = props
     // Limpiador de filtros
     const clearFilters = () => {
         dispatch(actions.clearFilter())
@@ -23,6 +23,7 @@ const Home = (props) => {
             </div>
             <div className={style.divboton}>
                 <button className={style.botonclean} onClick={clearFilters}> Clear filters and orders </button>
+                <button className={style.botones} onClick={data}> Refresh data </button>
             </div>
             <CardDogs dogs = {allDogs} intermedia = {intermedia} temperamentos = {temperamentos} />
         </div>

@@ -133,6 +133,7 @@
 
 .botones {
     height: 40%;
+    width: 20%;
     font-size: 16px;
     border-radius: 10px;
     background-color: #550dad;
@@ -143,9 +144,10 @@
 }
 
 .botones:hover {
-    background-color: #2e323b; 
+    background-color: green; 
     color: white;
-    border: solid 1.8px white;
+    border: solid 2px white;
+    font-weight: bold;
 }
 
 .botonclean {
@@ -158,12 +160,15 @@
     border: solid 1.8px black;
     cursor: pointer;
     font-family: "Rockwell";
+
 }
 
 .botonclean:hover {
-    background-color: #2e323b; 
-    color: white;
-    border: solid 1.8px white;
+    background-color: white; 
+    color: blue;
+    border: solid 2px blue;
+    font-weight: bold;
+    
 }
 
 .divboton {

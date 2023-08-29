@@ -44,7 +44,7 @@ const Filtros = (props) => {
                                 {temperamentos.map((temp) => (
                                 <option value={temp.temperament} key={temp.id}> {temp.temperament} </option>))}
                             </select>
-                            <button onClick={clearTempFilter} className={style.botones}>Clear</button>
+                            <button onClick={clearTempFilter} className={style.botonclean}>Clear</button>
                             <button onClick={filtradoTemp} className={style.botones}> Filter </button>
                             </div>
                             <div className={style.tempfil}>
