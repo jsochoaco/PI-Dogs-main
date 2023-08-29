@@ -4,6 +4,9 @@ import style from "./CardDogs.module.css"
 
 const CardDogs = (props) => {
     const {dogs, intermedia, temperamentos} = props;
+    console.log("dogs:", dogs);
+    console.log("intermedia:", intermedia);
+    console.log("temperamentos:", temperamentos);
     return (
             <div className={style.cards}>
             {dogs.map((dog) => {
@@ -38,13 +41,14 @@ const CardDogs = (props) => {
                     const filtro = intermedia.filter((obj) => obj.dogId === dog.id);
                     const indexTemp = filtro.map((obj) => obj.temperamentId);
                     let db = []
-                    for (let i =0; i < indexTemp.length; i++) {
-                        const tempera = temperamentos[indexTemp[i]]
-                        const tem = tempera.temperament
-                        db.push(tem)
+                    if (temperamentos.length > 0){
+                        for (let i =0; i < indexTemp.length; i++) {
+                            const temp = temperamentos[indexTemp[i]]
+                            const tem = temp.temperament
+                            db.push(tem)
+                        }
+                        dog.temperament = db.join(",")
                     }
-                    dog.temperament = db.join(",")
-                    // Pendiente organizar el filtro de temp de DB en el reducer
                     return (
                     <Card
                         key={dog.id}

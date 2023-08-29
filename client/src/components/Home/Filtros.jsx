@@ -42,10 +42,10 @@ const Filtros = (props) => {
                             <p className={style.textosecun} >Filter by Temperament</p>
                             <select className={style.select} onChange={handleFilterTemp}>
                                 {temperamentos.map((temp) => (
-                                <option value={temp.temperament}> {temp.temperament} </option>))}
+                                <option value={temp.temperament} key={temp.id}> {temp.temperament} </option>))}
                             </select>
                             <button onClick={clearTempFilter} className={style.botones}>Clear</button>
-                            <button onClick={filtradoTemp} className={style.botones}> Filtrar </button>
+                            <button onClick={filtradoTemp} className={style.botones}> Filter </button>
                             </div>
                             <div className={style.tempfil}>
                                 {/* {tempFilter.length > 0 ? (<p className={style.textosecun}>Temperaments selected</p>): ("")} */}

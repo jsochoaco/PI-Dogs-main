@@ -23,10 +23,9 @@ export const reducer = (state=initialState, action) => {
             return {...state, dbDogs: action.payload, allDogs: [...state.allDogs, ...action.payload], completDogs: [...state.completDogs, ...action.payload]}}
 
         // case CREATE_DOG: {
-        //     return {...state, dbDogs: [...state.dbDogs, action.payload], allDogs: [...state.allDogs, ...action.payload]}}
+        //     return {...state, dbDogs: [...state.dbDogs, ...action.payload], allDogs: [...state.allDogs, ...action.payload]}}
         
         case SET_DB_TEMP: {
-            const temperamentos = action.payload;
             return {
                 ...state,
                 dbTemperamentos: action.payload,
@@ -36,15 +35,12 @@ export const reducer = (state=initialState, action) => {
             return {...state, intermedia: action.payload}}
 
         case CLEAR: {
-            return {...state, allDogs: [...state.apiDogs, ...state.dbDogs]}
+            return {...state, allDogs: [...state.dbDogs,...state.apiDogs]}
         }
         case SEARCH_DOG: {
-            if (action.payload) {
-                return {...state, allDogs: action.payload}}
-            else {
-                return {...state, allDogs: [...state.apiDogs, ...state.dbDogs]}
-            }
-            }
+            if (action.payload && action.payload.length > 0) {
+                return { ...state, allDogs: [...action.payload] };
+        }}
 
         case FILTRO_ORIGEN: {
             const filterOrigen = action.payload === "All" ? 
@@ -56,23 +52,31 @@ export const reducer = (state=initialState, action) => {
             if (payloadact.length < 1) {
                 return {
                     ...state,
-                    allDogs: [...state.apiDogs,...state.dbDogs]
+                    allDogs: [...state.completDogs]
                 }
             }
             else if (payloadact.length >= 1) {
                 let cumplen = []
                 state.allDogs.forEach((dog) => {
                     if(dog.origen === "DB") {
-                        const filtro = state.intermedia.filter((obj) => obj.dogId === dog.id)
-                        const indexTemp = filtro.map((obj) => obj.temperamentId)
-                        const buscar = (id) => {
-                            const tempFind = state.allTemperamentos.find((temp)=> temp.id === id);
-                            if (tempFind) return tempFind}
-                        const dbtemp = indexTemp.map((id) => buscar(id))
-                        if (dbtemp != undefined){
-                            const contiene = payloadact.every((el) => dbtemp.includes(el))
+                        const filtro = state.intermedia.filter((obj) => obj.dogId === dog.id);
+                        const indexTemp = filtro.map((obj) => obj.temperamentId);
+                        let db = []
+                        for (let i =0; i < indexTemp.length; i++) {
+                            const temp = state.allTemperamentos[indexTemp[i]]
+                            const tem = temp.temperament
+                            db.push(tem)
+                        }
+                        if (db !== undefined){
+                            const contiene = payloadact.every((el) => db.includes(el))
                             if (contiene) {
                                 cumplen.push(dog)}}
+                        // const filtro = state.intermedia.filter((obj) => obj.dogId === dog.id)
+                        // const indexTemp = filtro.map((obj) => obj.temperamentId)
+                        // const buscar = (id) => {
+                        //     const tempFind = state.allTemperamentos.find((temp)=> temp.id === id);
+                        //     if (tempFind) return tempFind}
+                        // const dbtemp = indexTemp.map((id) => buscar(id))
                     }
                     if (dog.origen === "API") {
                         const apitemp = dog.temperament
@@ -111,22 +115,33 @@ export const reducer = (state=initialState, action) => {
                 });
                 return {...state, allDogs: sortDogs}
             }
-        }    
+        } 
         case ORDEN_PESO: {
             const ordenar = state.allDogs.map((dog) => {
-                const weightMetric = dog.weight?.metric;
-                const minimo = parseInt(weightMetric.split(" ")[0]);
-                const maximo = parseInt(weightMetric.split(" ")[2]);
-                
-                return {
-                    ...dog,
-                    min: minimo,
-                    max: maximo,
-                };
+                if (dog.origen === "API") {
+                    const weightMetric = dog.weight?.metric;
+                    const minimo = parseInt(weightMetric.split(" ")[0]);
+                    const maximo = parseInt(weightMetric.split(" ")[2]);
+                    return {
+                        ...dog, 
+                        min: minimo,
+                        max: maximo,
+                    };
+                }
+                if (dog.origen === "DB") {
+                    const weightMetric = dog.weight;
+                    const minimo = parseInt(weightMetric.split("-")[0]);
+                    const maximo = parseInt(weightMetric.split("-")[1]);
+                    return {
+                        ...dog, 
+                        min: minimo,
+                        max: maximo,
+                    };
+                }
             });
         
             if (action.payload === "UN") {
-                return {...state, allDogs: [...state.allDogs]};   
+                return { ...state, allDogs: state.allDogs };
             } else {
                 const sortDogs = ordenar.sort((a, b) => {
                     if (action.payload === "MenorAMayor") {
@@ -137,7 +152,7 @@ export const reducer = (state=initialState, action) => {
                         return 0;
                     }
                 });
-                return {...state, allDogs: sortDogs};
+                return { ...state, allDogs: sortDogs };
             }
         }
         default:

@@ -9,15 +9,14 @@ import Form from './components/Form/Form';
 import { NavBar } from './components/NavBar/NavBar';
 import Temperaments from './components/Temperaments/Temperaments';
 import AboutDev from './components/AboutDev/AboutDev';
+import { searchDog } from './redux/actions';
 
 function App(props) {
   const { pathname } = useLocation()
   const {allDogs, allTemperamentos, intermedia} = props
   return (
     <div className="App">
-      { pathname != "/" && 
-      <NavBar/>
-      }
+      { pathname != "/" && <NavBar/>}
       <Routes>
       <Route
       path='/'
@@ -54,7 +53,7 @@ const mapDispatchToProps = (dispatch) => {
         setApiDogs: () => dispatch(actions.setApiDogs()),
         setDBDogs: () => dispatch(actions.setDBDogs()),
         setTemperamentos: () => dispatch(actions.setTemperamentos()),
-        setIntermedia: ()=> dispatch(actions.setIntermedia())
+        setIntermedia: ()=> dispatch(actions.setIntermedia()),
     }
 }
 

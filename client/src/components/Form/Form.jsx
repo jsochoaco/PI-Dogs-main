@@ -48,6 +48,7 @@ const Form = (props) => {
 
         })
         setError(validate({...datos,
+            temperament: [...temp],
             [evento.target.name]: evento.target.value
         }))
         setEnvio({...envio,
@@ -67,8 +68,6 @@ const Form = (props) => {
     return (
         <>
         <form onSubmit={handleSubmit} >
-            <p>{envio.temperament}</p>
-            <p>{envio.height}</p>
             <div className={style.contenedor}>
                 <h1 className={style.ppal}>&#127381; Create a new dog &#128054;</h1>
                 <div className={style.divdato}>
@@ -119,7 +118,7 @@ const Form = (props) => {
                 </div>
                 <div className={style.divdato}>
                     <label className={style.dato}>Tempermanets list</label>
-                    <select className={style.select} onChange={handleFilterTemp}>
+                    <select className={style.select} name="list" onChange={(evento)=> {handleFilterTemp(evento);handleChange(evento);}}>
                     {temperamentos.map((temp) => (
                     <option value={temp.temperament}> {temp.temperament} </option>))}
                     </select>
@@ -127,7 +126,7 @@ const Form = (props) => {
                     {error.temperaments ? ( <div className={style.divdato}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.temperaments}</span>
                     </div> ):(null)}
                 </div>
-                <div className={style.tempfil}>
+                <div className={style.tempfil} >
                     {tempFilter.map((temp) => ( <h6 className={style.tempfiltemp}> {temp}</h6>))}
                 </div>
                 <div className={style.divdato}>

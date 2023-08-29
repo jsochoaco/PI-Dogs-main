@@ -1,7 +1,7 @@
 import Menu from "../Menu/Menu"
 import * as actions from "../../redux/actions"
 import { useDispatch } from "react-redux" 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import style from "./NavBar.module.css"
 import { NavLink, useLocation } from "react-router-dom"
 
@@ -38,7 +38,7 @@ export const NavBar = () => {
                 { pathname === "/home" &&  (
                 <div className={style.buscador}>
                     <input className={style.input} placeholder="Enter dog name" type='text' value={name} onChange={handleChange}/>
-                    <button className={style.boton} onClick={()=> handleSearch()}>Search</button>
+                    <button className={style.boton} onClick={()=> dispatch(actions.searchDog(name))}>Search</button>
                     <button className={style.boton} onClick={()=> handleClear()}>Clean</button>
                 </div>
                 )}

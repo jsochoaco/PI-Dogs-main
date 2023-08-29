@@ -18,7 +18,7 @@ const Home = (props) => {
     return (
         <div className={style.general}>
             <div className={style.contenedor}>
-                <Filtros allDogs={allDogs} temperamentos= {temperamentos} />
+                <Filtros temperamentos= {temperamentos} />
                 <Ordenador/>
             </div>
             <div className={style.divboton}>
