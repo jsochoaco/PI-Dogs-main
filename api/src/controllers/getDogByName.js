@@ -26,8 +26,14 @@ const getDogByName = async (req, res) => {
                 }
             }
         })
-        const apigods = response.data
-        const filtradoDogs = apigods.concat(dbDogs)
+        const apidogs = response.data
+        apidogs.map ((dog)=> {
+            dog["origen"] = "API"
+           })
+        dbDogs.map ((dog)=> {
+            dog["origen"] = "DB"
+           })
+        const filtradoDogs = [...apidogs,...dbDogs]
         if (filtradoDogs.length > 0) {
             return res.status(200).json(filtradoDogs)
             // Stautos 200: Correcto; OK
