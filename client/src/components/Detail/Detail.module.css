@@ -24,6 +24,7 @@
     border: 5px outset #550dad;
     box-shadow: 0 0 20px 10px #550dad;
     margin-left: 150px;
+    cursor: pointer;
 }
 
 .datos {
@@ -161,12 +162,11 @@
     gap: 0px;
     opacity: 0;
     transition: opacity 0.3s ease;
-    cursor: pointer;
     border: 5px outset #550dad;
     padding-bottom: 2px;
   }
 
-.caption:hover {
+.img:hover + .caption {
     opacity: 0.8; /* Hacer visible el caption cuando se coloca el cursor sobre la imagen */
 }
 

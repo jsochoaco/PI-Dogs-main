@@ -1,11 +1,11 @@
 .card {
     width: 20%;
-    height: 800px;
-    height: auto;
+    min-height: 350px;
     border: 2px solid #1c1f1d;
     border-radius: 5px;
     text-align: center;
     justify-content: center;
+    justify-items: center;
     background-color: #550dad;
     font-family: "Hoppin";
     margin: 2%;
@@ -15,10 +15,12 @@
         margin-block: 5px;
         margin-left: 5px;
         margin-right: 5px;
-        margin-top: 5px;
-        width: 200px;
-        height: auto;
+        margin-top: 15px;
+        width: 60%;
         box-shadow: 0 0 5px 1px white;
+            transition: .5s, color .10s;
+                -webkit-transition: .5s, color .10s;
+                -moz-transition: .5s, color .10s;
     }
     .nombre {
         font-family: "Rockwell";
@@ -50,6 +52,12 @@
     color: white;
     background-color: #518805;
     text-decoration:underline #518805;
+    transform: scale3d(1.2, 1.2, 0.3);
+        -webkit-transform: scale3d(1.2, 1.2, 0.3);
+        -moz-transform: scale3d(1.2, 1.2, 0.3);
+}
+
+.imagen:hover {
     transform: scale3d(1.2, 1.2, 0.3);
         -webkit-transform: scale3d(1.2, 1.2, 0.3);
         -moz-transform: scale3d(1.2, 1.2, 0.3);
