@@ -30,9 +30,11 @@ const getDogByName = async (req, res) => {
         apidogs.map ((dog)=> {
             dog["origen"] = "API"
            })
-        dbDogs.map ((dog)=> {
-            dog["origen"] = "DB"
-           })
+        // dbDogs.map ((dog)=> {
+        //     return {
+        //         ...dog,
+        //         origen: "DB"
+        // }})
         const filtradoDogs = [...apidogs,...dbDogs]
         if (filtradoDogs.length > 0) {
             return res.status(200).json(filtradoDogs)

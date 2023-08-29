@@ -30,6 +30,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    origen: {
+      type: DataTypes.STRING,
+      defaultValue: "DB"
+    }
   }, {
     timestamps: false
   });
