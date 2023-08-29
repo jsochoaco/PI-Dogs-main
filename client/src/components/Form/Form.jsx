@@ -10,12 +10,13 @@ const Form = (props) => {
     // Temperamentos 
     const [tempFilter, setTempFilter] = useState([])
     const [nuevo, setNuevo] = useState([])
-    const {temperamentos} = props
+    const {temperamentos, created} = props
     const handleAdd = (evento) => {
         if(evento.target.value) {
             setNuevo(evento.target.value)
         }
     }
+    const [creado, setCreado] = useState("")
     const add = () => {
         setTempFilter(prevTempFilter => [...prevTempFilter, nuevo])}
     const handleFilterTemp = (evento) => {
@@ -24,7 +25,17 @@ const Form = (props) => {
     const clearTempFilter = () => {
         setTempFilter([])}
     // Datos
-    const [datos, setDatos] = useState({name: "", height: "", weight: "", life_span: "", temperament: [] ,image: "",})
+    const [datos, setDatos] = useState({
+        name: "",
+        hmin: "",
+        hmax: "",
+        wmin: "",
+        wmax: "",
+        lmin: "",
+        lmax: "",
+        temperament: [],
+        image: "",
+      })
     // Info a enviar
     const [envio, setEnvio] = useState({name: "", height: "", weight: "", life_span: "", temperament: "" ,image: "",})
     //Función validadora
@@ -69,7 +80,27 @@ const Form = (props) => {
     //Función de envío de info
     const handleSubmit = (evento) =>  {
         evento.preventDefault()
+        setCreado(created)
         return dispatch(actions.createDog(envio))}
+    const ok = () => {
+        setCreado("")
+    }
+    //Función de limpieza 
+    const handleClearAll = () => {
+        setDatos({
+          name: "",
+          hmin: "",
+          hmax: "",
+          wmin: "",
+          wmax: "",
+          lmin: "",
+          lmax: "",
+          temperament: [],
+          image: "",
+        });
+        setError({});
+        setTempFilter([]);
+      };
     //Renderizado
     return (
         <>
@@ -78,17 +109,27 @@ const Form = (props) => {
                 <h1 className={style.ppal}>&#127381; Create a new dog &#128054;</h1>
                 <div className={style.divdato}>
                     <label className={style.dato}>Name</label>
-                    <input className={style.inputtext}  type="text" name="name" placeholder="Dog name" onChange={handleChange} required/>
+                    <input className={style.inputtext}  type="text" name="name" placeholder="Dog name" onChange={handleChange} required  value={datos.name}/>
                     <br/>
                     {error.name ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.name}</span>
+                    </div> ):(null)}
+                </div>
+                <div className={style.divdato}>
+                    <label className={style.dato}>Tempermanets list</label>
+                    <select className={style.select} name="list" onChange={handleFilterTemp}>
+                    {temperamentos.map((temp) => (
+                    <option value={temp.temperament}> {temp.temperament} </option>))}
+                    </select>
+                    <button className= {style.botonclean} onClick={clearTempFilter}>Clear temperaments</button>
+                    {error.temperaments ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.temperaments}</span>
                     </div> ):(null)}
                 </div>
                 <div className={style.divdato}>                 
                     <label className={style.dato}>Height</label>
                     <h6 className={style.datosec}>Min.</h6>
-                    <input className={style.inputnum} type="number" name="hmin" min="0" placeholder="In centimeters" onChange={handleChange}  required/>
+                    <input className={style.inputnum} type="number" name="hmin" min="0" placeholder="In centimeters" onChange={handleChange}  required value={datos.hmin}/>
                     <h6 className={style.datosec}>Max.</h6>
-                    <input className={style.inputnum} type="number" name="hmax" min="0" placeholder="In centimeters" onChange={handleChange} required/>
+                    <input className={style.inputnum} type="number" name="hmax" min="0" placeholder="In centimeters" onChange={handleChange} required value={datos.hmax}/>
                     <br/>
                     {error.height ? (
                     <div className={style.divdato2}>
@@ -99,9 +140,9 @@ const Form = (props) => {
                 <div className={style.divdato}>
                     <label className={style.dato}>Weight</label>
                     <h6 className={style.datosec}>Min.</h6> 
-                    <input className={style.inputnum} type="number" name="wmin" min="0" placeholder="In kilograms" onChange={handleChange} required/>
+                    <input className={style.inputnum} type="number" name="wmin" min="0" placeholder="In kilograms" onChange={handleChange} required value={datos.wmin}/>
                     <h6 className={style.datosec}>Max.</h6> 
-                    <input className={style.inputnum} type="number" name="wmax" min="0" placeholder="In kilograms" onChange={handleChange} required/>
+                    <input className={style.inputnum} type="number" name="wmax" min="0" placeholder="In kilograms" onChange={handleChange} required value={datos.wmax}/>
                     <br/>
                     {error.weight ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.weight}</span>
                     </div> ):(null)}
@@ -109,27 +150,17 @@ const Form = (props) => {
                 <div className={style.divdato}>
                     <label className={style.dato}>Life span</label>
                     <h6 className={style.datosec}>Min.</h6> 
-                    <input className={style.inputnum} type="number" name="lmin" min="0" placeholder="In years" onChange={handleChange} required/>
+                    <input className={style.inputnum} type="number" name="lmin" min="0" placeholder="In years" onChange={handleChange} required value={datos.lmin}/>
                     <h6 className={style.datosec}>Max.</h6> 
-                    <input className={style.inputnum} type="number" name="lmax" placeholder="In years" min="0" onChange={handleChange} required/>
+                    <input className={style.inputnum} type="number" name="lmax" placeholder="In years" min="0" onChange={handleChange} required value={datos.lmax}/>
                     <br />
                     {error.life_span ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.life_span}</span>
                     </div> ):(null)}
                 </div>
                 <div className={style.divdato} >
                     <label className={style.dato}>Image</label> 
-                    <input className={style.inputtext} type="text" name="image" placeholder="URL" onChange={handleChange}/>
+                    <input className={style.inputtext} type="text" name="image" placeholder="URL" onChange={handleChange} value={datos.image}/>
                     {error.image ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.image}</span>
-                    </div> ):(null)}
-                </div>
-                <div className={style.divdato}>
-                    <label className={style.dato}>Tempermanets list</label>
-                    <select className={style.select} name="list" onChange={(evento)=> {handleFilterTemp(evento);handleChange(evento);}}>
-                    {temperamentos.map((temp) => (
-                    <option value={temp.temperament}> {temp.temperament} </option>))}
-                    </select>
-                    <button className= {style.botonclean} onClick={clearTempFilter}>Clear temperaments</button>
-                    {error.temperaments ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.temperaments}</span>
                     </div> ):(null)}
                 </div>
                 <div className={style.tempfil} >
@@ -148,18 +179,26 @@ const Form = (props) => {
                     type="submit"
                     value="Create Dog"
                     disabled={
-                    !envio.name ||
-                    !envio.temperament ||
-                    !envio.life_span ||
-                    !envio.weight|| 
-                    !envio.height||
+                    (!envio.name && envio.name !== "")||
+                    (!envio.temperament && envio.temperament !== "") ||
+                    (!envio.life_span && envio.life_span !== "" )||
+                    (!envio.weight  && envio.weight !== "")|| 
+                    (!envio.height && envio.height !== "")||
+                    (!envio.height && envio.height !== "")||
                     error.name ||
                     error.weight ||
                     error.height ||
                     error.temperaments ||
                     error.life_span ||
                     error.image} />
-                    <button className={style.botonclean}>Clear all</button>
+                    <button className={style.botonclean} type="button" onClick={handleClearAll}>Clear all</button>
+                </div>
+                <div>
+                    {creado}
+                    {creado === true ? (<p>El perro ha sido creado exitosamente.</p>) 
+                    : creado === false ? (<p>Hubo un problema al crear el perro.</p>) 
+                    : null}
+                    <button onClick={ok} >Ok</button>
                 </div>
                 
             </div>

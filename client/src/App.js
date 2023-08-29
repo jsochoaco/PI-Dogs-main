@@ -18,7 +18,7 @@ function App(props) {
     props.setDBDogs()
     props.setIntermedia()}
   const { pathname } = useLocation()
-  const {allDogs, allTemperamentos, intermedia} = props
+  const {allDogs, allTemperamentos, intermedia, createdDog} = props
   return (
     <div className="App">
       { pathname != "/" && <NavBar/>}
@@ -34,7 +34,7 @@ function App(props) {
       element={<Detail/>} />
       <Route 
       path='/create'
-      element= {<Form temperamentos = {allTemperamentos}/>}/>
+      element= {<Form temperamentos = {allTemperamentos} created = {createdDog}/>}/>
       <Route 
       path='/temperaments'
       element= {<Temperaments temperamentos = {allTemperamentos}/>}/>
@@ -50,7 +50,8 @@ const mapStateToProps = (state) => {
     return {
         allDogs: state.allDogs,
         allTemperamentos: state.allTemperamentos,
-        intermedia: state.intermedia
+        intermedia: state.intermedia,
+        createdDog: state.createdDog
     };
 };
 const mapDispatchToProps = (dispatch) => {

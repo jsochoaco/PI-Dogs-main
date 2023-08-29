@@ -32,11 +32,11 @@ const postDogs = async (req,res) => {
             await dog.addTemperament(temperament);
         })
         if (!creado) {
-            return res.status(409).send("El perro ya existe");
+            return res.status(200).json({dogs: dog, existe: creado});
             // Status 409: Conflicto
         }
         else {
-            return res.status(200).json([dog, creado])
+            return res.status(200).json({dogs: dog, existe: creado})
             // Stautos 200: Correcto; OK
         }
 

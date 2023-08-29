@@ -11,7 +11,8 @@ const initialState = {
     dbTemperamentos: [],
     apiTemperamentos: [],
     allTemperamentos: [],
-    intermedia: []
+    intermedia: [],
+    createdDog: null,
 }
 
 export const reducer = (state=initialState, action) => {
@@ -23,8 +24,12 @@ export const reducer = (state=initialState, action) => {
             return {...state, dbDogs: action.payload, allDogs: [...state.allDogs, ...action.payload], completDogs: [...state.completDogs, ...action.payload]}}
 
         case CREATE_DOG: {
-            return {...state, dbDogs: [...state.dbDogs, ...action.payload], allDogs: [...state.allDogs, ...action.payload]}}
-        
+            const dogCreated = action.payload.dogs
+            const existe = action.payload.existe
+            if (existe === true) {
+                return {...state, dbDogs: [...state.dbDogs, dogCreated], allDogs: [...state.allDogs, dogCreated]}}
+            return {createDog:existe}
+            }
         case SET_DB_TEMP: {
             return {
                 ...state,

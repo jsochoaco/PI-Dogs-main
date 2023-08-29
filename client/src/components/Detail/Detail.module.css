@@ -19,7 +19,7 @@
 .img {
     max-width: 500px;
     width: 500px;
-    max-height: 550px;
+    max-height: 450px;
     border-radius: 10px;
     border: 5px outset #550dad;
     box-shadow: 0 0 20px 10px #550dad;
@@ -123,12 +123,12 @@
 
 }
 .loader {
-    border: 4px solid white;
-    border-left: 4px solid #000;
+    border: 5px solid white;
+    border-left: 5px solid #550dad;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite; /* Aplica la animación "spin" */
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite; /* Aplica la animación "spin" */
 }
 
 @keyframes spin {

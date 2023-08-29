@@ -9,11 +9,26 @@
 
 }
 
-h2 {
+.titulo1 {
     color: #550dad; 
     font-family: "Rockwell";
     font-size:  35px;
+    cursor: pointer;
 }
+
+.titulo1 {
+    transition: .5s, color .10s;
+      -webkit-transition: .5s, color .10s;
+      -moz-transition: .5s, color .10s;
+  }
+.titulo1:hover{
+    font-weight: bolder;
+    transform: scale3d(1.5, 1.5, 0.3);
+      -webkit-transform: scale3d(1.5, 1.5, 0.3);
+      -moz-transform: scale3d(1.5, 1.5, 0.3);
+  }
+
+
 
 .temperamentos {
     display: flex;
@@ -36,3 +51,19 @@ h2 {
         border: 1px solid black;
     }
 }
+
+.temp {
+    transition: .5s, color .10s;
+    -webkit-transition: .5s, color .10s;
+    -moz-transition: .5s, color .10s;
+    cursor:grab;
+}
+.temp:hover{
+    box-shadow: 0 8px 8px 0 #000000,0 8px 8px 0 #000000;
+    background-color: #550dad;
+    transform: translate(0px,3px);
+    -webkit-transform: translate(0px,3px);
+    -moz-transform:translate(0px,3px);
+}
+
+
