@@ -16,7 +16,7 @@ const Form = (props) => {
             setNuevo(evento.target.value)
         }
     }
-    const [creado, setCreado] = useState("")
+    const [creado, setCreado] = useState(created)
     const add = () => {
         setTempFilter(prevTempFilter => [...prevTempFilter, nuevo])}
     const handleFilterTemp = (evento) => {
@@ -194,9 +194,9 @@ const Form = (props) => {
                     <button className={style.botonclean} type="button" onClick={handleClearAll}>Clear all</button>
                 </div>
                 <div>
-                    {creado}
-                    {creado === true ? (<p>El perro ha sido creado exitosamente.</p>) 
-                    : creado === false ? (<p>Hubo un problema al crear el perro.</p>) 
+                    <p>{creado}</p>
+                    {creado === true ? (<p>Dog created</p>) 
+                    : creado === false ? (<p>This dog already exists</p>) 
                     : null}
                     <button onClick={ok} >Ok</button>
                 </div>
