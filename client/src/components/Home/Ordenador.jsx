@@ -29,6 +29,7 @@ const Ordenador = (props) => {
                         <div className={style.orName}>
                             <p className={style.textosecun}>Order by name</p>
                             <select className={style.select} onChange={handleOrderName} defaultValue={ordenName}>
+                                <option value="UN">Unsorted</option>
                                 <option value="A-Z">A-Z order</option>
                                 <option value="Z-A">Z-A order</option>
                             </select>

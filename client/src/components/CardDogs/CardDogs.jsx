@@ -42,8 +42,8 @@ const CardDogs = (props) => {
                     if (temperamentos.length > 0){
                         for (let i =0; i < indexTemp.length; i++) {
                             const temp = temperamentos[indexTemp[i]]
-                            const tem = temp.temperament
-                            db.push(tem)
+                            if(temp){const tem = temp.temperament
+                            db.push(tem)}
                         }
                         dog.temperament = db.join(",")
                     }

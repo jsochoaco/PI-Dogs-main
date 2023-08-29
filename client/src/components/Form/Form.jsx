@@ -1,22 +1,32 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import style from "./form.module.css"
 import * as actions from "../../redux/actions"
 import { useDispatch } from "react-redux"
 
 const Form = (props) => {
     const dispatch = useDispatch()
-    //Error
-    const [error, setError] = useState({})
-    // Temperamentos 
     const [tempFilter, setTempFilter] = useState([])
     const [nuevo, setNuevo] = useState([])
-    const {temperamentos, created} = props
+    const {temperamentos, created, data} = props
+    const [creado, setCreado] = useState(created)
+    const [len, setLen] = useState(0);
+    //Error
+    const [error, setError] = useState({})
+    const refresh = () => {
+        data();
+      };
+      // Actualizar len y len2 con las longitudes actuales
+      useEffect(() => {
+        setLen(temperamentos.length);},[temperamentos.length]);
+      // Verificar len y len2 después de 3 segundos
+      useEffect(() => {const timeoutId = setTimeout(() => {if (len === 0) {refresh();}}, 1000);return () => {clearTimeout(timeoutId);};}, [len, refresh]);
+
+    // Temperamentos 
     const handleAdd = (evento) => {
         if(evento.target.value) {
             setNuevo(evento.target.value)
         }
     }
-    const [creado, setCreado] = useState(created)
     const add = () => {
         setTempFilter(prevTempFilter => [...prevTempFilter, nuevo])}
     const handleFilterTemp = (evento) => {
@@ -80,11 +90,7 @@ const Form = (props) => {
     //Función de envío de info
     const handleSubmit = (evento) =>  {
         evento.preventDefault()
-        dispatch(actions.createDog(envio))
-        setCreado(created)}
-    const ok = () => {
-        setCreado("")
-    }
+        dispatch(actions.createDog(envio))}
     //Función de limpieza 
     const handleClearAll = () => {
         setDatos({
@@ -101,6 +107,12 @@ const Form = (props) => {
         setError({});
         setTempFilter([]);
       };
+    // Función okey
+    useEffect(()=> {setCreado(created)}, [created])
+    const ok = ()=> {
+        setCreado(null)
+        handleClearAll()
+    }
     //Renderizado
     return (
         <>
@@ -194,11 +206,11 @@ const Form = (props) => {
                     <button className={style.botonclean} type="button" onClick={handleClearAll}>Clear all</button>
                 </div>
                 <div>
-                    <p>{creado}</p>
-                    {creado === true ? (<p>Dog created</p>) 
-                    : creado === false ? (<p>This dog already exists</p>) 
-                    : null}
-                    <button onClick={ok} >Ok</button>
+                    {creado === false ? (<div className={style.divdato2}>
+                        <span className={style.textohover2}>This dog already exists</span>
+                        <button className={style.botonok}onClick={ok}>X</button>
+                        </div>) 
+                    :null}
                 </div>
                 
             </div>

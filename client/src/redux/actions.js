@@ -1,4 +1,4 @@
-import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, SET_DB_TEMP, CLEAR, ORDEN_NAME, ORDEN_PESO, CREATE_DOG, SEARCH_DOG} from "./action-types"
+import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, SET_DB_TEMP, CLEAR, ORDEN_NAME, ORDEN_PESO, CREATE_DOG, SEARCH_DOG, CREADO} from "./action-types"
 import axios from "axios"
 
 export const setTemperamentos = () => {
@@ -127,12 +127,19 @@ export const createDog = (dog) => {
         const endpoint = 'http://localhost:3001/dogs'
         return async (dispatch)=> {
             const response = await axios.post(endpoint, dog)
-            if (response.data !== "El perro ya existe") {
+            const mensaje = response.data.existe
+            if (mensaje === true) {
                 const data = response.data
                 dispatch({
                     type: CREATE_DOG,
                     payload: data});
-            }        
+            }
+            else if (mensaje === false) {
+                dispatch({
+                    type: CREADO,
+                    payload: mensaje
+                })
+            }       
         }
     } 
     catch (error) {

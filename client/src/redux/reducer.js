@@ -1,11 +1,11 @@
-import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, CLEAR, SET_DB_TEMP, SET_API_TEMPERAMENTOS, ORDEN_NAME, ORDEN_PESO, CREATE_DOG, SEARCH_DOG} from "./action-types"
+import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, CLEAR, SET_DB_TEMP, ORDEN_NAME, ORDEN_PESO, CREATE_DOG, SEARCH_DOG, CREADO} from "./action-types"
 
 const initialState = {
     completDogs: [],
     apiDogs: [],
     dbDogs: [],
-    // filterTemp: null,
-    filterOrigen: null,
+    filterTemp: [],
+    filtroOrigen: null,
     allDogs: [],
     // orderDogs: [],
     dbTemperamentos: [],
@@ -13,6 +13,7 @@ const initialState = {
     allTemperamentos: [],
     intermedia: [],
     createdDog: null,
+    filtered: []
 }
 
 export const reducer = (state=initialState, action) => {
@@ -25,11 +26,12 @@ export const reducer = (state=initialState, action) => {
 
         case CREATE_DOG: {
             const dogCreated = action.payload.dogs
-            const existe = action.payload.existe
             if (existe === true) {
                 return {...state, dbDogs: [...state.dbDogs, dogCreated], allDogs: [...state.allDogs, dogCreated]}}
-            return {createDog:existe}
             }
+        case CREADO: {
+            return {...state, createdDog: action.payload}
+        }
         case SET_DB_TEMP: {
             return {
                 ...state,
@@ -48,10 +50,15 @@ export const reducer = (state=initialState, action) => {
         }}
 
         case FILTRO_ORIGEN: {
-            const filterOrigen = action.payload === "All" ? 
-            state.completDogs : state.completDogs.filter((dog) => dog.origen === action.payload)
-            return {...state, allDogs: filterOrigen, filterOrigen: action.payload}}
+            if(action.payload === "All") {
+                if(state.filterTemp.length === 0) return {...state, allDogs: [...state.dbDogs,...state.apiDogs]}
+                else return {...state, allDogs: state.filtered}
+            }
+            else {
+                if(state.filterTemp.length === 0) {const filterOrigen = state.completDogs.filter((dog) => dog.origen === action.payload);return {...state, allDogs: filterOrigen, filtroOrigen: action.payload}} 
+                else if (state.filterTemp.length > 0) {const filterOrigen = state.filtered.filter((dog) => dog.origen === action.payload);return {...state, allDogs: filterOrigen, filtroOrigen: action.payload}}}
 
+            }
         case FILTRO_TEMP: {
             const payloadact = action.payload
             if (payloadact.length < 1) {
@@ -61,8 +68,9 @@ export const reducer = (state=initialState, action) => {
                 }
             }
             else if (payloadact.length >= 1) {
+                state.filtered = state.filtroOrigen === "All" ? [...state.completDogs] : [...state.allDogs];
                 let cumplen = []
-                state.allDogs.forEach((dog) => {
+                state.filtered.forEach((dog) => {
                     if(dog.origen === "DB") {
                         const filtro = state.intermedia.filter((obj) => obj.dogId === dog.id);
                         const indexTemp = filtro.map((obj) => obj.temperamentId);
@@ -76,12 +84,6 @@ export const reducer = (state=initialState, action) => {
                             const contiene = payloadact.every((el) => db.includes(el))
                             if (contiene) {
                                 cumplen.push(dog)}}
-                        // const filtro = state.intermedia.filter((obj) => obj.dogId === dog.id)
-                        // const indexTemp = filtro.map((obj) => obj.temperamentId)
-                        // const buscar = (id) => {
-                        //     const tempFind = state.allTemperamentos.find((temp)=> temp.id === id);
-                        //     if (tempFind) return tempFind}
-                        // const dbtemp = indexTemp.map((id) => buscar(id))
                     }
                     if (dog.origen === "API") {
                         const apitemp = dog.temperament
@@ -91,21 +93,32 @@ export const reducer = (state=initialState, action) => {
                             const contiene = payloadact.every((elem) => text.includes(elem))
                             if (contiene) cumplen.push(dog)}
                     }})
-                if (cumplen.length < 0) {
-                    return {...state, allDogs: []}
+                if (cumplen.length < 1) {
+                    return { ...state, allDogs: [], filterTemp: payloadact };
                 }
                 else {
-                    return {...state, allDogs: cumplen}
+                    return { ...state, allDogs: cumplen, filterTemp: payloadact, filtered: cumplen };
                 }
             }
         }
         case ORDEN_NAME: {
-            const ordenar = state.filterOrigen === "All" ? 
-            [...state.completDogs] : [...state.allDogs]
+            let ordenar= []
+            if (state.filtroOrigen === "All" && state.filterTemp.length === 0){
+                ordenar = [...state.allDogs]
+            }
+            else if (state.filtroOrigen === "All" && state.filterTemp.length > 0){
+                ordenar = [...state.filtered]
+            }
+            else if (state.filtroOrigen !== "All" && state.filterTemp.length === 0){
+                ordenar = [...state.allDogs]
+            }
+            else if (state.filtroOrigen !== "All" && state.filterTemp.length > 0){
+                ordenar = [...state.filtered]
+            }
             if (action.payload === "UN") {
                 return {...state, allDogs: [...state.allDogs]}
             }
-            else {
+            else if (action.payload !== "UN") {
                 const sortDogs = ordenar.sort((a,b)=> {
                     if (action.payload === "A-Z") {
                         if(a.name < b.name) return -1
@@ -144,9 +157,8 @@ export const reducer = (state=initialState, action) => {
                     };
                 }
             });
-        
             if (action.payload === "UN") {
-                return { ...state, allDogs: state.allDogs };
+                return { ...state, allDogs: [...state.allDogs] };
             } else {
                 const sortDogs = ordenar.sort((a, b) => {
                     if (action.payload === "MenorAMayor") {
