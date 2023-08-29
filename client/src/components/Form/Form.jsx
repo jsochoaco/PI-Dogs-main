@@ -9,12 +9,20 @@ const Form = (props) => {
     const [error, setError] = useState({})
     // Temperamentos 
     const [tempFilter, setTempFilter] = useState([])
+    const [nuevo, setNuevo] = useState([])
     const {temperamentos} = props
+    const handleAdd = (evento) => {
+        if(evento.target.value) {
+            setNuevo(evento.target.value)
+        }
+    }
+    const add = () => {
+        setTempFilter(prevTempFilter => [...prevTempFilter, nuevo])}
     const handleFilterTemp = (evento) => {
         const selectedOption = evento.target.value;
         setTempFilter(prevTempFilter => [...prevTempFilter, selectedOption])}
     const clearTempFilter = () => {
-        setTempFilter([]);}
+        setTempFilter([])}
     // Datos
     const [datos, setDatos] = useState({name: "", height: "", weight: "", life_span: "", temperament: [] ,image: "",})
     // Info a enviar
@@ -30,8 +38,7 @@ const Form = (props) => {
             if(!imageValidation.test(datos.image)) error.image = "Must be a valid URL"}
         if (datos.temperament.length === 0) error.temperaments = "You must choose at least one temperament"
         if (datos.new) {
-            if (!nameValidation.test(datos.new)) error.new = "Must have only letters";
-            tempFilter.push(datos.new)}
+            if (!nameValidation.test(datos.new)) error.new = "Must have only letters";}
         if (datos.hmin && datos.hmax) {
             if (datos.hmin === datos.hmax || datos.hmin > datos.hmax) error.height = "The minimum must be lower and different than the maximum"}
         if (datos.wmin && datos.wmax) {
@@ -45,7 +52,6 @@ const Form = (props) => {
         setDatos({...datos,
             temperament: [...temp],
             [evento.target.name]: evento.target.value
-
         })
         setError(validate({...datos,
             temperament: [...temp],
@@ -74,7 +80,7 @@ const Form = (props) => {
                     <label className={style.dato}>Name</label>
                     <input className={style.inputtext}  type="text" name="name" placeholder="Dog name" onChange={handleChange} required/>
                     <br/>
-                    {error.name ? ( <div className={style.divdato}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.name}</span>
+                    {error.name ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.name}</span>
                     </div> ):(null)}
                 </div>
                 <div className={style.divdato}>                 
@@ -97,7 +103,7 @@ const Form = (props) => {
                     <h6 className={style.datosec}>Max.</h6> 
                     <input className={style.inputnum} type="number" name="wmax" min="0" placeholder="In kilograms" onChange={handleChange} required/>
                     <br/>
-                    {error.weight ? ( <div className={style.divdato}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.weight}</span>
+                    {error.weight ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.weight}</span>
                     </div> ):(null)}
                 </div>
                 <div className={style.divdato}>
@@ -107,13 +113,13 @@ const Form = (props) => {
                     <h6 className={style.datosec}>Max.</h6> 
                     <input className={style.inputnum} type="number" name="lmax" placeholder="In years" min="0" onChange={handleChange} required/>
                     <br />
-                    {error.life_span ? ( <div className={style.divdato}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.life_span}</span>
+                    {error.life_span ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.life_span}</span>
                     </div> ):(null)}
                 </div>
                 <div className={style.divdato} >
                     <label className={style.dato}>Image</label> 
                     <input className={style.inputtext} type="text" name="image" placeholder="URL" onChange={handleChange}/>
-                    {error.image ? ( <div className={style.divdato}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.image}</span>
+                    {error.image ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.image}</span>
                     </div> ):(null)}
                 </div>
                 <div className={style.divdato}>
@@ -122,8 +128,8 @@ const Form = (props) => {
                     {temperamentos.map((temp) => (
                     <option value={temp.temperament}> {temp.temperament} </option>))}
                     </select>
-                    <button className= {style.botonclean}onClick={clearTempFilter}>Clear temperaments</button>
-                    {error.temperaments ? ( <div className={style.divdato}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.temperaments}</span>
+                    <button className= {style.botonclean} onClick={clearTempFilter}>Clear temperaments</button>
+                    {error.temperaments ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.temperaments}</span>
                     </div> ):(null)}
                 </div>
                 <div className={style.tempfil} >
@@ -131,9 +137,10 @@ const Form = (props) => {
                 </div>
                 <div className={style.divdato}>
                 <label className={style.dato}>&#127381;Temperament</label>
-                    <input className={style.inputtext2} type="text" name="new" placeholder="Include a temperament that is not on the list" onChange={handleChange} size="35"/>
+                    <input className={style.inputtext2} type="text" name="new" placeholder="Include a temperament that is not on the list" onChange = {e=> {handleAdd(e); handleChange(e);}} />
                     <br/>
-                    {error.new ? ( <div className={style.divdato}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.new}</span>
+                    <button className={style.botonclean} onClick={add}>Add</button>
+                    {error.new ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.new}</span>
                     </div> ):(null)}
                 </div>
                 <div className={style.divdato}>

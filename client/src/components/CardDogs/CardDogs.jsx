@@ -5,8 +5,6 @@ import style from "./CardDogs.module.css"
 const CardDogs = (props) => {
     const {dogs, intermedia, temperamentos} = props;
     console.log("dogs:", dogs);
-    console.log("intermedia:", intermedia);
-    console.log("temperamentos:", temperamentos);
     return (
             <div className={style.cards}>
             {dogs.map((dog) => {
@@ -30,7 +28,7 @@ const CardDogs = (props) => {
                         weightmin = {dog.min}
                     />)
                 }
-                if (dog.origen === "DB") {
+                else if (dog.origen === "DB") {
                     const minimo = dog.weight
                     if (minimo[1] === "-") dog["min"] = parseInt(minimo[0])
                     if (minimo[1] != "-") dog["min"] = parseInt(minimo[0]+minimo[1])

@@ -32,9 +32,9 @@ const Filtros = (props) => {
                         <div className={style.filOrigen}>
                             <p className={style.textosecun} >Filter by data origin</p>
                             <select className={style.select} onChange={handleFilterOrigin} defaultValue={selectedFilter}>
-                                <option value="All">All</option>                
-                                <option value="DB">Created</option>
-                                <option value="API">Imported</option>
+                                <option value="All" key="250">All</option>                
+                                <option value="DB" key="251">Created</option>
+                                <option value="API" key="252">Imported</option>
                             </select>
                         </div>
                         <div className={style.filTemp}>

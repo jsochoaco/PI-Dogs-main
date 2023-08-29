@@ -1,4 +1,5 @@
 .general {
+    min-width: 100vh;
     background-color: #ffe8bf;
     display: flex;
     flex-direction: column;

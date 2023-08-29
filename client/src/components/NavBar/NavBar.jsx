@@ -38,8 +38,8 @@ export const NavBar = () => {
                 { pathname === "/home" &&  (
                 <div className={style.buscador}>
                     <input className={style.input} placeholder="Enter dog name" type='text' value={name} onChange={handleChange}/>
-                    <button className={style.boton} onClick={()=> dispatch(actions.searchDog(name))}>Search</button>
-                    <button className={style.boton} onClick={()=> handleClear()}>Clean</button>
+                    <button className={style.boton} onClick={()=> handleSearch()}>Search</button>
+                    <button className={style.botonclean} onClick={()=> handleClear()}>Clean</button>
                 </div>
                 )}
             <div className={style.menu}>
