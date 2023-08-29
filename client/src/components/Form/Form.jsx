@@ -80,8 +80,8 @@ const Form = (props) => {
     //Función de envío de info
     const handleSubmit = (evento) =>  {
         evento.preventDefault()
-        setCreado(created)
-        return dispatch(actions.createDog(envio))}
+        dispatch(actions.createDog(envio))
+        setCreado(created)}
     const ok = () => {
         setCreado("")
     }

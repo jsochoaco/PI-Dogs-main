@@ -34,10 +34,10 @@ function App(props) {
       element={<Detail/>} />
       <Route 
       path='/create'
-      element= {<Form temperamentos = {allTemperamentos} created = {createdDog}/>}/>
+      element= {<Form temperamentos = {allTemperamentos} created = {createdDog} data= {data}/>}/>
       <Route 
       path='/temperaments'
-      element= {<Temperaments temperamentos = {allTemperamentos}/>}/>
+      element= {<Temperaments temperamentos = {allTemperamentos} data= {data}/>}/>
       <Route
       path='/aboutDev'
       element= {<AboutDev/>}/>

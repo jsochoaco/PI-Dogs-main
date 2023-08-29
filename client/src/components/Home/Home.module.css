@@ -246,3 +246,34 @@
     margin-bottom: 20px;
     gap: 5px;
 }
+
+
+.loaddiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 0%;
+    height: 100%;
+    width: 100%;
+    margin:0%;
+    padding: 25px;
+    .h1{
+        text-decoration: underline #ffe8bf;
+        color: #550dad;
+    }
+
+}
+.loader {
+    border: 5px solid #550dad;
+    border-left: 5px solid white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite; /* Aplica la animación "spin" */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); } 
+    100% { transform: rotate(360deg); } 
+}

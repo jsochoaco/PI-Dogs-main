@@ -4,13 +4,21 @@ import { useDispatch } from "react-redux"
 import style from "./Home.module.css"
 import Filtros from "./Filtros"
 import Ordenador from "./Ordenador"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 
 const Home = (props) => {
     const dispatch = useDispatch()
     //Estados importados
     const {allDogs, temperamentos, intermedia, data} = props
+    const refresh = () => {
+        data();
+      };
+    const [len, setLen] = useState(0); const [len2, setLen2] = useState(0);
+    // Actualizar len y len2 con las longitudes actuales
+    useEffect(() => { setLen(allDogs.length); setLen2(temperamentos.length);}, [allDogs.length, temperamentos.length]);
+    // Verificar len y len2 después de 3 segundos
+    useEffect(() => {const timeoutId = setTimeout(() => {if (len === 0 && len2 === 0) {refresh();}}, 2000);return () => {clearTimeout(timeoutId);};}, [len, len2, refresh]);
     // Limpiador de filtros
     const clearFilters = () => {
         dispatch(actions.clearFilter())
@@ -44,7 +52,7 @@ const Home = (props) => {
                 ))}
                 <button className= {style.botonpag} onClick={() => setPagina(pagina + 1)} disabled={ultimoElemento >= allDogs.length}>Next</button>
             </div>
-            <CardDogs dogs = {actualDogs} intermedia = {intermedia} temperamentos = {temperamentos} />
+            {actualDogs.length === 0 ? (<div className={style.loaddiv}> <div className={style.loader}></div><h1 className={style.h1}>Loading &#8986;</h1></div>): (<CardDogs dogs = {actualDogs} intermedia = {intermedia} temperamentos = {temperamentos} />)}
             <div className={style.paginado2}>
                 <button className= {style.botonpag} onClick={() => setPagina(pagina - 1)} disabled={pagina === 1}> Previous</button>
                 {pageNumbers.map((pageNumber) => (

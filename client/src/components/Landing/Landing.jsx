@@ -9,7 +9,7 @@ const Landing = (props) => {
         <div className={style.div}>
             <h1 className={style.titulo}> ¡Welcome to The Dogs App! &#128021;</h1>
             <NavLink to="/home">
-                <button className= {style.boton} onClick={()=>data()}>Home &#9193;</button>
+                <button className= {style.boton}>Home &#9193;</button>
             </NavLink>
         </div>
     )
