@@ -16,18 +16,18 @@ const getDogByName = async (req, res) => {
         const namePartial = name.toLowerCase()
         const response = await axios.get(`${URL}${namePartial}`, { 
             headers: { 
-                "x-api-key": API_KEY
+                "x-api-key": API_KEY 
             }
         });
         const dbDogs = await Dog.findAll({
             where: {
                 name: {
-                    [Op.iLike] : `${namePartial}`
+                    [Op.iLike] : `%${namePartial}%`
                 }
             }
         })
         const apigods = response.data
-        const filtradoDogs = [...apigods,...dbDogs]
+        const filtradoDogs = apigods.concat(dbDogs)
         if (filtradoDogs.length > 0) {
             return res.status(200).json(filtradoDogs)
             // Stautos 200: Correcto; OK
