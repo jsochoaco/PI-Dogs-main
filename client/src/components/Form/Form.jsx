@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 
 const Form = (props) => {
     const dispatch = useDispatch()
-    const {temperamentos, created, data} = props // Props
+    const {temperamentos, created} = props // Props
     // Estados
     const [tempFilter, setTempFilter] = useState([]) //Lista de temperamentos
     const [nuevo, setNuevo] = useState([]) // Temperamento nuevo agregado
@@ -127,22 +127,8 @@ const Form = (props) => {
                     {tempFilter.map((temp) => ( <h6 className={style.tempfiltemp}> {temp}</h6>))}
                 </div>
                 <div className={style.divdato}>
-                    <input className={style.boton}
-                    type="submit"
-                    value="Create Dog"
-                    disabled={
-                    (!envio.name && envio.name !== "")||
-                    (!envio.temperament && envio.temperament !== "") ||
-                    (!envio.life_span && envio.life_span !== "" )||
-                    (!envio.weight  && envio.weight !== "")|| 
-                    (!envio.height && envio.height !== "")||
-                    (!envio.height && envio.height !== "")||
-                    error.name ||
-                    error.weight ||
-                    error.height ||
-                    error.temperaments ||
-                    error.life_span ||
-                    error.image} />
+                    <input className={style.boton} type="submit" value="Create Dog"
+                    disabled={ (!envio.name && envio.name !== "")|| (!envio.temperament && envio.temperament !== "") || (!envio.life_span && envio.life_span !== "" )||(!envio.weight  && envio.weight !== "")||  (!envio.height && envio.height !== "")|| (!envio.height && envio.height !== "")|| error.name || error.weight || error.height || error.temperaments || error.life_span || error.image}/>
                     <button className={style.botonclean} type="button" onClick={handleClearAll}>Clear all</button>
                 </div>
                 <div>
@@ -150,10 +136,10 @@ const Form = (props) => {
                     <span className={style.textohover2}>This dog already exists</span>
                     <button className={style.botonok}onClick={ok}>X</button>
                     </div>) 
-                : creado === true ? (<div className={style.divdato2}>
+                :creado === true ? (<div className={style.divdato2}>
                     <span className={style.textohover3}>Dog created</span>
                     <button className={style.botonok2}onClick={ok}>X</button>
-                    </div>) : null}
+                    </div>):null}
                 </div>
             </div>
         </form>
