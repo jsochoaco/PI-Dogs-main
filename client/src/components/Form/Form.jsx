@@ -47,7 +47,7 @@ const Form = (props) => {
         evento.preventDefault()
         dispatch(actions.createDog(envio))}
     const handleClearAll = () => { //Limpieza
-        setDatos({name: "", hmin: "", hmax: "", wmin: "", wmax: "", lmin: "", lmax: "", temperament: [],image: "",});
+        setDatos({name: "", hmin: "", hmax: "", wmin: "", wmax: "", lmin: "", lmax: "", temperament: [],image: "", new: ""});
         setError({});
         setTempFilter([]);}
     useEffect(()=> {setCreado(created)}, [created])
@@ -74,6 +74,14 @@ const Form = (props) => {
                     </select>
                     <button className= {style.botonclean} onClick={clearTempFilter}>Clear temperaments</button>
                     {error.temperaments ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.temperaments}</span>
+                    </div> ):(null)}
+                </div>
+                <div className={style.divdato}>
+                <label className={style.dato}>&#127381;Temperament</label>
+                    <input className={style.inputtext2} type="text" name="new" placeholder="Include a temperament that is not on the list" onChange = {e=> {handleAdd(e); handleChange(e);}} />
+                    <br/>
+                    <button className={style.botonclean} onClick={add}>Add</button>
+                    {error.new ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.new}</span>
                     </div> ):(null)}
                 </div>
                 <div className={style.divdato}>                 
@@ -117,14 +125,6 @@ const Form = (props) => {
                 </div>
                 <div className={style.tempfil} >
                     {tempFilter.map((temp) => ( <h6 className={style.tempfiltemp}> {temp}</h6>))}
-                </div>
-                <div className={style.divdato}>
-                <label className={style.dato}>&#127381;Temperament</label>
-                    <input className={style.inputtext2} type="text" name="new" placeholder="Include a temperament that is not on the list" onChange = {e=> {handleAdd(e); handleChange(e);}} />
-                    <br/>
-                    <button className={style.botonclean} onClick={add}>Add</button>
-                    {error.new ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.new}</span>
-                    </div> ):(null)}
                 </div>
                 <div className={style.divdato}>
                     <input className={style.boton}

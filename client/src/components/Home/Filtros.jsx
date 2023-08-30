@@ -27,7 +27,6 @@ const Filtros = (props) => {
         <div className={style.divor}>
                     <div className= {style.tituloorder}>
                         <h5 className={style.texto}>Filters</h5>
-                        <h5>{tempFilter.length}</h5>
                     </div>
                     <div className={style.filtros}>
                         <div className={style.filOrigen}>

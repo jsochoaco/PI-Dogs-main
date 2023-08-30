@@ -50,23 +50,24 @@ export const reducer = (state=initialState, action) => {
                 return { ...state, allDogs: [...action.payload] };
         }}
         case FILTRO_ORIGEN: {
-            if(action.payload === "All") {
-                if(state.filterTemp.length === 0) return {...state, allDogs: [...state.dbDogs,...state.apiDogs]}
-                else return {...state, allDogs: state.filtered}
-            }
-            else {
-                if(state.filterTemp.length === 0) {
-                    const sinFiltro = [...state.dbDogs,...state.apiDogs]
-                    const filterOrigen = sinFiltro.filter((dog) => dog.origen === action.payload);return {...state, allDogs: filterOrigen, filtroOrigen: action.payload}} 
-                else if (state.filterTemp.length > 0) {const filterOrigen = state.allDogs.filter((dog) => dog.origen === action.payload);return {...state, allDogs: filterOrigen, filtroOrigen: action.payload}}}}
+            const orgien = action.payload === "All" ? 
+            state.completDogs : state.completDogs.filter((dog) => dog.origen === action.payload)
+            return {
+                ...state,
+                allDogs: orgien,}}
+            // if(action.payload === "All") { const origen = state.filterTemp.length === 0 ? state.allDogs : state.allDogs
+            // return{...state, allDogs: origen}}
+            // else if (action.payload === "DB" || action.payload === "API"){
+            //     if(state.filterTemp.length === 0) {
+            //         const filterOrigen = state.allDogs.filter((dog) => dog.origen === action.payload);
+            //         return {...state, allDogs: filterOrigen, filtroOrigen: action.payload}} 
+            //     else if (state.filterTemp.length > 0) {const filterOrigen = state.allDogs.filter((dog) => dog.origen === action.payload);return {...state, allDogs: filterOrigen, filtroOrigen: action.payload}}}}
         case FILTRO_TEMP: {
             const payloadact = action.payload
             if (payloadact.length < 1) {
                 return {
                     ...state,
-                    allDogs: state.completDogs
-                }
-            }
+                    allDogs: state.completDogs}}
             else if (payloadact.length >= 1) {
                 state.filtered = state.filtroOrigen === "All" ? [...state.dbDogs, ...state.apiDogs] : [...state.allDogs];
                 let cumplen = []
