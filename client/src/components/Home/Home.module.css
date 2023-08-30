@@ -14,21 +14,16 @@
     gap: 5%;
 }
 
-
-
-
 .filtros {
     display: flex;
     flex-direction: row;
     gap: 3%;
-
     .filTemp {
         display: flex;
         flex-direction: column; 
         align-items: top;
         align-content: top;
         justify-content: space-between
-
     }
     .filOrigen {
         display: flex;
@@ -44,12 +39,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     .ordenadores {
         display: flex;
         flex-direction: row;
         gap: 3%;
-    
         .orName {
             display: flex;
             flex-direction: row; 
@@ -117,9 +110,6 @@
     }
 }
 
-
-
-
 .filTemp2 {
     display: flex;
     flex-direction: row;
@@ -128,8 +118,6 @@
     justify-items: center;
     align-items: center;
 }
-
-
 
 .botones {
     height: 40%;
@@ -160,7 +148,6 @@
     border: solid 1.8px black;
     cursor: pointer;
     font-family: "Rockwell";
-
 }
 
 .botonclean:hover {
@@ -168,7 +155,6 @@
     color: blue;
     border: solid 2px blue;
     font-weight: bold;
-    
 }
 
 .divboton {
@@ -177,8 +163,6 @@
     align-items: center;
     justify-content: center;
 }
-
-
 
 .paginado {
     display: flex;
@@ -189,6 +173,7 @@
     margin-top: 20px;
     gap: 5px;
 }
+
 .botonpag {
     height: 40%;
     width: 80px;
@@ -209,7 +194,7 @@
     background-color: gray;
     color: white;
     cursor: not-allowed;
-  }
+}
 
 .pagina {
     font-family: "Rockwell";
@@ -219,7 +204,7 @@
     border-radius: 25%;
     font-size: 16px;
     border: none;
-  }
+}
 
 .paginaboton {
     font-family: "Rockwell";
@@ -229,7 +214,6 @@
     border: none;
     cursor: pointer;
 }
-
 .paginaboton:hover {
     font-size: 16px;
     color: #007bff;
@@ -247,7 +231,6 @@
     gap: 5px;
 }
 
-
 .loaddiv {
     display: flex;
     flex-direction: column;
@@ -262,7 +245,6 @@
         text-decoration: underline #ffe8bf;
         color: #550dad;
     }
-
 }
 .loader {
     border: 5px solid #550dad;
@@ -272,7 +254,6 @@
     height: 50px;
     animation: spin 2s linear infinite; /* Aplica la animación "spin" */
 }
-
 @keyframes spin {
     0% { transform: rotate(0deg); } 
     100% { transform: rotate(360deg); } 

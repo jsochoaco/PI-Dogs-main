@@ -10,10 +10,9 @@
     height: 100%;
     width: 100%;
     margin:0%;
-    background-image: url("Fondo.jpg");
+    background-image: url("./Imagenes/Fondo.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-
 }
 
 .img {
@@ -40,22 +39,19 @@
     justify-items: center;
     margin-right: 150px;
     border: 12px groove #550dad;
-
     .titulo {
         font-size: 28px;
-        color: #93f709;
-    }
+        color: #93f709;}
     .info {
         font-size: 20px;
-        color: white;
-    }
+        color: white;}
 }
+
 .temperaments {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 0px;
-
     .p {
         flex: 0 0 calc(33.33% - 10px); 
         margin: 5px;
@@ -66,10 +62,8 @@
         width: 18%;
         color: white;
         font-weight: lighter;
-        cursor: pointer;
-    }
+        cursor: pointer;}
 }
-
 
 .p {
     transition: .5s, color .10s;
@@ -117,10 +111,9 @@
     inset: 0;
     border: 2px solid #550dad;
     box-sizing: border-box;
-    background-image: url("Fondo.jpg");
+    background-image: url("./Imagenes/Fondo.jpg");
     background-size: cover;
     background-repeat: none;
-
 }
 .loader {
     border: 5px solid white;
@@ -130,7 +123,6 @@
     height: 50px;
     animation: spin 2s linear infinite; /* Aplica la animación "spin" */
 }
-
 @keyframes spin {
     0% { transform: rotate(0deg); } 
     100% { transform: rotate(360deg); } 
@@ -143,7 +135,6 @@
     justify-content: center;
     align-content: center;
 }
-
 
 .caption {
     position: absolute;
@@ -164,12 +155,10 @@
     transition: opacity 0.3s ease;
     border: 5px outset #550dad;
     padding-bottom: 2px;
-  }
-
+}
 .img:hover + .caption {
     opacity: 0.8; /* Hacer visible el caption cuando se coloca el cursor sobre la imagen */
 }
-
 
 .name {
     font-family: "Rockwell";

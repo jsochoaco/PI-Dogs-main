@@ -1,10 +1,10 @@
-import CardDogs from "../CardDogs/CardDogs";
 import style from "./Card.module.css"
 import { Link } from "react-router-dom";
 
-
 export default function Card (props) {
+    // Importo props
     const {id, name, image, temperament, weightmax, weightmin, origen} = props
+    // Renderizado
     return (
         <div className= {style.card}>
             <Link to={`/details/${id}`}>
@@ -17,7 +17,7 @@ export default function Card (props) {
             {origen === "API" && <h4 className={style.info}>Temperaments: {temperament}</h4>}
             {origen === "DB" && <h4 className={style.info}>Temperaments: {temperament}</h4> }
         </div>
-     );
+    )
 }
 
 

@@ -20,7 +20,6 @@
     }
 }
 
-
 .divdato {
     display: flex;
     flex-direction: row;
@@ -34,7 +33,6 @@
     padding: 0%;
     height: 30px;
     margin-left: 25%;
-
     .dato {
         font-size: 19px;
         color: #550dad;
@@ -58,7 +56,7 @@
         border: 2px solid black;
         border-radius: 10px;
      }
-     .inputnum::placeholder {
+    .inputnum::placeholder {
     font-family: "Rockwell";
        color:#550dad;
        font-style: italic;
@@ -76,8 +74,8 @@
         width: auto;
         border: 2px solid black;
         border-radius: 10px;
-     }
-     .inputtext::placeholder {
+    }
+    .inputtext::placeholder {
         font-family: "Rockwell";
        color:#550dad;
        font-style: italic;
@@ -94,15 +92,12 @@
         border: solid black 1.8px;
         border-radius: 10px;
     }
-    
     .select:focus {
         background-color: #4512ef;
         color: white;
         outline: none; 
         border-color: black;
     }
-
- 
 }
 
 .tempfil {
@@ -178,9 +173,7 @@
     background-color: gray;
     color: white;
     cursor: not-allowed;
-  }
-
-
+}
 
 .inputtext2 {
     font-family: "Rockwell";
@@ -193,8 +186,9 @@
     border: 2px solid black;
     border-radius: 10px;
     width: 32%;
- }
- .inputtext2::placeholder {
+}
+
+.inputtext2::placeholder {
     font-family: "Rockwell";
    color:#550dad;
    font-style: italic;
@@ -203,15 +197,11 @@
    font-weight: lighter;
 }
 
-
-
 .divdato2 {
     display: flex;
     align-items: center;
     align-content: center;
     justify-content: center;
-
-
 }
 
 .textohover {
@@ -222,6 +212,7 @@
     position: relative;
     visibility: hidden;
 }
+
 .simbolo {
     font-family: "Rockwell";
     color: red;
@@ -241,19 +232,14 @@
     height: 15px;
     padding-left: 5px;
     padding-right: 5px;
-
 }
-
 
 input:required {
     border: 2px solid red;
-  }
-  
+}
 input:required:focus {
     border-color: blue;
 }
-
-
 
 .textohover2 {
     opacity: 0.8;
@@ -280,7 +266,6 @@ input:required:focus {
     margin-left: 2px;
     margin-bottom: 7.5px;
 }
-
 .botonok:hover {
     background-color: #550dad; 
     color: white;
@@ -313,7 +298,6 @@ input:required:focus {
     margin-left: 2px;
     margin-bottom: 7.5px;
 }
-
 .botonok2:hover {
     background-color: #550dad; 
     color: white;

@@ -24,6 +24,7 @@
     width: 100%;
 
 }
+
 .data {
     display: flex;
     flex-direction: row;
@@ -75,7 +76,6 @@
         -moz-transform: scale3d(1.5, 1.5, 0.3);
 }
 
-
 .nombre {
     text-decoration:underline #ffe8bf;
     color: #4512ef;
@@ -86,15 +86,14 @@
     transition: .5s, color .10s;
       -webkit-transition: .5s, color .10s;
       -moz-transition: .5s, color .10s;
-  }
+}
 .nombre:hover{
     font-weight: bolder;
     text-decoration:underline #ffe8bf;
     transform: scale3d(1.2, 1.2, 0.3);
       -webkit-transform: scale3d(1.2, 1.2, 0.3);
       -moz-transform: scale3d(1.2, 1.2, 0.3);
-  }
-
+}
 
 .nombre2 {
     margin-top: 0px;
@@ -127,7 +126,6 @@
     margin-top: 15px;
     gap: 5%;
     cursor: pointer;
-
     .lista {
         flex: 0 0 calc(4% - 2px); 
         margin: 5px;
@@ -142,7 +140,6 @@
         height: 150%;
     }
 }
-
 
 .logos {
     width: 60px;
@@ -168,40 +165,10 @@
         -moz-transform: scale3d(1.5, 1.5, 0.3);
 }
               
-
-
-
 .parrafo {
     position: relative;
     display: inline-block;
     align-items: center;
     justify-content: center;
     align-content: center;
-}
-
-.caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 500px;
-    height: 20%;
-    background-color: black;
-    border-radius: 10px;
-    color: white;
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: flex-end;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    cursor: pointer;
-    border: 3px solid #550dad;
-    padding-bottom: 2px;
-    font-family: "Rockwell";
-    margin: 0px;
-    padding: 10px;
-  }
-
-.caption:hover {
-    opacity: 0.8; /* Hacer visible el caption cuando se coloca el cursor sobre la imagen */
 }

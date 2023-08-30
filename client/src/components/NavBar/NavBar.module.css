@@ -75,8 +75,8 @@ h1 {
     max-width: 70%;
     border: 2px solid black;
     border-radius: 10px;
- }
- .input::placeholder {
+}
+.input::placeholder {
 
    color:#550dad;
    font-style: italic;
@@ -84,7 +84,6 @@ h1 {
    opacity: 0.8;
    font-weight: lighter;
 }
-
 
 .botonback {
     margin-top: 15px;

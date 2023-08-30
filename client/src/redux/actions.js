@@ -1,170 +1,20 @@
-import {FILTRO_ORIGEN, FILTRO_TEMP, SET_API_DOGS, SET_DB_DOGS, SET_INTERMEDIA, SET_DB_TEMP, CLEAR, ORDEN_NAME, ORDEN_PESO, CREATE_DOG, SEARCH_DOG, CREADO} from "./action-types"
-import axios from "axios"
+import { create } from "./Actions/createdDog";
+import { search } from "./Actions/searchDog";
+import { apiDogs } from "./Actions/setApiDogs";
+import { dbDogs } from "./Actions/setDBDogs";
+import { intermedia } from "./Actions/setIntermedia";
+import { temperamentos } from "./Actions/setTemperamentos";
+import { clearF, filterOri, filterTem, ordenN, ordenP } from "./Actions/variasActions";
 
-export const setTemperamentos = () => {
-    return async (dispatch) => {
-        try {
-            const endpoint = `http://localhost:3001/temperaments`;
-            const response = await axios.get(endpoint);
-            if (response.status === 200) {
-                const endpoint2 = `http://localhost:3001/tempDB`;
-                const response2 = await axios.get(endpoint2);
-                
-                if (response2.status === 200) {
-                    const data2 = response2.data;
-                    return dispatch({
-                        type: SET_DB_TEMP,
-                        payload: data2,
-                    });
-                }
-            }
-        } catch (error) {
-            return { error: error.message };
-            // Status 500: Indica un error interno en el servidor
-        }
-    };
-};
-// Pendiente
-export const setIntermedia = ()=> {
-    try {
-        const endpoint = 'http://localhost:3001/inter'
-        return async (dispatch)=> {
-            const response = await axios.get(endpoint)
-            const inter = response.data
-                  return dispatch({
-                      type: SET_INTERMEDIA,
-                      payload: inter,
-                   });
-        }
-    } 
-    catch (error) {
-        return {error: error.message}
-        // Status 500: Indica un error interno en el servidor 
-    }
-}
-//Está bien
-export const setApiDogs = () => {
-    try {
-        const endpoint = 'http://localhost:3001/dogs';
-        return async (dispatch) => {
-           const response = await axios.get(endpoint)
-           const data = response.data
-           data.map ((dog)=> {
-            dog["origen"] = "API"
-           })
-              return dispatch({
-                  type: SET_API_DOGS,
-                  payload: data,
-               });
-            };
-    }
-    catch (error) { 
-        return {error: error.message}
-        // Status 500: Indica un error interno en el servidor
-    }
-}
-//Está bien
-export const setDBDogs = () => {
-    try {
-        const endpoint = 'http://localhost:3001/dogDB'
-        return async (dispatch)=> {
-            const response = await axios.get(endpoint)
-            const data = response.data
-            data.map ((dog)=> {
-                dog["origen"] = "DB"
-               })
-                  return dispatch({
-                      type: SET_DB_DOGS,
-                      payload: data,
-                   });
-        }        
-    } 
-    catch (error) {
-        return {error: error.message}
-        // Status 500: Indica un error interno en el servidor
-    }
-}
-//Está bien
-export const filterOrigen= (origen) => {
-    return {
-        type: FILTRO_ORIGEN,
-        payload: origen
-    }
-}
-// Está bien
-export const filterTemp = (temperamentos) => {
-    return {
-        type: FILTRO_TEMP,
-        payload: temperamentos
-    }
-}
-// Está bien
-export const ordenName = (orden) => {
-    return {
-        type: ORDEN_NAME,
-        payload: orden
-    }
-}
-// Está bien
-export const ordenPeso = (orden) => {
-    return {
-        type: ORDEN_PESO,
-        payload: orden
-    }
-}
-
-//Está bien
-export const clearFilter = () => {
-    return {
-        type: CLEAR
-    }
-}
-
-
-//Está bien
-export const createDog = (dog) => {
-    try {
-        const endpoint = 'http://localhost:3001/dogs'
-        return async (dispatch)=> {
-            const response = await axios.post(endpoint, dog)
-            const mensaje = response.data.existe
-            if (mensaje === true) {
-                const data = response.data
-                dispatch({
-                    type: CREATE_DOG,
-                    payload: data});
-            }
-            else if (mensaje === false) {
-                dispatch({
-                    type: CREADO,
-                    payload: mensaje
-                })
-            }       
-        }
-    } 
-    catch (error) {
-        return {error: error.message}
-        // Status 500: Indica un error interno en el servidor 
-    }
-}
-//Está bien
-export const searchDog = (name) => {
-    return async (dispatch) => {
-        try {
-            if (name !== undefined && name !== null) {
-                const endpoint = `http://localhost:3001/dog/?name=${name}`;
-                const response = await axios.get(endpoint);
-                if (response.data.length > 0) {
-                    const data = response.data;
-                    return dispatch({
-                        type: SEARCH_DOG,
-                        payload: data
-                    });
-                }
-            }
-        } catch (error) {
-            return {error: error.message}
-            // Status 500: Indica un error interno en el servidor 
-        }
-    };
-};
+//Importo acciones y las exporto para acceder como * acciones
+export const setTemperamentos = temperamentos // Trae los temperamentos de la DB (esta tiene los de la API)
+export const setIntermedia = intermedia //Trae la tabla intermedia
+export const setApiDogs = apiDogs // Trae los perros de la API
+export const setDBDogs = dbDogs // Trae los perros de la DB
+export const filterOrigen = filterOri // Filtra por origen
+export const filterTemp = filterTem // Filtra por temperamento
+export const ordenName = ordenN // Ordena por nombre
+export const ordenPeso = ordenP // Ordena por peso
+export const clearFilter = clearF // Limpia el filtro
+export const createDog = create // Crea un nuevo perro
+export const searchDog = search // Busca perro(s)

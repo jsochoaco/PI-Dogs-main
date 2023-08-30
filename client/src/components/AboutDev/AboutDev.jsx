@@ -1,18 +1,18 @@
 import style from "./About.module.css"
-import image from "./OCHOA2.png"
+import image from "./Imagenes/OCHOA2.png"
 import { Link } from "react-router-dom"
-import JS from "./js.png"
-import HMTL from "./HMTL.png"
-import CSS from "./CSS.png"
-import React from "./React.png"
-import Redux from "./Redux3.png"
-import Node from "./Node.png"
-import Express from "./Express.png"
-import Sequelize from "./Sequelize.png"
-import PostgreSQL from "./PostgreSQL.png"
+import JS from "./Imagenes/js.png"
+import HMTL from "./Imagenes/HMTL.png"
+import CSS from "./Imagenes/CSS.png"
+import React from "./Imagenes/React.png"
+import Redux from "./Imagenes/Redux3.png"
+import Node from "./Imagenes/Node.png"
+import Express from "./Imagenes/Express.png"
+import Sequelize from "./Imagenes/Sequelize.png"
+import PostgreSQL from "./Imagenes/PostgreSQL.png"
 
 const AboutDev = () => {
-
+    //Renderizado
     return (
         <div className={style.contenedor}>
             <h1 className={style.nombre2}>About the Developer &#128640;</h1>
@@ -66,9 +66,7 @@ const AboutDev = () => {
                 </div>
 
             </div>
-        </div>
-    )
+        </div>)
 }
-
 
 export default AboutDev

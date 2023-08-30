@@ -13,7 +13,7 @@
     inset: 0;
     border: 8px solid #550dad;
     box-sizing: border-box;
-    background-image: url("FondoInicio.jpg");
+    background-image: url("./Imagenes/FondoInicio.jpg");
     background-size: cover;
     background-repeat: none;
 }
@@ -26,6 +26,7 @@
     text-shadow: 1px 1px 30px white;
     text-decoration: none;
 }
+
 .boton {
     font-family: "Rockwell";
     color: white;
@@ -40,7 +41,6 @@
         -webkit-transition: .5s, color .10s;
         -moz-transition: .5s, color .10s;
 }
-
 .boton:hover{
     color: #550dad;
     background-color: #f6b7fb;

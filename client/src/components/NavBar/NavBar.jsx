@@ -5,22 +5,21 @@ import { useState, useEffect } from "react"
 import style from "./NavBar.module.css"
 import { NavLink, useLocation } from "react-router-dom"
 
-
-
-export const NavBar = () => {
+const NavBar = () => {
+    //Use location para cambiar Nav según la ubicación
     const {pathname} = useLocation()
     const dispatch = useDispatch()
+    //Estados
     const [name, setName] = useState("")
+    // Funciones
     const handleChange = (evento) => {
-        setName(evento.target.value)
-    }
+        setName(evento.target.value)}
     const handleSearch = () => {
-        dispatch(actions.searchDog(name))
-    }
+        dispatch(actions.searchDog(name))}
     const handleClear = () => {
         setName("")
-        dispatch(actions.clearFilter())
-    }
+        dispatch(actions.clearFilter())}
+    //Renderizado
     return (
         <div className={style.contenedor}>
             {pathname != "/home" && (
@@ -45,6 +44,6 @@ export const NavBar = () => {
             <div className={style.menu}>
                 <Menu/>
             </div>
-        </div>
-    )
-}
+        </div>)
+};
+export default NavBar

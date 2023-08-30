@@ -15,7 +15,6 @@ const initialState = {
     createdDog: null,
     filtered: []
 }
-
 export const reducer = (state=initialState, action) => {
     switch (action.type) {
         case SET_API_DOGS:
@@ -179,15 +178,3 @@ export const reducer = (state=initialState, action) => {
             }
     }
 }
-
-
-
-        // case FILTRO_ORIGEN: {
-        //     if(action.payload === "All") {
-        //         if(state.filterTemp.length === 0) return {...state, allDogs: [...state.dbDogs,...state.apiDogs]}
-        //         else return {...state, allDogs: state.allDogs}
-        //     }
-        //     else {
-        //         if(state.filterTemp.length === 0) {const filterOrigen = state.completDogs.filter((dog) => dog.origen === action.payload);return {...state, allDogs: filterOrigen, filtroOrigen: action.payload}} 
-        //         else if (state.filterTemp.length > 0) {const filterOrigen = state.filtered.filter((dog) => dog.origen === action.payload);return {...state, allDogs: filterOrigen, filtroOrigen: action.payload}}}
-        //     }

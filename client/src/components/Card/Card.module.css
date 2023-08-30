@@ -9,7 +9,6 @@
     background-color: #550dad;
     font-family: "Hoppin";
     margin: 2%;
-
     .imagen {
         border-radius: 5%;
         margin-block: 5px;
@@ -46,7 +45,6 @@
         -webkit-transition: .5s, color .10s;
         -moz-transition: .5s, color .10s;
 }
-
 .nombre:hover{
     border: 2px solid #1c1f1d;
     color: white;
