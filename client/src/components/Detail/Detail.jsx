@@ -57,11 +57,12 @@ const Details = (props) => {
     <div className={style.datos}>
       <h2 className={style.titulo} > {dog.name} </h2>
       {dog.origen !== "DB" ? ( <div><p className={style.info}> <strong>HEIGHT | </strong> {dog.height?.metric} centimeters </p>
-      <p className={style.info}> <strong>WEIGHT | </strong> {dog.weight?.metric} kg  </p></div>):
+      <p className={style.info}> <strong>WEIGHT | </strong> {dog.weight?.metric} kg  </p>
+      <p className={style.info}> <strong>LIFE YEARS | </strong> {dog.life_span} </p></div>):
       (<div><p className={style.info}> <strong>HEIGHT | </strong> {dog.height} centimeters </p>
       <p className={style.info}> <strong>WEIGHT | </strong> {dog.weight} kg  </p>
+      <p className={style.info}> <strong>LIFE YEARS | </strong> {dog.life_span} years</p>
       </div>)}
-      <p className={style.info}> <strong>LIFE YEARS | </strong> {dog.life_span} </p>
       <p className={style.info}><strong>TEMPERAMENTS</strong> </p>
       <div className={style.temperaments} >
         {dog.temperament.map((temp, index) => { return (
