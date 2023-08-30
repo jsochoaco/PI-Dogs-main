@@ -1,10 +1,8 @@
 // ¿Qué debe cumplir esta ruta? 
 // Obtiene un arreglo de objetos, donde cada objeto es un temperamento.
-
 // Importación de la API_KEY para el endpoint por medio de las variables de entorno Y axios
 require('dotenv').config();
 const {DogTemperaments} = require("../db")
-
 const getInterDB = async (req,res) => {
     try {
         const temp = await DogTemperaments.findAll()
@@ -22,5 +20,4 @@ const getInterDB = async (req,res) => {
         // Status 500: Indica un error interno en el servidor
     }
 }; 
-
 module.exports = getInterDB

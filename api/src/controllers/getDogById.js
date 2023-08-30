@@ -7,8 +7,6 @@ const {API_KEY} = process.env;
 const  axios = require("axios")
 // URL definida de la API 
 const URL = "https://api.thedogapi.com/v1/breeds"
-
-
 const getDogById = async(req,res) => {
     try { 
         const { id } = req.params
@@ -32,9 +30,7 @@ const getDogById = async(req,res) => {
         // Status 500: Indica un error interno en el servidor  
     }
 }; 
-
 module.exports = getDogById
-
 // Nota de axios
 // Usamos get para incluir como otro parametro encabezados opcionales, como la APIKEY
 // La documentación indica pasarla como un objeto en el cual la propiedad es "x-api-key" y el value es la APIKEY
