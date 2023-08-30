@@ -290,3 +290,36 @@ input:required:focus {
     font-weight: bolder;
     border: solid 1.8px white;
 }
+
+.textohover3 {
+    opacity: 0.8;
+    color: green;
+    visibility: visible;
+    font-family: "Rockwell";
+    background-color: white;
+    border: solid 1.5px green;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 10px;
+    height: 15px;
+    padding: 5px;
+}
+
+.botonok2 {
+    font-size: 12.5px;
+    border-radius: 10px;
+    background-color: green;
+    color: white;
+    border: solid 1.8px white;
+    cursor: pointer;
+    font-family: "Rockwell";
+    margin-left: 2px;
+    margin-bottom: 7.5px;
+}
+
+.botonok2:hover {
+    background-color: #550dad; 
+    color: white;
+    font-weight: bolder;
+    border: solid 1.8px white;
+}

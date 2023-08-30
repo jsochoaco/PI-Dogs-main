@@ -9,11 +9,11 @@ const Filtros = (props) => {
     const {temperamentos} = props
     //Ciclo de vida de filtro origen
     const [selectedFilter, setSelectedFilter] = useState("All");
+    const [tempFilter, setTempFilter] = useState([])
     const handleFilterOrigin = (evento) => {
         dispatch(actions.filterOrigen(evento.target.value))
         setSelectedFilter(evento.target.value);}
     // Ciclo de vida del filtro temperamento
-    const [tempFilter, setTempFilter] = useState([])
     const handleFilterTemp = (evento) => {
         const selectedOption = evento.target.value;
         setTempFilter(prevTempFilter => [...prevTempFilter, selectedOption]);}
@@ -21,12 +21,13 @@ const Filtros = (props) => {
         dispatch(actions.filterTemp(tempFilter))}
     const clearTempFilter = () => {
         setTempFilter([]);
-        dispatch(actions.filterTemp([]))};
+        return dispatch(actions.filterTemp([]))};
     // Rendereizado
     return (
         <div className={style.divor}>
                     <div className= {style.tituloorder}>
                         <h5 className={style.texto}>Filters</h5>
+                        <h5>{tempFilter.length}</h5>
                     </div>
                     <div className={style.filtros}>
                         <div className={style.filOrigen}>

@@ -31,7 +31,7 @@ function App(props) {
       element={<Home allDogs= {allDogs} temperamentos = {allTemperamentos} intermedia = {intermedia} data= {data}/>} />
       <Route
       path='/details/:id'
-      element={<Detail/>} />
+      element={<Detail dogs= {allDogs} temperamentos = {allTemperamentos} intermedia = {intermedia}/>} />
       <Route 
       path='/create'
       element= {<Form temperamentos = {allTemperamentos} created = {createdDog} data= {data}/>}/>

@@ -26,8 +26,9 @@ export const reducer = (state=initialState, action) => {
 
         case CREATE_DOG: {
             const dogCreated = action.payload.dogs
+            const existe = action.payload.existe
             if (existe === true) {
-                return {...state, dbDogs: [...state.dbDogs, dogCreated], allDogs: [...state.allDogs, dogCreated]}}
+                return {...state, dbDogs: [...state.dbDogs, dogCreated], allDogs: [...state.allDogs, dogCreated], createdDog: existe}}
             }
         case CREADO: {
             return {...state, createdDog: action.payload}
@@ -48,27 +49,26 @@ export const reducer = (state=initialState, action) => {
             if (action.payload && action.payload.length > 0) {
                 return { ...state, allDogs: [...action.payload] };
         }}
-
         case FILTRO_ORIGEN: {
             if(action.payload === "All") {
                 if(state.filterTemp.length === 0) return {...state, allDogs: [...state.dbDogs,...state.apiDogs]}
                 else return {...state, allDogs: state.filtered}
             }
             else {
-                if(state.filterTemp.length === 0) {const filterOrigen = state.completDogs.filter((dog) => dog.origen === action.payload);return {...state, allDogs: filterOrigen, filtroOrigen: action.payload}} 
-                else if (state.filterTemp.length > 0) {const filterOrigen = state.filtered.filter((dog) => dog.origen === action.payload);return {...state, allDogs: filterOrigen, filtroOrigen: action.payload}}}
-
-            }
+                if(state.filterTemp.length === 0) {
+                    const sinFiltro = [...state.dbDogs,...state.apiDogs]
+                    const filterOrigen = sinFiltro.filter((dog) => dog.origen === action.payload);return {...state, allDogs: filterOrigen, filtroOrigen: action.payload}} 
+                else if (state.filterTemp.length > 0) {const filterOrigen = state.allDogs.filter((dog) => dog.origen === action.payload);return {...state, allDogs: filterOrigen, filtroOrigen: action.payload}}}}
         case FILTRO_TEMP: {
             const payloadact = action.payload
             if (payloadact.length < 1) {
                 return {
                     ...state,
-                    allDogs: [...state.completDogs]
+                    allDogs: state.completDogs
                 }
             }
             else if (payloadact.length >= 1) {
-                state.filtered = state.filtroOrigen === "All" ? [...state.completDogs] : [...state.allDogs];
+                state.filtered = state.filtroOrigen === "All" ? [...state.dbDogs, ...state.apiDogs] : [...state.allDogs];
                 let cumplen = []
                 state.filtered.forEach((dog) => {
                     if(dog.origen === "DB") {
@@ -77,8 +77,8 @@ export const reducer = (state=initialState, action) => {
                         let db = []
                         for (let i =0; i < indexTemp.length; i++) {
                             const temp = state.allTemperamentos[indexTemp[i]]
-                            const tem = temp.temperament
-                            db.push(tem)
+                            if(temp) {const tem = temp.temperament
+                            db.push(tem)}
                         }
                         if (db !== undefined){
                             const contiene = payloadact.every((el) => db.includes(el))
@@ -94,10 +94,10 @@ export const reducer = (state=initialState, action) => {
                             if (contiene) cumplen.push(dog)}
                     }})
                 if (cumplen.length < 1) {
-                    return { ...state, allDogs: [], filterTemp: payloadact };
+                    return { ...state, allDogs: [], filterTemp: [] };
                 }
                 else {
-                    return { ...state, allDogs: cumplen, filterTemp: payloadact, filtered: cumplen };
+                    return { ...state, allDogs: cumplen, filterTemp: payloadact, filtered: cumplen};
                 }
             }
         }
@@ -107,13 +107,13 @@ export const reducer = (state=initialState, action) => {
                 ordenar = [...state.allDogs]
             }
             else if (state.filtroOrigen === "All" && state.filterTemp.length > 0){
-                ordenar = [...state.filtered]
+                ordenar = [...state.allDogs]
             }
             else if (state.filtroOrigen !== "All" && state.filterTemp.length === 0){
                 ordenar = [...state.allDogs]
             }
             else if (state.filtroOrigen !== "All" && state.filterTemp.length > 0){
-                ordenar = [...state.filtered]
+                ordenar = [...state.allDogs]
             }
             if (action.payload === "UN") {
                 return {...state, allDogs: [...state.allDogs]}
@@ -164,7 +164,7 @@ export const reducer = (state=initialState, action) => {
                     if (action.payload === "MenorAMayor") {
                         return a.min - b.min;
                     } else if (action.payload === "MayorAMenor") {
-                        return b.max - a.max;
+                        return b.min - a.min;
                     } else {
                         return 0;
                     }
@@ -178,3 +178,15 @@ export const reducer = (state=initialState, action) => {
             }
     }
 }
+
+
+
+        // case FILTRO_ORIGEN: {
+        //     if(action.payload === "All") {
+        //         if(state.filterTemp.length === 0) return {...state, allDogs: [...state.dbDogs,...state.apiDogs]}
+        //         else return {...state, allDogs: state.allDogs}
+        //     }
+        //     else {
+        //         if(state.filterTemp.length === 0) {const filterOrigen = state.completDogs.filter((dog) => dog.origen === action.payload);return {...state, allDogs: filterOrigen, filtroOrigen: action.payload}} 
+        //         else if (state.filterTemp.length > 0) {const filterOrigen = state.filtered.filter((dog) => dog.origen === action.payload);return {...state, allDogs: filterOrigen, filtroOrigen: action.payload}}}
+        //     }

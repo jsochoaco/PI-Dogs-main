@@ -10,7 +10,7 @@ const URL = "https://api.thedogapi.com/v1/breeds"
 
 
 const getDogById = async(req,res) => {
-    try {
+    try { 
         const { id } = req.params
         const response = await axios.get(`${URL}/${id}`, { 
             headers: { 

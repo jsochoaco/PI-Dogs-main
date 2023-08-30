@@ -5,51 +5,22 @@ import { useDispatch } from "react-redux"
 
 const Form = (props) => {
     const dispatch = useDispatch()
-    const [tempFilter, setTempFilter] = useState([])
-    const [nuevo, setNuevo] = useState([])
-    const {temperamentos, created, data} = props
-    const [creado, setCreado] = useState(created)
-    const [len, setLen] = useState(0);
-    //Error
-    const [error, setError] = useState({})
-    const refresh = () => {
-        data();
-      };
-      // Actualizar len y len2 con las longitudes actuales
-      useEffect(() => {
-        setLen(temperamentos.length);},[temperamentos.length]);
-      // Verificar len y len2 después de 3 segundos
-      useEffect(() => {const timeoutId = setTimeout(() => {if (len === 0) {refresh();}}, 1000);return () => {clearTimeout(timeoutId);};}, [len, refresh]);
-
-    // Temperamentos 
-    const handleAdd = (evento) => {
-        if(evento.target.value) {
-            setNuevo(evento.target.value)
-        }
-    }
-    const add = () => {
-        setTempFilter(prevTempFilter => [...prevTempFilter, nuevo])}
+    const {temperamentos, created, data} = props // Props
+    // Estados
+    const [tempFilter, setTempFilter] = useState([]) //Lista de temperamentos
+    const [nuevo, setNuevo] = useState([]) // Temperamento nuevo agregado
+    const [creado, setCreado] = useState(created) //Perro creado o no
+    const [datos, setDatos] = useState({name: "", hmin: "", hmax: "", wmin: "", wmax: "", lmin: "", lmax: "", temperament: [],image: "",}) //Datos
+    const [envio, setEnvio] = useState({name: "", height: "", weight: "", life_span: "", temperament: "" ,image: "",}) // Info a enviar
+    const [error, setError] = useState({}) // Error
+    //Funciones
+    const handleAdd = (evento) => {if(evento.target.value) setNuevo(evento.target.value)} //Agregar temp
+    const add = () => {setTempFilter(prevTempFilter => [...prevTempFilter, nuevo])} //Agregar temp
     const handleFilterTemp = (evento) => {
         const selectedOption = evento.target.value;
         setTempFilter(prevTempFilter => [...prevTempFilter, selectedOption])}
-    const clearTempFilter = () => {
-        setTempFilter([])}
-    // Datos
-    const [datos, setDatos] = useState({
-        name: "",
-        hmin: "",
-        hmax: "",
-        wmin: "",
-        wmax: "",
-        lmin: "",
-        lmax: "",
-        temperament: [],
-        image: "",
-      })
-    // Info a enviar
-    const [envio, setEnvio] = useState({name: "", height: "", weight: "", life_span: "", temperament: "" ,image: "",})
-    //Función validadora
-    const validate = (datos) => {
+    const clearTempFilter = () => {setTempFilter([])} // Limpiar temp
+    const validate = (datos) => { //Función validadora
         const nameValidation = new RegExp(/^[a-zA-Z]+$/) //Solo letras
         const imageValidation = new RegExp(/^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/) //URL para imagen
         let error = {}
@@ -61,58 +32,27 @@ const Form = (props) => {
         // if (datos.new) {
         //     if (!nameValidation.test(datos.new)) error.new = "Must have only letters";}
         if (datos.hmin && datos.hmax) {
-            if (datos.hmin === datos.hmax || datos.hmin > datos.hmax) error.height = "The minimum must be lower and different than the maximum"}
+            if (Number(datos.hmin) === Number(datos.hmax) || Number(datos.hmin) > Number(datos.hmax)) error.height = "The minimum must be lower and different than the maximum"}
         if (datos.wmin && datos.wmax) {
-            if (datos.wmin === datos.wmax || datos.wmin > datos.wmax) error.weight =  "The minimum must be lower and different than the maximum"}
+            if (Number(datos.wmin) === Number(datos.wmax) || Number(datos.wmin) > Number(datos.wmax)) error.weight =  "The minimum must be lower and different than the maximum"}
         if (datos.lmin && datos.lmax ) {
-            if (datos.lmin === datos.lmax || datos.lmin > datos.lmax) error.life_span = "The minimum must be lower and different than the maximum"}
+            if (Number(datos.lmin) === Number(datos.lmax) || Number(datos.lmin) > Number(datos.lmax)) error.life_span = "The minimum must be lower and different than the maximum"}
         return error}
-    //Función para el cambio en los inputs
-    const handleChange = (evento) => {
+    const handleChange = (evento) => { //Para el cambio en los inputs
         const temp = tempFilter
-        setDatos({...datos,
-            temperament: [...temp],
-            [evento.target.name]: evento.target.value
-        })
-        setError(validate({...datos,
-            temperament: [...temp],
-            [evento.target.name]: evento.target.value
-        }))
-        setEnvio({...envio,
-            name: datos.name,
-            height: String(datos.hmin) + "-" + String(datos.hmax),
-            weight: String(datos.wmin) + "-" + String(datos.wmax),
-            life_span: String(datos.lmin) + "-" + String(datos.lmax),
-            temperament: datos.temperament.join(","),
-            image: datos.image,
-        })
-    }
-    //Función de envío de info
-    const handleSubmit = (evento) =>  {
+        setDatos({...datos, temperament: [...temp], [evento.target.name]: evento.target.value})
+        setError(validate({...datos, temperament: [...temp], [evento.target.name]: evento.target.value}))
+        setEnvio({...envio, name: datos.name, height: String(datos.hmin) + "-" + String(datos.hmax), weight: String(datos.wmin) + "-" + String(datos.wmax), life_span: String(datos.lmin) + "-" + String(datos.lmax), temperament: datos.temperament.join(","), image: datos.image,})}
+    const handleSubmit = (evento) =>  {     //Envío de info
         evento.preventDefault()
         dispatch(actions.createDog(envio))}
-    //Función de limpieza 
-    const handleClearAll = () => {
-        setDatos({
-          name: "",
-          hmin: "",
-          hmax: "",
-          wmin: "",
-          wmax: "",
-          lmin: "",
-          lmax: "",
-          temperament: [],
-          image: "",
-        });
+    const handleClearAll = () => { //Limpieza
+        setDatos({name: "", hmin: "", hmax: "", wmin: "", wmax: "", lmin: "", lmax: "", temperament: [],image: "",});
         setError({});
-        setTempFilter([]);
-      };
-    // Función okey
+        setTempFilter([]);}
     useEffect(()=> {setCreado(created)}, [created])
-    const ok = ()=> {
-        setCreado(null)
-        handleClearAll()
-    }
+    const ok = ()=> { //Boton OK
+        setCreado(null);handleClearAll()}
     //Renderizado
     return (
         <>
@@ -206,19 +146,17 @@ const Form = (props) => {
                     <button className={style.botonclean} type="button" onClick={handleClearAll}>Clear all</button>
                 </div>
                 <div>
-                    {creado === false ? (<div className={style.divdato2}>
-                        <span className={style.textohover2}>This dog already exists</span>
-                        <button className={style.botonok}onClick={ok}>X</button>
-                        </div>) 
-                    :null}
+                {creado === false ? (<div className={style.divdato2}>
+                    <span className={style.textohover2}>This dog already exists</span>
+                    <button className={style.botonok}onClick={ok}>X</button>
+                    </div>) 
+                : creado === true ? (<div className={style.divdato2}>
+                    <span className={style.textohover3}>Dog created</span>
+                    <button className={style.botonok2}onClick={ok}>X</button>
+                    </div>) : null}
                 </div>
-                
             </div>
-
         </form>
         </>
-    )
-
-}
-
+)}
 export default Form

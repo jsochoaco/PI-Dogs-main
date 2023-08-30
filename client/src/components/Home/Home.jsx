@@ -34,6 +34,9 @@ const Home = (props) => {
     for (let i = 1; i <= totalPages; i++) {
         pageNumbers.push(i);
     }
+    const reload = () => {
+        window.location.reload();
+    }
     // Rendereizado
     return (
         <div className={style.general}>
@@ -43,7 +46,7 @@ const Home = (props) => {
             </div>
             <div className={style.divboton}>
                 <button className={style.botonclean} onClick={clearFilters}> Clear filters and orders </button>
-                {/* <button className={style.botones} onClick={data}> Refresh data </button> */}
+                <button className={style.botones} onClick={reload}> Refresh created Dogs </button>
             </div>
             <div className={style.paginado}>
                 <button className= {style.botonpag} onClick={() => setPagina(pagina - 1)} disabled={pagina === 1}> Previous</button>
