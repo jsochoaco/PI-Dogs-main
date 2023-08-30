@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import style from "./Home.module.css"
 
 
-const Ordenador = (props) => {
+const Ordenador = () => {
     const dispatch = useDispatch()
     // Ciclo de vida del orden por nombre
     const [ordenName, setOrdenName] = useState("UN")
@@ -43,6 +43,6 @@ const Ordenador = (props) => {
                             </select>
                         </div>
                     </div>
-        </div>
-    )
-}; export default Ordenador
+        </div>)
+};
+export default Ordenador

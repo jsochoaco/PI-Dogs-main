@@ -9,21 +9,20 @@ import { useState, useEffect } from "react"
 
 const Home = (props) => {
     const dispatch = useDispatch()
-    //Estados importados
+    //Estados globales importados
     const {allDogs, temperamentos, intermedia, data} = props
+    //Refresco la info si la pagina se refresca
     const refresh = () => {
-        data();
-      };
+        data();};
     const [len, setLen] = useState(0); const [len2, setLen2] = useState(0);
-    // Actualizar len y len2 con las longitudes actuales
     useEffect(() => { setLen(allDogs.length); setLen2(temperamentos.length);}, [allDogs.length, temperamentos.length]);
-    // Verificar len y len2 después de 3 segundos
     useEffect(() => {const timeoutId = setTimeout(() => {if (len === 0 && len2 === 0) {refresh();}}, 2000);return () => {clearTimeout(timeoutId);};}, [len, len2, refresh]);
-    // Limpiador de filtros
-    const clearFilters = () => {
-        dispatch(actions.clearFilter())
-      };
-    // Paginado (
+    // Funciones
+    const clearFilters = () => {     // Limpiador de filtros
+        dispatch(actions.clearFilter())};
+    const reload = () => { // Refrescar pagina
+        window.location.reload();}
+    // Paginado
     const [pagina, setPagina] = useState(1)
     const porPagina = 8
     const ultimoElemento = pagina*porPagina
@@ -32,11 +31,7 @@ const Home = (props) => {
     const totalPages = Math.ceil(allDogs.length / porPagina);
     const pageNumbers = [];
     for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(i);
-    }
-    const reload = () => {
-        window.location.reload();
-    }
+        pageNumbers.push(i);}
     // Rendereizado
     return (
         <div className={style.general}>
@@ -63,6 +58,6 @@ const Home = (props) => {
                 ))}
                 <button className= {style.botonpag} onClick={() => setPagina(pagina + 1)} disabled={ultimoElemento >= allDogs.length}>Next</button>
             </div>
-        </div>
-    )
-}; export default Home
+        </div>)
+}; 
+export default Home
