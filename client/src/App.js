@@ -22,6 +22,14 @@ function App(props) {
   const { pathname } = useLocation()
   // Importo los estados 
   const {allDogs, allTemperamentos, intermedia, createdDog} = props
+  const temperamentos  = [];
+  const seenTemperaments = {};
+  for (const obj of allTemperamentos) {
+      if (!seenTemperaments[obj.temperament]) {
+          seenTemperaments[obj.temperament] = true;
+          temperamentos.push(obj);
+      }
+  }
   //Renderizado de rutas 
   return (
     <div className="App">
@@ -32,16 +40,16 @@ function App(props) {
         element={<Landing/>} />
         <Route // Home
         path='/home'
-        element={<Home allDogs= {allDogs} temperamentos = {allTemperamentos} intermedia = {intermedia} data= {data}/>}/>
+        element={<Home allDogs= {allDogs} temperamentos = {temperamentos} intermedia = {intermedia} data= {data}/>}/>
         <Route // Details
         path='/details/:id'
-        element={<Detail dogs= {allDogs} temperamentos = {allTemperamentos} intermedia = {intermedia}/>} />
+        element={<Detail dogs= {allDogs} temperamentos = {temperamentos} intermedia = {intermedia}/>} />
         <Route //Create dog/form
         path='/create'
-        element= {<Form temperamentos = {allTemperamentos} created = {createdDog} data= {data}/>}/>
+        element= {<Form temperamentos = {temperamentos} created = {createdDog} data= {data}/>}/>
         <Route //Temperaments
         path='/temperaments'
-        element= {<Temperaments temperamentos = {allTemperamentos} data= {data}/>}/>
+        element= {<Temperaments temperamentos = {temperamentos} data= {data}/>}/>
         <Route //Info del dev
         path='/aboutDev'
         element= {<AboutDev/>}/>

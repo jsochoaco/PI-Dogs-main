@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux"
 const Form = (props) => {
     const dispatch = useDispatch()
     const {temperamentos, created} = props // Props
+    // [new Set(temperamentos)] 
     // Estados
     const [tempFilter, setTempFilter] = useState([]) //Lista de temperamentos
     const [nuevo, setNuevo] = useState([]) // Temperamento nuevo agregado
@@ -25,12 +26,12 @@ const Form = (props) => {
         const imageValidation = new RegExp(/^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/) //URL para imagen
         let error = {}
         if (datos.name) {
-            if (!nameValidation.test(datos.name)) error.name = "Must have only letters"}
+            if (!nameValidation.test(datos.name) || datos.name.length > 15) error.name = "Must have only letters and 15 characteres max."}
         if (datos.image) {
             if(!imageValidation.test(datos.image)) error.image = "Must be a valid URL"}
         if (datos.temperament.length === 0) error.temperaments = "You must choose at least one temperament"
-        // if (datos.new) {
-        //     if (!nameValidation.test(datos.new)) error.new = "Must have only letters";}
+        if (datos.new) {
+            if (!nameValidation.test(datos.new) || datos.new.length > 15) error.new = "Must have only letters and 15 characteres max.";}
         if (datos.hmin && datos.hmax) {
             if (Number(datos.hmin) === Number(datos.hmax) || Number(datos.hmin) > Number(datos.hmax)) error.height = "The minimum must be lower and different than the maximum"}
         if (datos.wmin && datos.wmax) {
