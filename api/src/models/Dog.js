@@ -17,6 +17,8 @@ module.exports = (sequelize) => {
     name: { // Nombre
       type: DataTypes.STRING,
       allowNull: false,
+        validate: {
+          len: [1, 15]}
     },
     height: { // Altura 
       type: DataTypes.STRING, 
