@@ -62,14 +62,14 @@ const Form = (props) => {
                 <h1 className={style.ppal}>&#127381; Create a new dog &#128054;</h1>
                 <div className={style.divdato}>
                     <label className={style.dato}>Name</label>
-                    <input className={style.inputtext}  type="text" name="name" placeholder="Dog name" onChange={handleChange} required  value={datos.name}/>
+                    <input className={style.inputtext}   disabled={creado === true || creado === false}  type="text" name="name" placeholder="Dog name" onChange={handleChange} required  value={datos.name}/>
                     <br/>
                     {error.name ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.name}</span>
                     </div> ):(null)}
                 </div>
                 <div className={style.divdato}>
                     <label className={style.dato}>Tempermanets list</label>
-                    <select className={style.select} name="list" onChange={handleFilterTemp}>
+                    <select className={style.select} name="list" onChange={handleFilterTemp} disabled={creado === true || creado === false} >
                     {temperamentos.map((temp) => (
                     <option value={temp.temperament}> {temp.temperament} </option>))}
                     </select>
@@ -79,18 +79,18 @@ const Form = (props) => {
                 </div>
                 <div className={style.divdato}>
                 <label className={style.dato}>&#127381;Temperament</label>
-                    <input className={style.inputtext2} type="text" name="new" placeholder="Include a temperament that is not on the list" onChange = {e=> {handleAdd(e); handleChange(e);}} />
+                    <input className={style.inputtext2} disabled={creado === true || creado === false}  type="text" name="new" placeholder="Include a temperament that is not on the list" onChange = {e=> {handleAdd(e); handleChange(e);}} />
                     <br/>
-                    <button className={style.botonclean} onClick={add}>Add</button>
+                    <button className={style.botonclean} disabled={creado === true || creado === false} onClick={add}>Add</button>
                     {error.new ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.new}</span>
                     </div> ):(null)}
                 </div>
                 <div className={style.divdato}>                 
                     <label className={style.dato}>Height</label>
                     <h6 className={style.datosec}>Min.</h6>
-                    <input className={style.inputnum} type="number" name="hmin" min="0" placeholder="In centimeters" onChange={handleChange}  required value={datos.hmin}/>
+                    <input className={style.inputnum} disabled={creado === true || creado === false}  type="number" name="hmin" min="0" placeholder="In centimeters" onChange={handleChange}  required value={datos.hmin}/>
                     <h6 className={style.datosec}>Max.</h6>
-                    <input className={style.inputnum} type="number" name="hmax" min="0" placeholder="In centimeters" onChange={handleChange} required value={datos.hmax}/>
+                    <input className={style.inputnum} disabled={creado === true || creado === false}  type="number" name="hmax" min="0" placeholder="In centimeters" onChange={handleChange} required value={datos.hmax}/>
                     <br/>
                     {error.height ? (
                     <div className={style.divdato2}>
@@ -101,9 +101,9 @@ const Form = (props) => {
                 <div className={style.divdato}>
                     <label className={style.dato}>Weight</label>
                     <h6 className={style.datosec}>Min.</h6> 
-                    <input className={style.inputnum} type="number" name="wmin" min="0" placeholder="In kilograms" onChange={handleChange} required value={datos.wmin}/>
+                    <input className={style.inputnum} disabled={creado === true || creado === false}  type="number" name="wmin" min="0" placeholder="In kilograms" onChange={handleChange} required value={datos.wmin}/>
                     <h6 className={style.datosec}>Max.</h6> 
-                    <input className={style.inputnum} type="number" name="wmax" min="0" placeholder="In kilograms" onChange={handleChange} required value={datos.wmax}/>
+                    <input className={style.inputnum} disabled={creado === true || creado === false}  type="number" name="wmax" min="0" placeholder="In kilograms" onChange={handleChange} required value={datos.wmax}/>
                     <br/>
                     {error.weight ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.weight}</span>
                     </div> ):(null)}
@@ -111,16 +111,16 @@ const Form = (props) => {
                 <div className={style.divdato}>
                     <label className={style.dato}>Life span</label>
                     <h6 className={style.datosec}>Min.</h6> 
-                    <input className={style.inputnum} type="number" name="lmin" min="0" placeholder="In years" onChange={handleChange} required value={datos.lmin}/>
+                    <input className={style.inputnum} disabled={creado === true || creado === false}  type="number" name="lmin" min="0" placeholder="In years" onChange={handleChange} required value={datos.lmin}/>
                     <h6 className={style.datosec}>Max.</h6> 
-                    <input className={style.inputnum} type="number" name="lmax" placeholder="In years" min="0" onChange={handleChange} required value={datos.lmax}/>
+                    <input className={style.inputnum} disabled={creado === true || creado === false}  type="number" name="lmax" placeholder="In years" min="0" onChange={handleChange} required value={datos.lmax}/>
                     <br />
                     {error.life_span ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.life_span}</span>
                     </div> ):(null)}
                 </div>
                 <div className={style.divdato} >
                     <label className={style.dato}>Image</label> 
-                    <input className={style.inputtext} type="text" name="image" placeholder="URL" onChange={handleChange} value={datos.image}/>
+                    <input className={style.inputtext} disabled={creado === true || creado === false}  type="text" name="image" placeholder="URL" onChange={handleChange} value={datos.image}/>
                     {error.image ? ( <div className={style.divdato2}> <p className={style.simbolo}>!</p> <span className={style.textohover}>{error.image}</span>
                     </div> ):(null)}
                 </div>
@@ -129,8 +129,8 @@ const Form = (props) => {
                 </div>
                 <div className={style.divdato}>
                     <input className={style.boton} type="submit" value="Create Dog"
-                    disabled={ (!envio.name && envio.name !== "")|| (!envio.temperament && envio.temperament !== "") || (!envio.life_span && envio.life_span !== "" )||(!envio.weight  && envio.weight !== "")||  (!envio.height && envio.height !== "")|| (!envio.height && envio.height !== "")|| error.name || error.weight || error.height || error.temperaments || error.life_span || error.image}/>
-                    <button className={style.botonclean} type="button" onClick={handleClearAll}>Clear all</button>
+                    disabled={ (!envio.name && envio.name !== "")|| (!envio.temperament && envio.temperament !== "") || (!envio.life_span && envio.life_span !== "" )||(!envio.weight  && envio.weight !== "")||  (!envio.height && envio.height !== "")|| (!envio.height && envio.height !== "")|| error.name || error.weight || error.height || error.temperaments || error.life_span || error.image || (creado === true || creado === false)}/>
+                    <button className={style.botonclean} disabled={creado === true || creado === false} type="button" onClick={handleClearAll}>Clear all</button>
                 </div>
                 <div>
                 {creado === false ? (<div className={style.divdato2}>
