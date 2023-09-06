@@ -32,10 +32,7 @@ const Home = (props) => {
     const pageNumbers = [];
     for (let i = 1; i <= totalPages; i++) {
         pageNumbers.push(i);}
-    useEffect(() => {
-        if (pagina > totalPages) {
-            setPagina(1);
-    }}, [totalPages]);
+    useEffect(() => {setPagina(1)}, [totalPages]);
     // Rendereizado
     return (
         <div className={style.general}>

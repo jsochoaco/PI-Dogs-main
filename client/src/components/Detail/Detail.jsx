@@ -48,7 +48,7 @@ const Details = (props) => {
   {dog.temperament ? (
   <div className={style.contenedor}>
     <div className={style.imagencontiner}>
-      {dog.origen !== "DB" ? (<img className= {style.img} src={dog.url} alt={dog.name} />): (<img className= {style.img} src={dog.image} alt={dog.name} />)}
+      {dog.origen !== "DB" ? (<img className= {style.img} src={dog.url} alt={dog.name} />): dog.image ? (<img className= {style.img} src={dog.image} alt={dog.name} />):(<span className= {style.dog}>&#128054;</span>)}
       {dog.origen !== "DB" ? (<div className={style.caption}>
         <h5 className={style.name}> {dog.name}</h5>
         {dog.bred_for?(<h6 className={style.adicional}> BRED FOR | {dog.bred_for}</h6>):(<h6 className={style.adicional}> BRED FOR | No data</h6>)}

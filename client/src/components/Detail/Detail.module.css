@@ -172,3 +172,15 @@
     margin: 10px;
     font-size: 15px;
 }
+
+.dog {
+    max-width: 500px;
+    width: 500px;
+    max-height: 450px;
+    border-radius: 10px;
+    border: 5px outset #550dad;
+    box-shadow: 0 0 20px 10px #550dad;
+    margin-left: 150px;
+    cursor: pointer;
+    font-size: 250px;
+}

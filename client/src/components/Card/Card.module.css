@@ -60,3 +60,7 @@
         -webkit-transform: scale3d(1.2, 1.2, 0.3);
         -moz-transform: scale3d(1.2, 1.2, 0.3);
 }
+
+.dog {
+    font-size: 100px; 
+}
