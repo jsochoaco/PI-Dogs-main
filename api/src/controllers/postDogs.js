@@ -16,10 +16,10 @@ const postDogs = async (req,res) => {
             const lowerCaseWord = word.toLowerCase();
             const capitalizedWord = lowerCaseWord.charAt(0).toUpperCase() + lowerCaseWord.slice(1);
             return capitalizedWord;});
-        arrayTemperamentos.forEach(async (temperamento) => {
-            await Temperaments.findOrCreate({
-                where: {temperament: temperamento},}
-                )});
+        // arrayTemperamentos.forEach(async (temperamento) => {
+        //     await Temperaments.findOrCreate({
+        //         where: {temperament: temperamento},}
+        //         )});
         arrayTemperamentos.forEach(async (temperamento) => {
             const [temperament, _] = await Temperaments.findOrCreate(
                 {where: { temperament: temperamento }});

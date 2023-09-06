@@ -7,8 +7,6 @@ const initialState = {
     filterTemp: [],
     filtroOrigen: null,
     allDogs: [],
-    dbTemperamentos: [],
-    apiTemperamentos: [],
     allTemperamentos: [],
     intermedia: [],
     createdDog: null,
@@ -29,14 +27,11 @@ export const reducer = (state=initialState, action) => {
             if (existe === true) {
                 return {...state, dbDogs: [...state.dbDogs, dogCreated], allDogs: [...state.allDogs, dogCreated], createdDog: existe}}
             }
-        case CREADO: {
-            return {...state, createdDog: action.payload}
-        }
+        case CREADO: {return {...state, createdDog: action.payload}}
         case SET_DB_TEMP: {
             return {
                 ...state,
-                dbTemperamentos: action.payload,
-                allTemperamentos: [...state.allTemperamentos, ...action.payload]};
+                allTemperamentos: action.payload,};
         }
         case SET_INTERMEDIA : {
             return {...state, intermedia: action.payload}}

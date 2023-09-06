@@ -21,7 +21,7 @@ const Filtros = (props) => {
         dispatch(actions.filterTemp(tempFilter))}
     const clearTempFilter = () => {
         setTempFilter([]);
-        return dispatch(actions.filterTemp([]))};
+        return dispatch(actions.filterTemp(tempFilter))};
     // Rendereizado
     return (
         <div className={style.divor}>

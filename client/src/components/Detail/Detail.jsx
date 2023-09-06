@@ -29,10 +29,12 @@ const Details = (props) => {
             setDog(updatedDog);}}
         if (id >= 265) {
           const dogDB = dogs.find((obj) => obj.id === parseInt(id));
-          const filtro = intermedia.filter((obj) => obj.dogId === dogDB.id);
-          const indexTemp = filtro.map((obj) => obj.temperamentId);
-          const db = indexTemp.map((index) => temperamentos[index] ? temperamentos[index].temperament : null);
-          setDog({ ...dogDB, temperament: db });}
+          if (dogDB) {
+            const filtro = intermedia.filter((obj) => obj.dogId === dogDB.id);
+            const indexTemp = filtro.map((obj) => obj.temperamentId);
+            const db = indexTemp.map((index) => temperamentos[index-1] ? temperamentos[index-1].temperament : null);
+            setDog({ ...dogDB, temperament: db });}
+          }
       }
       catch (error) {
         console.error(error.message); // Registrar el error en la consola
