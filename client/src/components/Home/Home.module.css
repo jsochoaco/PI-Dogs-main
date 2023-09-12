@@ -69,13 +69,13 @@
 .textosecun {
     font-family: "Rockwell";
     font-size: 15px;
-    color: black;
+    color: #000000;
 }
 
 .select {
     font-family: "Rockwell";
     background-color: #9f7bfc;
-    color: white;
+    color: #ffffff;
     text-align: center;
     font-size: 16px;
     border: solid black 1.8px;
