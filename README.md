@@ -5,6 +5,24 @@
 
 ## **📌 PRESENTACIÓN**
 
+Descripción:
+Es una aplicación diseñada para los amantes de los perros y aquellos interesados en conocer más sobre las diferentes razas de perro. La aplicación aprovecha la API de The Dogs para proporcionar a los usuarios información detallada sobre una variedad de razas caninas. La aplicación se centra en brindar una experiencia informativa y personalizada para los usuarios.
+
+Características Destacadas:
+
+- Exploración Detallada: Los usuarios pueden buscar y explorar información detallada sobre una amplia variedad de razas de perro, incluyendo datos como temperamento, tamaño y características.
+
+- Personalización: La aplicación permite a los usuarios crear perfiles para sus propios perros y agregar información específica sobre ellos.
+
+- Filtros y Ordenamiento: Los usuarios pueden refinar su búsqueda utilizando filtros y ordenar los resultados según sus preferencias.
+
+- Información Integral: La aplicación proporciona detalles exhaustivos de cada raza de perro, incluyendo historia, cuidados y características distintivas.
+
+Interacción en Tiempo Real: La información se actualiza en tiempo real desde la API de The Dogs, lo que garantiza que los datos sean precisos y actuales.
+
+Objetivo:
+El objetivo de esta aplicación es proporcionar a los amantes de los perros una plataforma donde puedan explorar y conocer en profundidad diferentes razas de perro, así como crear perfiles personalizados para sus propios perros. La aplicación busca ser una fuente de información confiable y una herramienta útil para aquellos interesados en elegir una raza de perro adecuada para sus necesidades y estilo de vida.
+
 ---
 
 ## **📋 Funcionalidades**
